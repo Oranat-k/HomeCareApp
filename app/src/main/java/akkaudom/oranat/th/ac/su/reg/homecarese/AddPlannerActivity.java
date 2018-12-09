@@ -1,6 +1,7 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.graphics.Color;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,10 @@ public class AddPlannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_add_planner);
+
+        // menu bar
+        ActionBar actionBar = getSupportActionBar ();
+                actionBar.setTitle ("เพิ่มยา");
 
         Createwidget();
 

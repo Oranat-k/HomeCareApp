@@ -36,6 +36,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickaddPlanner(View view){
-        startActivity (new Intent(MainActivity.this,AddPlannerActivity.class));
+        startActivity (new Intent(MainActivity.this,PlannerActivity.class));
     }
 }

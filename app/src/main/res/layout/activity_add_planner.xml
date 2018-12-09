@@ -4,21 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/camera" />
 
     <EditText
         android:id="@+id/nameMedicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:hint="ชื่อยา"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
         android:text="เวลา"/>
 
     <RelativeLayout
@@ -26,12 +24,12 @@
         android:layout_height="wrap_content">
     <Button
         android:id="@+id/btnBeforMed"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="ก่อนอาหาร"/>
     <Button
         android:id="@+id/btnAfterMed"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="หลังอาหาร"/>
@@ -41,18 +39,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
         android:text="ครั้งละ"/>
 
     <EditText
         android:id="@+id/coutMedicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ครั้งละ"/>
+        android:hint="1 เม็ด"/>
 
     <Button
         android:onClick="InsertData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:id="@+id/btnSave"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"

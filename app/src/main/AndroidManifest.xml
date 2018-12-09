@@ -16,7 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddPlannerActivity" />
+
+        <activity
+            android:name=".AddPlannerActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".PlannerActivity"
+            android:parentActivityName=".AddPlannerActivity"></activity>
+
     </application>
 
 </manifest>

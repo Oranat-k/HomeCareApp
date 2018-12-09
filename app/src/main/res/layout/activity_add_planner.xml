@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/nameMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ชื่อยา"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="เวลา"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnBeforMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ก่อนอาหาร"/>
+    <Button
+        android:id="@+id/btnAfterMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="หลังอาหาร"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ครั้งละ"/>
+
+    <EditText
+        android:id="@+id/coutMedicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ครั้งละ"/>
+
+    <Button
+        android:onClick="InsertData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSave"
+        android:text="บันทึก"/>
+
+
+</LinearLayout>

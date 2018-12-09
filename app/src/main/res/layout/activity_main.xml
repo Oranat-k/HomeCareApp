@@ -23,6 +23,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เช้า"
+                    android:textSize="20dp"
                      />
 
                 <Button
@@ -31,6 +32,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="สร้างแผนการดูแล"
+                    android:textColor="@color/colorTextWrite"
+                    android:backgroundTint="@color/colorAccent"
                     android:onClick="onClickaddPlanner"/>
             </RelativeLayout>
 
@@ -55,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:itemTextColor="@color/colorAccent"
+        app:itemTextColor="@color/colorTextDark"
         app:itemIconTint="@color/colorAccent"
         app:menu="@menu/bottom_nav"/>
 

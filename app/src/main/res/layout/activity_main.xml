@@ -33,7 +33,7 @@
                     android:layout_alignParentRight="true"
                     android:text="สร้างแผนการดูแล"
                     android:textColor="@color/colorTextWrite"
-                    android:backgroundTint="@color/colorAccent"
+                    android:backgroundTint="@color/colorButton"
                     android:onClick="onClickaddPlanner"/>
             </RelativeLayout>
 
@@ -59,7 +59,7 @@
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemTextColor="@color/colorTextDark"
-        app:itemIconTint="@color/colorAccent"
+        app:itemIconTint="@color/colorButton"
         app:menu="@menu/bottom_nav"/>
 
 

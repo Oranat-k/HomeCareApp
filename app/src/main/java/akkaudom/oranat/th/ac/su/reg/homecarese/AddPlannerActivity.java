@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddPlannerActivity extends AppCompatActivity {
 
-    Button btnBeforMed,btnAfterMed;
+    Button btnBeforMed,btnAfterMed,btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
     EditText nameMedicine,coutMedicine;
 
 
@@ -48,15 +48,20 @@ public class AddPlannerActivity extends AppCompatActivity {
 
         btnBeforMed = (Button) findViewById (R.id.btnBeforMed);
         btnAfterMed = (Button) findViewById (R.id.btnAfterMed);
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         nameMedicine = (EditText) findViewById (R.id.nameMedicine);
         coutMedicine = (EditText) findViewById (R.id.coutMedicine);
 
+        //สลับสีปุ่ม
         btnBeforMed.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                btnBeforMed.setBackgroundColor (Color.RED);
+                btnBeforMed.setBackgroundColor (Color.rgb (254,176,98));
                 btnAfterMed.setBackgroundColor (Color.WHITE);
             }
         });
@@ -65,13 +70,59 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnAfterMed.setBackgroundColor (Color.RED);
+                btnAfterMed.setBackgroundColor (Color.rgb (254,176,98));
                 btnBeforMed.setBackgroundColor (Color.WHITE);
 
             }
         });
 
+        btnMorning.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                btnMorning.setBackgroundColor (Color.rgb (254,176,98));
+                btnAfternoon.setBackgroundColor (Color.WHITE);
+                btnEvening.setBackgroundColor (Color.WHITE);
+                btnBeforeBed.setBackgroundColor (Color.WHITE);
+
+            }
+        });
+
+        btnAfternoon.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnMorning.setBackgroundColor (Color.WHITE);
+                btnAfternoon.setBackgroundColor (Color.rgb (254,176,98));
+                btnEvening.setBackgroundColor (Color.WHITE);
+                btnBeforeBed.setBackgroundColor (Color.WHITE);
+
+            }
+        });
+
+        btnEvening.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnMorning.setBackgroundColor (Color.WHITE);
+                btnAfternoon.setBackgroundColor (Color.WHITE);
+                btnEvening.setBackgroundColor (Color.rgb (254,176,98));
+                btnBeforeBed.setBackgroundColor (Color.WHITE);
+
+            }
+        });
+
+        btnBeforeBed.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnMorning.setBackgroundColor (Color.WHITE);
+                btnAfternoon.setBackgroundColor (Color.WHITE);
+                btnEvening.setBackgroundColor (Color.WHITE);
+                btnBeforeBed.setBackgroundColor (Color.rgb (254,176,98));
+
+            }
+        });
 
     }
 }

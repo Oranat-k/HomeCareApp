@@ -15,7 +15,7 @@
         android:text="ยา"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"
-        android:onClick="onClickaddMedicine"/>
+        android:onClick="onClickHisMed"/>
 
     <Button
     android:id="@+id/btnAddTherapy"

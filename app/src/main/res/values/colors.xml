@@ -6,6 +6,8 @@
 
     <color name="colorButton">#1b90d8</color>
 
+    <color name="holo_green_dark">#35ce9b</color>
+
     <color name="colorTextWrite">#ffffff</color>
     <color name="colorTextDark">#262626</color>
     <color name="colorActive">#feb062</color>

@@ -1,11 +1,13 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class PlannerAdapter extends BaseAdapter {
 
 
         View view = mLayoutInflater.inflate(R.layout.list_item_planner,parent,false);
-        Holder h = new Holder();
+        final Holder h = new Holder();
 
         // set id's
         h.title = (TextView)(view.findViewById(R.id.title));
@@ -53,7 +55,27 @@ public class PlannerAdapter extends BaseAdapter {
 
         h.suggest.setText(list.get(position));
 
+        h.border = (LinearLayout)(view.findViewById (R.id.border)) ;
+
         h.checklist = (CheckBox)(view.findViewById(R.id.checklist));
+
+
+        h.checklist.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (((CheckBox) v).isChecked()) {
+                    h.border.setBackground(ContextCompat.getDrawable(mContext,R.drawable.border_active));
+                    h.checklist.setButtonTintList(mContext.getResources().getColorStateList(R.color.holo_green_dark));
+                }
+                else{
+                    h.border.setBackground(ContextCompat.getDrawable(mContext,R.drawable.border_none));
+                    h.checklist.setButtonTintList(mContext.getResources().getColorStateList(R.color.colorAccent));
+
+                }
+            }
+        });
+        notifyDataSetChanged();
 
 
         return view;
@@ -65,6 +87,7 @@ public class PlannerAdapter extends BaseAdapter {
         TextView title;
         TextView suggest;
         CheckBox checklist;
+        LinearLayout border;
 
     }
 }

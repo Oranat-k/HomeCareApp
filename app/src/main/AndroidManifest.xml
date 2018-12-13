@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="akkaudom.oranat.th.ac.su.reg.homecarese">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     // ขออนุญาตดึงรูปภาพ
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,15 +20,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddPlannerActivity"
-            android:parentActivityName=".PlannerActivity"/>
+            android:parentActivityName=".PlannerActivity" />
+        <activity
+            android:name=".PlannerActivity"
+            android:parentActivityName=".AddPlannerActivity">
+            >
+        </activity>
+        <activity android:name=".HistoryMedicineActivity">
 
-        <activity android:name=".PlannerActivity"
-            android:parentActivityName=".AddPlannerActivity">></activity>
-
-
+        </activity>
     </application>
 
 </manifest>

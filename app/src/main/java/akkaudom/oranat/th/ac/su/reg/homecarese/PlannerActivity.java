@@ -15,7 +15,7 @@ public class PlannerActivity extends AppCompatActivity {
 
 
     }
-    public void onClickaddMedicine(View view){
-        startActivity (new Intent(PlannerActivity.this,AddPlannerActivity.class));
+    public void onClickHisMed(View view){
+        startActivity (new Intent(PlannerActivity.this,HistoryMedicineActivity.class));
     }
 }

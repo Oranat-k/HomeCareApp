@@ -22,15 +22,17 @@
         </activity>
         <activity
             android:name=".AddPlannerActivity"
-            android:parentActivityName=".PlannerActivity" />
+            android:parentActivityName=".HistoryMedicineActivity" />
         <activity
             android:name=".PlannerActivity"
             android:parentActivityName=".AddPlannerActivity">
             >
         </activity>
-        <activity android:name=".HistoryMedicineActivity">
 
+        <activity android:name=".HistoryMedicineActivity"
+            android:parentActivityName=".PlannerActivity">
         </activity>
+
     </application>
 
 </manifest>

@@ -70,11 +70,12 @@ public class AddPlannerActivity extends AppCompatActivity {
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
                             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             android.Manifest.permission.CAMERA},1);
-        }
+        }//รูป pop up take photo//galley
 
-        // menu bar
+
         ActionBar actionBar = getSupportActionBar ();
         actionBar.setTitle ("เพิ่มยา");
+        // menu bar
 
         Createwidget();
 
@@ -148,7 +149,7 @@ public class AddPlannerActivity extends AppCompatActivity {
             ProfileImage.setImageBitmap(imageSelect);
         }
 
-    }
+    }//เลือกรูป
 
     public void InsertData(View view) {
 
@@ -160,7 +161,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient[UserDetail.selectPatient]+"/"+id+".jpg");
+        StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient[UserDetail.selectPatient]+"/"+id+".jpg"); //พาทรูป
         UploadTask uploadTask = imagesRef.putBytes(dataPic);
         uploadTask.addOnFailureListener(new OnFailureListener () {
             @Override
@@ -170,7 +171,7 @@ public class AddPlannerActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot> () {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(AddPlannerActivity.this, "correct ", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddPlannerActivity.this, "correct ", Toast.LENGTH_LONG).show(); //บันทึกเข้าแล้ว
             }
         });
 

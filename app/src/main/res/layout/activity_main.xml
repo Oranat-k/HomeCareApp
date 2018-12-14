@@ -8,7 +8,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="55dp">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,37 +26,73 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                    android:textColor="@color/colorTextDark"
+                    android:layout_marginTop="10dp"
                     android:text="เช้า"
-                    android:textSize="20dp"
-                     />
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/btnAddPlanner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="สร้างแผนการดูแล"
-                    android:textColor="@color/colorTextWrite"
                     android:backgroundTint="@color/colorButton"
-                    android:onClick="onClickaddPlanner"/>
+                    android:onClick="onClickaddPlanner"
+                    android:text="สร้างแผนการดูแล"
+                    android:textColor="@color/colorTextWrite" />
             </RelativeLayout>
 
             <ListView
                 android:id="@+id/listPlanner"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="364dp"
                 android:divider="@null"
                 android:dividerHeight="10.0sp"
-                android:padding="10dp"/>
-
+                android:padding="10dp" />
 
         </LinearLayout>
 
 
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_marginTop="420dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="กลางวัน"
+            android:textColor="@color/colorTextDark"
+            android:textSize="20dp" />
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/colorButton"
+            android:onClick="onClickaddPlanner"
+            android:text="สร้างแผนการดูแล"
+            android:textColor="@color/colorTextWrite" />
+    </RelativeLayout>
+
+    <ListView
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="470dp"
+        android:divider="@null"
+        android:dividerHeight="10.0sp"
+        android:padding="10dp" />
+
+
+
+
 
 
 

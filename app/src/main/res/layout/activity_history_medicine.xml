@@ -20,7 +20,7 @@
     <ListView
         android:id="@+id/lstHisMed"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:divider="@null"
         android:dividerHeight="10.0sp"
         android:padding="10dp"/>

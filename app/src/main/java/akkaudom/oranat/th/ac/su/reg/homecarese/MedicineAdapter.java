@@ -67,7 +67,7 @@ public class MedicineAdapter extends BaseAdapter {
 
         h.subTitleMed.setText(list.get(position).getRange ()+","+list.get(position).getTimeMed ()+","+list.get(position).getAmount ()+"เม็ด");
 
-        h.imageMed = (CircleImageView) (view.findViewById (R.id.imageMed)) ;
+        h.imageMed = (CircleImageView) (view.findViewById (R.id.imageMed));
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference()
                 .child(list.get (position).getImageUrl ());

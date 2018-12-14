@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:screenOrientation="portrait"> //จอเเนวตั้ง
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            //จอเเนวตั้ง
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +25,7 @@
         </activity>
         <activity
             android:name=".AddPlannerActivity"
-            android:parentActivityName=".HistoryMedicineActivity"/>
+            android:parentActivityName=".HistoryMedicineActivity" />
         <activity
             android:name=".PlannerActivity"
             android:parentActivityName=".AddPlannerActivity">
@@ -30,10 +33,12 @@
         </activity>
         <activity
             android:name=".HistoryMedicineActivity"
-            android:parentActivityName=".PlannerActivity"/>
-
-        <activity android:name=".AddTherapyActivity" android:screenOrientation="portrait"/>
-
+            android:parentActivityName=".PlannerActivity" />
+        <activity
+            android:name=".AddTherapyActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AddSymptomActivity" />
+        <activity android:name=".AddSugarActivity"></activity>
     </application>
 
 </manifest>

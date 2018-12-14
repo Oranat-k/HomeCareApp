@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:hint="ชื่อยา"/>
+        android:hint="เพิ่มการดูเเล"/>
 
 
     <TextView
@@ -60,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/btnSave"
+        android:background="@drawable/border_button"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"
         android:text="บันทึก"/>

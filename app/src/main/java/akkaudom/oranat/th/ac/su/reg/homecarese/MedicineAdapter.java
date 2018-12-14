@@ -92,7 +92,7 @@ public class MedicineAdapter extends BaseAdapter {
                             .child("Medicines").child(list.get (position).getNameMed ()).child ("Status").setValue("false");
                 }
             }
-        });
+        }); //ระงับการใช้ยา
 
 
 

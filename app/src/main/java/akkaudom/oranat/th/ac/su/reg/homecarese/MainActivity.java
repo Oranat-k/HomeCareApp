@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         getDataToArr();
 
+        getSupportActionBar().setTitle("Planner");
+
 
     }
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,26 +12,25 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddTherapyActivity extends AppCompatActivity {
+public class AddSymptomActivity extends AppCompatActivity {
 
     Button btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
-    EditText dataTherapy;
+    EditText dataSymptom;
 
-    String rangeTherapy;
+    String rangeSymptom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_add_therapy);
+        setContentView (R.layout.activity_add_symptom);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Therapy");
+        getSupportActionBar().setTitle("Symptom");
         //กดกลับ ตั้งชื่อหน้านั้น
 
 
         Createwidget();
-
     }
 
     @Override
@@ -41,7 +39,7 @@ public class AddTherapyActivity extends AppCompatActivity {
             case android.R.id.home:
                 // todo: goto back activity from here
 
-                Intent intent = new Intent(AddTherapyActivity.this, PlannerActivity.class);
+                Intent intent = new Intent(AddSymptomActivity.this, PlannerActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -54,16 +52,15 @@ public class AddTherapyActivity extends AppCompatActivity {
 
     public void InsertData(View view) {
 
-        DatabaseReference referenTherapy = FirebaseDatabase.getInstance()
+        DatabaseReference referenSymptom = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
 
-        referenTherapy.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Therapys").child(dataTherapy.getText ().toString ()).child ("Range").setValue(rangeTherapy);
+        referenSymptom.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                .child("Symptoms").child(dataSymptom.getText ().toString ()).child ("Range").setValue(rangeSymptom);
 
-        startActivity (new Intent(AddTherapyActivity.this,PlannerActivity.class));
+        startActivity (new Intent(AddSymptomActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
     }
-
     private void Createwidget() {
 
 
@@ -72,7 +69,7 @@ public class AddTherapyActivity extends AppCompatActivity {
         btnEvening = (Button) findViewById (R.id.btnEvening);
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
-        dataTherapy = (EditText) findViewById (R.id.dataTherapy);
+        dataSymptom = (EditText) findViewById (R.id.dataSymptom);
 
 
         //สลับสีปุ่ม
@@ -85,7 +82,7 @@ public class AddTherapyActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.WHITE);
                 btnEvening.setBackgroundColor (Color.WHITE);
                 btnBeforeBed.setBackgroundColor (Color.WHITE);
-                rangeTherapy = "Morning";
+                rangeSymptom = "Morning";
 
             }
         });
@@ -98,7 +95,7 @@ public class AddTherapyActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.rgb (254,176,98));
                 btnEvening.setBackgroundColor (Color.WHITE);
                 btnBeforeBed.setBackgroundColor (Color.WHITE);
-                rangeTherapy = "Afternoon";
+                rangeSymptom = "Afternoon";
 
             }
         });
@@ -111,7 +108,7 @@ public class AddTherapyActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.WHITE);
                 btnEvening.setBackgroundColor (Color.rgb (254,176,98));
                 btnBeforeBed.setBackgroundColor (Color.WHITE);
-                rangeTherapy = "Evening";
+                rangeSymptom = "Evening";
 
             }
         });
@@ -124,7 +121,7 @@ public class AddTherapyActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.WHITE);
                 btnEvening.setBackgroundColor (Color.WHITE);
                 btnBeforeBed.setBackgroundColor (Color.rgb (254,176,98));
-                rangeTherapy = "BeforeBed";
+                rangeSymptom = "BeforeBed";
 
             }
         });

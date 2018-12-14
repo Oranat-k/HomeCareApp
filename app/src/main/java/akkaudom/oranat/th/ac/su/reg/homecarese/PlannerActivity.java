@@ -30,6 +30,10 @@ public class PlannerActivity extends AppCompatActivity {
         startActivity (new Intent(PlannerActivity.this,AddTherapyActivity.class));
         // next page this หน้าปัจจุบัน
     }
+    public void onClickHisSymptom(View view){
+        startActivity (new Intent(PlannerActivity.this,AddSymptomActivity.class));
+        // next page this หน้าปัจจุบัน
+    }
 
 
 }

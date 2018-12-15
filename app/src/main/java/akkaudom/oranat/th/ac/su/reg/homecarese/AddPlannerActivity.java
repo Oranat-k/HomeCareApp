@@ -202,6 +202,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
         btnBeforMed = (Button) findViewById (R.id.btnBeforMed);
         btnAfterMed = (Button) findViewById (R.id.btnAfterMed);
+
         btnMorning = (Button) findViewById (R.id.btnMorning);
         btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
         btnEvening = (Button) findViewById (R.id.btnEvening);
@@ -285,8 +286,6 @@ public class AddPlannerActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 
 }

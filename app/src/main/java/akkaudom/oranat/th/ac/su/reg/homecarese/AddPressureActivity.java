@@ -2,7 +2,6 @@ package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,35 +12,35 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddSugarActivity extends AppCompatActivity {
+public class AddPressureActivity extends AppCompatActivity {
 
-    Button btnBeforSugar,btnAfterSugar,btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
-    EditText dataSugar;
+    Button btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
+    EditText topPressure,belowPressure;
 
-    String timeSugar,rangeSugar;
+    String rangePressure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_add_sugar);
-
+        setContentView (R.layout.activity_add_pressure);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Sugar");
+        getSupportActionBar().setTitle("Pressure");
         //กดกลับ ตั้งชื่อหน้านั้น
 
 
         Createwidget();
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // todo: goto back activity from here
 
-                Intent intent = new Intent(AddSugarActivity.this, PlannerActivity.class);
+                Intent intent = new Intent(AddPressureActivity.this, PlannerActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -54,53 +53,31 @@ public class AddSugarActivity extends AppCompatActivity {
 
     public void InsertData(View view) {
 
-        DatabaseReference referenSymptom = FirebaseDatabase.getInstance()
+        DatabaseReference referenPressure = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
 
-        referenSymptom.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Sugars").child(dataSugar.getText ().toString ()).child ("Time").setValue(timeSugar);
+        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                .child("Pressures").child("Pressure").child("Top").child(topPressure.getText ().toString ())
+                .child("Below").child(belowPressure.getText ().toString ())
+                .child ("Range").setValue(rangePressure);
 
-        referenSymptom.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Sugars").child(dataSugar.getText ().toString ()).child ("Range").setValue(rangeSugar);
 
-        startActivity (new Intent(AddSugarActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+        startActivity (new Intent(AddPressureActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
     }
-
     private void Createwidget() {
 
-        btnBeforSugar = (Button) findViewById (R.id.btnBeforSugar);
-        btnAfterSugar = (Button) findViewById (R.id.btnAfterSugar);
 
         btnMorning = (Button) findViewById (R.id.btnMorning);
         btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
         btnEvening = (Button) findViewById (R.id.btnEvening);
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
-        dataSugar = (EditText) findViewById (R.id.dataSugar);
+        topPressure = (EditText) findViewById (R.id.topPressure);
+        belowPressure = (EditText) findViewById (R.id.belowPressure);
 
 
         //สลับสีปุ่ม
-        btnBeforSugar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                btnBeforSugar.setBackgroundColor (Color.rgb (254,176,98));
-                btnAfterSugar.setBackgroundColor (Color.WHITE);
-                timeSugar = "BeforeFood";
-            }
-        });
-
-        btnAfterSugar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                btnAfterSugar.setBackgroundColor (Color.rgb (254,176,98));
-                btnBeforSugar.setBackgroundColor (Color.WHITE);
-                timeSugar = "AfterFood";
-
-            }
-        });
 
         btnMorning.setOnClickListener(new View.OnClickListener() {
 
@@ -110,7 +87,7 @@ public class AddSugarActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.WHITE);
                 btnEvening.setBackgroundColor (Color.WHITE);
                 btnBeforeBed.setBackgroundColor (Color.WHITE);
-                rangeSugar = "Morning";
+                rangePressure = "Morning";
 
             }
         });
@@ -123,7 +100,7 @@ public class AddSugarActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.rgb (254,176,98));
                 btnEvening.setBackgroundColor (Color.WHITE);
                 btnBeforeBed.setBackgroundColor (Color.WHITE);
-                rangeSugar = "Afternoon";
+                rangePressure = "Afternoon";
 
             }
         });
@@ -136,7 +113,7 @@ public class AddSugarActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.WHITE);
                 btnEvening.setBackgroundColor (Color.rgb (254,176,98));
                 btnBeforeBed.setBackgroundColor (Color.WHITE);
-                rangeSugar = "Evening";
+                rangePressure = "Evening";
 
             }
         });
@@ -149,11 +126,10 @@ public class AddSugarActivity extends AppCompatActivity {
                 btnAfternoon.setBackgroundColor (Color.WHITE);
                 btnEvening.setBackgroundColor (Color.WHITE);
                 btnBeforeBed.setBackgroundColor (Color.rgb (254,176,98));
-                rangeSugar = "BeforeBed";
+                rangePressure = "BeforeBed";
 
             }
         });
 
     }
-
 }

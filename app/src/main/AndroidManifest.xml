@@ -38,7 +38,8 @@
             android:name=".AddTherapyActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".AddSymptomActivity" />
-        <activity android:name=".AddSugarActivity"></activity>
+        <activity android:name=".AddSugarActivity" />
+        <activity android:name=".AddPressureActivity"></activity>
     </application>
 
 </manifest>

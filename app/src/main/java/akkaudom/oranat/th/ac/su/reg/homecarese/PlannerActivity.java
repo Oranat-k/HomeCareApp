@@ -34,6 +34,15 @@ public class PlannerActivity extends AppCompatActivity {
         startActivity (new Intent(PlannerActivity.this,AddSymptomActivity.class));
         // next page this หน้าปัจจุบัน
     }
+    public void onClickHisSugar(View view){
+        startActivity (new Intent(PlannerActivity.this,AddSugarActivity.class));
+        // next page this หน้าปัจจุบัน
+    }
+
+    public void onClickHisPressure(View view){
+        startActivity (new Intent(PlannerActivity.this,AddPressureActivity.class));
+        // next page this หน้าปัจจุบัน
+    }
 
 
 }

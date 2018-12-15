@@ -39,7 +39,8 @@
         android:layout_alignParentRight="true"
         android:text="วัดความดัน"
         android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"/>
+        android:textColor="@color/colorTextDark"
+        android:onClick="onClickHisPressure"/>
 
     <Button
         android:id="@+id/btnAddSugar"
@@ -51,7 +52,8 @@
         android:layout_alignParentRight="true"
         android:text="วัดน้ำตาลในเลือด"
         android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"/>
+        android:textColor="@color/colorTextDark"
+        android:onClick="onClickHisSugar"/>
 
     <Button
         android:id="@+id/btnAddDoctor"

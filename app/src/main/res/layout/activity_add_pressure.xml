@@ -9,36 +9,17 @@
 
 
     <EditText
-        android:id="@+id/dataSugar"
+        android:id="@+id/topPressure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:hint="ค่าน้ำตาลในเลือด"/>
-
-    <TextView
+        android:hint="ค่าบน"/>
+    <EditText
+        android:id="@+id/belowPressure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:text="เวลา"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnBeforSugar"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="ก่อนอาหาร"/>
-        <Button
-            android:id="@+id/btnAfterSugar"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="หลังอาหาร"/>
-
-    </RelativeLayout>
-
+        android:hint="ค่าล่าง"/>
 
 
     <TextView

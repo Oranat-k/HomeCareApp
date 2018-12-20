@@ -1,82 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlannerActivity"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnAddMedicine"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_margin="20dp"
-        android:layout_alignParentRight="true"
-        android:text="ยา"
-        android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"
-        android:onClick="onClickHisMed"/>
+    <ListView
+        android:id="@+id/ListViewMenu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/btnAddTherapy"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:text="อาการ"
-        android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"
-        android:onClick="onClickHisSymptom"/>
 
-    <Button
-        android:id="@+id/btnAddPressure"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:text="วัดความดัน"
-        android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"
-        android:onClick="onClickHisPressure"/>
-
-    <Button
-        android:id="@+id/btnAddSugar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:text="วัดน้ำตาลในเลือด"
-        android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"
-        android:onClick="onClickHisSugar"/>
-
-    <Button
-        android:id="@+id/btnAddDoctor"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:text="วันนัดหมอ"
-        android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"/>
-    <Button
-        android:id="@+id/btnAddMore"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:text="เพิ่มเติมการดูเเล"
-        android:background="@drawable/border_active"
-        android:textColor="@color/colorTextDark"
-        android:onClick="onClickHisTherapy"/>
-
-</LinearLayout>
+</RelativeLayout>

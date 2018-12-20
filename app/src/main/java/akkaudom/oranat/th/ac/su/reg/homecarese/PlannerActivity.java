@@ -5,9 +5,20 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlannerActivity extends AppCompatActivity {
+
+
+    ListView simpleList;
+    String  Item[] = {"Apple", "Banana", "Lemon", "Cherry", "Strawberry", "Avocado"};
+    String  SubItem[] = {"1","2","3","4","5","6"};
+    int flags[] = {R.drawable.medicine, R.drawable.sy, R.drawable.press, R.drawable.sugar, R.drawable.doctor, R.drawable.therapy};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +28,16 @@ public class PlannerActivity extends AppCompatActivity {
         // menu bar
         ActionBar actionBar = getSupportActionBar ();
         actionBar.setTitle ("เพิ่มหมายเหตุ");
-        // menu bar
+
+        simpleList = (ListView)findViewById(R.id.ListViewMenu);
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), Item,SubItem, flags);
+        simpleList.setAdapter(customAdapter);
 
     }
+
+
+
+    //กด next
 
     public void onClickHisMed(View view){
         startActivity (new Intent(PlannerActivity.this,HistoryMedicineActivity.class));

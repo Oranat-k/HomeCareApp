@@ -57,14 +57,16 @@ public class AddPressureActivity extends AppCompatActivity {
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
 
         referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Pressures").child("Pressure").child("Top").child(topPressure.getText ().toString ())
+                .child("Pressures").child("Pressure")
+                .child("Top").child(topPressure.getText ().toString ())
                 .child("Below").child(belowPressure.getText ().toString ())
                 .child ("Range").setValue(rangePressure);
 
 
         startActivity (new Intent(AddPressureActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
-    }
+    }//input ข้อมูล จากปุ่ม onclick
+
     private void Createwidget() {
 
 

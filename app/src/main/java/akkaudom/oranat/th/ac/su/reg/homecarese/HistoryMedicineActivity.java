@@ -76,10 +76,13 @@ public class HistoryMedicineActivity extends AppCompatActivity {
 
         RequestQueue rQueue = Volley.newRequestQueue(HistoryMedicineActivity.this);
         rQueue.add(request);
+
     }
 
     public void onClickaddMedicine(View view){
         startActivity (new Intent (HistoryMedicineActivity.this,AddPlannerActivity.class));
 
     }
+
+
 }

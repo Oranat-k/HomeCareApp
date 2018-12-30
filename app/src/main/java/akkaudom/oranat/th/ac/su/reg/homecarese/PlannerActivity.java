@@ -54,10 +54,10 @@ public class PlannerActivity extends AppCompatActivity {
                     Intent myintent = new Intent (view.getContext (),AddSugarActivity.class);
                     startActivityForResult (myintent,3);
                 }
-//                if (position==4){
-//                    Intent myintent = new Intent (view.getContext (),AddDoctor.class);
-//                    startActivityForResult (myintent,4);
-//                }
+                if (position==4){
+                    Intent myintent = new Intent (view.getContext (),AddDoctorActivity.class);
+                    startActivityForResult (myintent,4);
+                }
                 if (position==5){
                     Intent myintent = new Intent (view.getContext (),AddTherapyActivity.class);
                     startActivityForResult (myintent,5);

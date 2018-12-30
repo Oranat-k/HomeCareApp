@@ -12,6 +12,11 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddPressureActivity extends AppCompatActivity {
 
     Button btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
@@ -53,19 +58,42 @@ public class AddPressureActivity extends AppCompatActivity {
 
     public void InsertData(View view) {
 
+        Calendar dateNow = Calendar.getInstance ();
+        String time = CheckTime(dateNow);
+        DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
+        String datetime = formater.format (new Date ());
+
+
         DatabaseReference referenPressure = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
-
         referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Pressures").child("Pressure")
-                .child("Top").child(topPressure.getText ().toString ())
-                .child("Below").child(belowPressure.getText ().toString ())
-                .child ("Range").setValue(rangePressure);
+                .child("Pressures").child(datetime).child (time)
+                .child("Top").setValue(topPressure.getText ().toString ());
+        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                .child("Pressures").child(datetime).child (time)
+                .child("Below").setValue (belowPressure.getText ().toString ());
+//        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+//                .child("Pressures").child(datetime).child (time)
+//                .child ("Range").setValue(rangePressure);
+
 
 
         startActivity (new Intent(AddPressureActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
     }//input ข้อมูล จากปุ่ม onclick
+
+    private String CheckTime(Calendar dateNow) {
+       if(dateNow.get (Calendar.HOUR_OF_DAY) >= 1&& dateNow.get (Calendar.HOUR_OF_DAY) <= 10){
+           return "Morning";
+       }else if (dateNow.get (Calendar.HOUR_OF_DAY) >= 11&& dateNow.get (Calendar.HOUR_OF_DAY) <= 15){
+           return "Afternoon";
+       }else if (dateNow.get (Calendar.HOUR_OF_DAY) >= 16&& dateNow.get (Calendar.HOUR_OF_DAY) <= 18){
+           return "Evening";
+       }else {
+           return "Before Bed";
+       }
+
+    }
 
     private void Createwidget() {
 

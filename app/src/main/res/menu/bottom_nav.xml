@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/itemHome"
-        android:icon="@drawable/homepage"
-        android:title="หน้าเเรก"/>
+        android:icon="@drawable/homepage_m"
+        android:title=""/>
     <item
         android:id="@+id/itemChart"
-        android:icon="@drawable/chart"
-        android:title="กราฟ"/>
+        android:icon="@drawable/chart_m"
+        android:title=""/>
     <item
         android:id="@+id/itemPlanner"
-        android:icon="@drawable/planner"
-        android:title="เพิ่ม"/>
+        android:icon="@drawable/planner_m"
+       android:title=""/>
     <item
         android:id="@+id/itemNoti"
-        android:icon="@drawable/noti"
-        android:title="เเจ้งเตือน"/>
+        android:icon="@drawable/noti_m"
+        android:title=""/>
     <item
         android:id="@+id/itemProfile"
-        android:icon="@drawable/profile"
-        android:title="ประวัติ"/>
+        android:icon="@drawable/profile_m"
+        android:title=""/>
 
 
 </menu>

@@ -1,6 +1,7 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Intent;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Planner");
 
 
+
+
+
     }
 
     private void getDataToArr() {
@@ -35,9 +39,10 @@ public class MainActivity extends AppCompatActivity {
         listPlanner = findViewById (R.id.listPlanner);
         listPlanner.setAdapter (planArr);
 
-    }
+    }//ดึงข้อมูลมาโชว์
 
     public void onClickaddPlanner(View view){
         startActivity (new Intent(MainActivity.this,PlannerActivity.class));
-    }
+    }//back page
+
 }

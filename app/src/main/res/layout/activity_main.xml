@@ -97,17 +97,13 @@
 
 
 
-
-
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:itemTextColor="@color/colorTextDark"
-        app:menu="@menu/bottom_nav"/>
+        app:menu="@menu/bottom_nav" />
 
 
 </RelativeLayout>

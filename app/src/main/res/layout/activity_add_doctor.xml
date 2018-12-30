@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddDoctorActivity"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/hospitalName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/border_button"
+        android:hint="โรงพยาบาล"/>
+
+    <EditText
+        android:id="@+id/nameDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="ชื่อหมอ"/>
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:onClick="setDate"
+        android:id="@+id/dateDoc"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="วันที่"
+        android:background="@drawable/border_button"
+        android:backgroundTint="@color/colorTextWrite"/>
+    <Button
+        android:onClick="setTime"
+        android:id="@+id/timeDoc"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="เวลา"
+        android:background="@drawable/border_box"
+        tools:ignore="OnClick" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:onClick="dataDoctor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btnSave"
+        android:background="@drawable/border_button"
+        android:textColor="@color/colorTextWrite"
+        android:backgroundTint="@color/colorButton"
+        android:text="บันทึก"/>
+
+</LinearLayout>

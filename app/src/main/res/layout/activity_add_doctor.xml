@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     tools:context=".AddDoctorActivity"
     android:orientation="vertical">
 
@@ -11,6 +13,7 @@
     <EditText
         android:id="@+id/hospitalName"
         android:layout_width="match_parent"
+        android:paddingLeft="20dp"
         android:layout_height="50dp"
         android:layout_marginTop="90dp"
         android:background="@drawable/border_box"
@@ -19,6 +22,7 @@
     <EditText
         android:id="@+id/nameDoc"
         android:layout_width="match_parent"
+        android:paddingLeft="20dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/border_box"
@@ -33,6 +37,7 @@
         android:id="@+id/dateDoc"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:textSize="18dp"
         android:text="วันที่"
         android:background="@drawable/border_box"/>
     <Button
@@ -41,6 +46,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:textSize="18dp"
         android:text="เวลา"
         android:background="@drawable/border_box"
         tools:ignore="OnClick" />

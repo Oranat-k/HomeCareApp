@@ -86,7 +86,7 @@ public class AddDoctorActivity extends AppCompatActivity {
             showDateTime ();
         }
 
-    };//date
+    };//Calendar date
 
 
 
@@ -103,7 +103,7 @@ public class AddDoctorActivity extends AppCompatActivity {
             myCalendar.set (Calendar.MINUTE,minute);
             showDateTime ();
         }
-    };//time
+    };//Calendar time
 
 
 
@@ -115,25 +115,43 @@ public class AddDoctorActivity extends AppCompatActivity {
         timeDoc.setText (myCalendar.get (Calendar.HOUR_OF_DAY)+":"+myCalendar.get (Calendar.MINUTE));
 
 
-    }
+    }//show
 
 
     public void dataDoctor(View view) {
 
+        Calendar dateNow = Calendar.getInstance ();
+
+        DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
+        String datetime = formater.format (new Date ());
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance ()
                 .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
-                .child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Doctor").child ("Hospital").setValue (hospitalName.getText ().toString ());
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+                .child ("Hospital").setValue (hospitalName.getText ().toString ());
 
         referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Doctor").child ("DoctorName").setValue (nameDoc.getText ().toString ());
+                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+                .child ("DoctorName").setValue (nameDoc.getText ().toString ());
 
         referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Doctor").child ("Date").setValue (dateDoc.getText ().toString ());
+                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+                .child ("Date").setValue (dateDoc.getText ().toString ());
+
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+                .child ("Time").setValue (timeDoc.getText ().toString ());
+
+//        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+//                .child ("Doctors").child ("Date").setValue (dateDoc.getText ().toString ());
 
 
         startActivity (new Intent (AddDoctorActivity.this,PlannerActivity.class));
     }
+
+
+
+
+
 }// input data firebase

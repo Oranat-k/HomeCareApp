@@ -2,12 +2,12 @@
 <resources>
     <color name="colorPrimary">#1b90d8</color>
     <color name="colorPrimaryDark">#0063a6</color>
-    <color name="colorAccent">#0063a6</color>
+    <color name="colorAccent">#feb062</color>
 
 
 
     <color name="colorButton">#1b90d8</color>
-    <color name="colorBox">#868686</color>
+    <color name="colorBox">#b7b6b6</color>
     <color name="holo_green_dark">#35ce9b</color>
 
     <color name="colorTextWrite">#ffffff</color>

@@ -43,7 +43,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AddPlannerActivity extends AppCompatActivity {
 
-    private CircleImageView ProfileImage;
+    private ImageView ProfileImage;
     private static final int PICK_IMAGE = 1;
     Uri imageUri;
     Bitmap imageSelect;
@@ -79,7 +79,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
         Createwidget();
 
-        ProfileImage = (CircleImageView) findViewById (R.id.profile_Medicine);
+        ProfileImage = (ImageView) findViewById (R.id.profile_Medicine);
         ProfileImage.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -216,8 +216,8 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnBeforMed.setBackgroundColor (Color.rgb (254,176,98));
-                btnAfterMed.setBackgroundColor (Color.WHITE);
+                btnBeforMed.setBackgroundResource (R.drawable.border_box_active);
+                btnAfterMed.setBackgroundResource (R.drawable.border_box);
                 timeMedicine = "BeforeFood";
             }
         });
@@ -226,8 +226,8 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnAfterMed.setBackgroundColor (Color.rgb (254,176,98));
-                btnBeforMed.setBackgroundColor (Color.WHITE);
+                btnAfterMed.setBackgroundResource (R.drawable.border_box_active);
+                btnBeforMed.setBackgroundResource (R.drawable.border_box);
                 timeMedicine = "AfterFood";
 
             }

@@ -3,24 +3,35 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_Medicine"
-        android:layout_marginTop="30dp"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:src="@drawable/camera"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#ffffff"/>
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/profile_Medicine"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:layout_width="170dp"-->
+        <!--android:layout_height="170dp"-->
+        <!--android:src="@drawable/camera2"-->
+        <!--app:civ_border_width="2dp"-->
+        <!--app:civ_border_color="@color/colorButton"/>-->
 
+    <ImageView
+        android:id="@+id/profile_Medicine"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/camera2"
+        android:background="@drawable/border_active"/>
 
     <EditText
         android:id="@+id/nameMedicine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
         android:hint="ชื่อยา"/>
 
     <TextView
@@ -28,6 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
         android:text="เวลา"/>
 
     <RelativeLayout
@@ -37,12 +50,16 @@
         android:id="@+id/btnBeforMed"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_box"
+        android:textSize="18dp"
         android:text="ก่อนอาหาร"/>
     <Button
         android:id="@+id/btnAfterMed"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:background="@drawable/border_box"
+        android:textSize="18dp"
         android:text="หลังอาหาร"/>
 
     </RelativeLayout>
@@ -52,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
+        android:paddingLeft="20dp"
         android:text="ช่วง"/>
 
     <RelativeLayout
@@ -89,12 +107,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
         android:text="ครั้งละ"/>
 
     <EditText
         android:id="@+id/coutMedicine"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
         android:hint="1 เม็ด"/>
 
     <Button

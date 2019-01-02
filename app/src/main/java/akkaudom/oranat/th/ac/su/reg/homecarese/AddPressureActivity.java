@@ -56,6 +56,7 @@ public class AddPressureActivity extends AppCompatActivity {
         }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
+
     public void InsertData(View view) {
 
         Calendar dateNow = Calendar.getInstance ();
@@ -69,9 +70,11 @@ public class AddPressureActivity extends AppCompatActivity {
         referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
                 .child("Pressures").child(datetime).child (time)
                 .child("Top").setValue(topPressure.getText ().toString ());
+
         referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
                 .child("Pressures").child(datetime).child (time)
                 .child("Below").setValue (belowPressure.getText ().toString ());
+
 //        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
 //                .child("Pressures").child(datetime).child (time)
 //                .child ("Range").setValue(rangePressure);

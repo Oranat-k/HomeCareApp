@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center">
 
 
@@ -11,14 +12,18 @@
     <EditText
         android:id="@+id/topPressure"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="90dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
         android:hint="ค่าบน"/>
     <EditText
         android:id="@+id/belowPressure"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
         android:hint="ค่าล่าง"/>
 
 
@@ -27,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
+        android:paddingBottom="10dp"
         android:text="เวลา"/>
 
     <RelativeLayout
@@ -36,18 +42,24 @@
             android:id="@+id/btnMorning"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="เช้า"/>
         <Button
             android:id="@+id/btnAfternoon"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="กลางวัน"/>
         <Button
             android:id="@+id/btnEvening"
             android:layout_marginTop="60dp"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="เย็น"/>
         <Button
             android:id="@+id/btnBeforeBed"
@@ -55,6 +67,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="ก่อนนอน"/>
 
     </RelativeLayout>

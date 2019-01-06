@@ -30,18 +30,24 @@
             android:id="@+id/btnMorning"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="เช้า"/>
         <Button
             android:id="@+id/btnAfternoon"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="กลางวัน"/>
         <Button
             android:id="@+id/btnEvening"
             android:layout_marginTop="60dp"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="เย็น"/>
         <Button
             android:id="@+id/btnBeforeBed"
@@ -49,6 +55,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="ก่อนนอน"/>
 
     </RelativeLayout>

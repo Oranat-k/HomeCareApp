@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
-
-        getDataToArr();
+//
+//        getDataToArr();
 
         getSupportActionBar().setTitle("Planner");
 
@@ -30,19 +30,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void getDataToArr() {
-        arrayPlanner.add ("พลิกตัว");
-        arrayPlanner.add ("กายภาพบำบัด");
-        arrayPlanner.add ("ตรวจเท้า");
-
-        PlannerAdapter planArr = new PlannerAdapter (arrayPlanner,MainActivity.this);
-        listPlanner = findViewById (R.id.listPlanner);
-        listPlanner.setAdapter (planArr);
-
-    }//ดึงข้อมูลมาโชว์
+//    private void getDataToArr() {
+//        arrayPlanner.add ("พลิกตัว");
+//        arrayPlanner.add ("กายภาพบำบัด");
+//        arrayPlanner.add ("ตรวจเท้า");
+//
+//        PlannerAdapter planArr = new PlannerAdapter (arrayPlanner,MainActivity.this);
+//        listPlanner = findViewById (R.id.listPlanner);
+//        listPlanner.setAdapter (planArr);
+//
+//    }//ดึงข้อมูลมาโชว์
 
     public void onClickaddPlanner(View view){
         startActivity (new Intent(MainActivity.this,PlannerActivity.class));
     }//back page
 
+    public void onClickPlanner(View view){
+        startActivity (new Intent(MainActivity.this,PlannerListActivity.class));
+    }//back page
 }

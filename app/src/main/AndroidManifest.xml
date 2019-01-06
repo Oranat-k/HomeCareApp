@@ -40,7 +40,8 @@
         <activity android:name=".AddSymptomActivity" />
         <activity android:name=".AddSugarActivity" />
         <activity android:name=".AddPressureActivity" />
-        <activity android:name=".AddDoctorActivity"></activity>
+        <activity android:name=".AddDoctorActivity" />
+        <activity android:name=".PlannerListActivity"></activity>
     </application>
 
 </manifest>

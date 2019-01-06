@@ -45,6 +45,17 @@
                     android:textColor="@color/colorTextWrite" />
             </RelativeLayout>
 
+            <Button
+                android:background="@drawable/border_button"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="@color/colorButton"
+                android:onClick="onClickPlanner"
+                android:text="แผนการดูแล"
+                android:textColor="@color/colorTextWrite" />
+
             <ListView
                 android:id="@+id/listPlanner"
                 android:layout_width="match_parent"
@@ -52,6 +63,8 @@
                 android:divider="@null"
                 android:dividerHeight="10.0sp"
                 android:padding="10dp" />
+
+
 
         </LinearLayout>
 
@@ -83,6 +96,8 @@
             android:text="สร้างแผนการดูแล"
             android:textColor="@color/colorTextWrite" />
     </RelativeLayout>
+
+
 
     <ListView
 

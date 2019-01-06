@@ -233,14 +233,16 @@ public class AddPlannerActivity extends AppCompatActivity {
             }
         });
 
+        //สลับสีปุ่ม
+
         btnMorning.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.rgb (254,176,98));
-                btnAfternoon.setBackgroundColor (Color.WHITE);
-                btnEvening.setBackgroundColor (Color.WHITE);
-                btnBeforeBed.setBackgroundColor (Color.WHITE);
+                btnMorning.setBackgroundResource (R.drawable.border_box_active);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box);
+                btnEvening.setBackgroundResource (R.drawable.border_box);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
                 rangeMedicine = "Morning";
 
             }
@@ -250,10 +252,10 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.WHITE);
-                btnAfternoon.setBackgroundColor (Color.rgb (254,176,98));
-                btnEvening.setBackgroundColor (Color.WHITE);
-                btnBeforeBed.setBackgroundColor (Color.WHITE);
+                btnMorning.setBackgroundResource (R.drawable.border_box);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box_active);
+                btnEvening.setBackgroundResource (R.drawable.border_box);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
                 rangeMedicine = "Afternoon";
 
             }
@@ -263,10 +265,10 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.WHITE);
-                btnAfternoon.setBackgroundColor (Color.WHITE);
-                btnEvening.setBackgroundColor (Color.rgb (254,176,98));
-                btnBeforeBed.setBackgroundColor (Color.WHITE);
+                btnMorning.setBackgroundResource (R.drawable.border_box);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box);
+                btnEvening.setBackgroundResource (R.drawable.border_box_active);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
                 rangeMedicine = "Evening";
 
             }
@@ -276,10 +278,10 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.WHITE);
-                btnAfternoon.setBackgroundColor (Color.WHITE);
-                btnEvening.setBackgroundColor (Color.WHITE);
-                btnBeforeBed.setBackgroundColor (Color.rgb (254,176,98));
+                btnMorning.setBackgroundResource (R.drawable.border_box);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box);
+                btnEvening.setBackgroundResource (R.drawable.border_box);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box_active);
                 rangeMedicine = "BeforeBed";
 
             }

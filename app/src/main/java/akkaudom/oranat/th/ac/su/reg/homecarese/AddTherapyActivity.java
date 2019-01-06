@@ -81,10 +81,10 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.rgb (254,176,98));
-                btnAfternoon.setBackgroundColor (Color.WHITE);
-                btnEvening.setBackgroundColor (Color.WHITE);
-                btnBeforeBed.setBackgroundColor (Color.WHITE);
+                btnMorning.setBackgroundResource (R.drawable.border_box_active);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box);
+                btnEvening.setBackgroundResource (R.drawable.border_box);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
                 rangeTherapy = "Morning";
 
             }
@@ -94,10 +94,10 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.WHITE);
-                btnAfternoon.setBackgroundColor (Color.rgb (254,176,98));
-                btnEvening.setBackgroundColor (Color.WHITE);
-                btnBeforeBed.setBackgroundColor (Color.WHITE);
+                btnMorning.setBackgroundResource (R.drawable.border_box);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box_active);
+                btnEvening.setBackgroundResource (R.drawable.border_box);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
                 rangeTherapy = "Afternoon";
 
             }
@@ -107,10 +107,10 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.WHITE);
-                btnAfternoon.setBackgroundColor (Color.WHITE);
-                btnEvening.setBackgroundColor (Color.rgb (254,176,98));
-                btnBeforeBed.setBackgroundColor (Color.WHITE);
+                btnMorning.setBackgroundResource (R.drawable.border_box);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box);
+                btnEvening.setBackgroundResource (R.drawable.border_box_active);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
                 rangeTherapy = "Evening";
 
             }
@@ -120,15 +120,14 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundColor (Color.WHITE);
-                btnAfternoon.setBackgroundColor (Color.WHITE);
-                btnEvening.setBackgroundColor (Color.WHITE);
-                btnBeforeBed.setBackgroundColor (Color.rgb (254,176,98));
+                btnMorning.setBackgroundResource (R.drawable.border_box);
+                btnAfternoon.setBackgroundResource (R.drawable.border_box);
+                btnEvening.setBackgroundResource (R.drawable.border_box);
+                btnBeforeBed.setBackgroundResource (R.drawable.border_box_active);
                 rangeTherapy = "BeforeBed";
 
             }
         });
-
     }
 
 }

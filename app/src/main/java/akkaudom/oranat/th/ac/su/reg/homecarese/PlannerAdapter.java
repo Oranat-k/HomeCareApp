@@ -67,9 +67,10 @@ public class PlannerAdapter extends BaseAdapter {
 
         h.checklist = (CheckBox)(view.findViewById(R.id.checklist));
 
-        if (list.get (position).isStatus ()) {
+        if (list.get (position).getStatus () == "true") {
             h.border.setBackground(ContextCompat.getDrawable(mContext,R.drawable.border_active));
             h.checklist.setButtonTintList(mContext.getResources().getColorStateList(R.color.holo_green_dark));
+            h.checklist.setChecked (true);
 
         }
 
@@ -79,7 +80,7 @@ public class PlannerAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                if (((CheckBox) v).isChecked() || list.get (position).isStatus ()) {
+                if (((CheckBox) v).isChecked()) {
                     h.border.setBackground(ContextCompat.getDrawable(mContext,R.drawable.border_active));
                     h.checklist.setButtonTintList(mContext.getResources().getColorStateList(R.color.holo_green_dark));
 

@@ -48,8 +48,7 @@ public class PlannerListActivity extends AppCompatActivity {
             JSONObject objDuring =  obj.getJSONObject (during);
             for(int i = 0 ; i < arrPlanner.size () ; i++) {
                 if (objDuring.has (arrPlanner.get (i).getTitle ())) {
-                    arrPlanner.get (i).setStatus (Boolean.parseBoolean (objDuring.getString (arrPlanner.get (i).getTitle ())));
-                    Log.d("fff",i + ""+arrPlanner.get (i).isStatus ());
+                    arrPlanner.get (i).setStatus (objDuring.getString (arrPlanner.get (i).getTitle ()));
 
                 }
             }
@@ -66,24 +65,41 @@ public class PlannerListActivity extends AppCompatActivity {
         dateSelect.set (Calendar.MINUTE,0);
         dateSelect.set (Calendar.SECOND,0);
 
-        String date = dateSelect.get (Calendar.DAY_OF_MONTH) + "-" +dateSelect.get (Calendar.MONTH)+1+"-" +dateSelect.get (Calendar.YEAR);
+        final String date = dateSelect.get (Calendar.DAY_OF_MONTH) + "-" +dateSelect.get (Calendar.MONTH)+1+"-" +dateSelect.get (Calendar.YEAR);
 
 
-        morningArrPlanner.add (new PlannerDetail ("พลิกตัว",false));
-        morningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด",false));
-        morningArrPlanner.add (new PlannerDetail ("ตรวจเท้า",false));
+        morningArrPlanner.add (new PlannerDetail ("พลิกตัว","false"));
+        morningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","false"));
+        morningArrPlanner.add (new PlannerDetail ("ตรวจเท้า","false"));
 
-        afternoonArrPlanner.add (new PlannerDetail ("พลิกตัว",false));
-        afternoonArrPlanner.add (new PlannerDetail ("กายภาพบำบัด",false));
-        afternoonArrPlanner.add (new PlannerDetail ("ตรวจเท้า",false));
+        PlannerAdapter morningAP = new PlannerAdapter (morningArrPlanner,PlannerListActivity.this ,
+                date,"Morning");
+        MorningPlanner = findViewById (R.id.MorningPlanner);
+        MorningPlanner.setAdapter (morningAP);
 
-        eveningArrPlanner.add (new PlannerDetail ("พลิกตัว",false));
-        eveningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด",false));
-        eveningArrPlanner.add (new PlannerDetail ("ตรวจเท้า",false));
+        afternoonArrPlanner.add (new PlannerDetail ("พลิกตัว","false"));
+        afternoonArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","false"));
+        afternoonArrPlanner.add (new PlannerDetail ("ตรวจเท้า","false"));
 
-        befoebedArrPlanner.add (new PlannerDetail ("พลิกตัว",false));
-        befoebedArrPlanner.add (new PlannerDetail ("กายภาพบำบัด",false));
-        befoebedArrPlanner.add (new PlannerDetail ("ตรวจเท้า",false));
+        PlannerAdapter afterAP = new PlannerAdapter (afternoonArrPlanner,PlannerListActivity.this,date,"Afternoon");
+        AfternoonPlanner = findViewById (R.id.AfternoonPlanner);
+        AfternoonPlanner.setAdapter (afterAP);
+
+        eveningArrPlanner.add (new PlannerDetail ("พลิกตัว","false"));
+        eveningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","false"));
+        eveningArrPlanner.add (new PlannerDetail ("ตรวจเท้า","false"));
+
+        PlannerAdapter eveningAP = new PlannerAdapter (eveningArrPlanner,PlannerListActivity.this,date,"Evening");
+        EveningPlanner = findViewById (R.id.EveningPlanner);
+        EveningPlanner.setAdapter (eveningAP);
+
+        befoebedArrPlanner.add (new PlannerDetail ("พลิกตัว","false"));
+        befoebedArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","false"));
+        befoebedArrPlanner.add (new PlannerDetail ("ตรวจเท้า","false"));
+
+        PlannerAdapter beforbedAP = new PlannerAdapter (befoebedArrPlanner,PlannerListActivity.this,date,"BeforBed");
+        BeforBedPlanner = findViewById (R.id.BeforBedPlanner);
+        BeforBedPlanner.setAdapter (beforbedAP);
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
                 +UserDetail.patient[UserDetail.selectPatient]+"/Planners/"+date+".json";
@@ -104,15 +120,29 @@ public class PlannerListActivity extends AppCompatActivity {
                         switch (key){
                             case "Morning":
                                 checkStatus(obj,key,morningArrPlanner);
+                                PlannerAdapter morningAP = new PlannerAdapter (morningArrPlanner,PlannerListActivity.this ,
+                                        date,"Morning");
+                                MorningPlanner = findViewById (R.id.MorningPlanner);
+                                MorningPlanner.setAdapter (morningAP);
+
                                 break;
                             case "Afternoon":
                                 checkStatus(obj,key,afternoonArrPlanner);
+                                PlannerAdapter afterAP = new PlannerAdapter (afternoonArrPlanner,PlannerListActivity.this,date,"Afternoon");
+                                AfternoonPlanner = findViewById (R.id.AfternoonPlanner);
+                                AfternoonPlanner.setAdapter (afterAP);
                                 break;
                             case "Evening":
                                 checkStatus(obj,key,eveningArrPlanner);
+                                PlannerAdapter eveningAP = new PlannerAdapter (eveningArrPlanner,PlannerListActivity.this,date,"Evening");
+                                EveningPlanner = findViewById (R.id.EveningPlanner);
+                                EveningPlanner.setAdapter (eveningAP);
                                 break;
                             case "BeforBed":
                                 checkStatus(obj,key,befoebedArrPlanner);
+                                PlannerAdapter beforbedAP = new PlannerAdapter (befoebedArrPlanner,PlannerListActivity.this,date,"BeforBed");
+                                BeforBedPlanner = findViewById (R.id.BeforBedPlanner);
+                                BeforBedPlanner.setAdapter (beforbedAP);
                                 break;
                         }
 
@@ -137,28 +167,19 @@ public class PlannerListActivity extends AppCompatActivity {
 
 
 
-        PlannerAdapter morningAP = new PlannerAdapter (morningArrPlanner,PlannerListActivity.this ,
-                date,"Morning");
-        MorningPlanner = findViewById (R.id.MorningPlanner);
-        MorningPlanner.setAdapter (morningAP);
 
 
 
-        PlannerAdapter afterAP = new PlannerAdapter (morningArrPlanner,PlannerListActivity.this,date,"Afternoon");
-        AfternoonPlanner = findViewById (R.id.AfternoonPlanner);
-        AfternoonPlanner.setAdapter (afterAP);
 
 
 
-        PlannerAdapter eveningAP = new PlannerAdapter (morningArrPlanner,PlannerListActivity.this,date,"Evening");
-        EveningPlanner = findViewById (R.id.EveningPlanner);
-        EveningPlanner.setAdapter (eveningAP);
 
 
 
-        PlannerAdapter beforbedAP = new PlannerAdapter (morningArrPlanner,PlannerListActivity.this,date,"BeforBed");
-        BeforBedPlanner = findViewById (R.id.BeforBedPlanner);
-        BeforBedPlanner.setAdapter (beforbedAP);
+
+
+
+
 
 
     }//ดึงข้อมูลมาโชว์

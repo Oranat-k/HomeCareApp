@@ -3,9 +3,9 @@ package akkaudom.oranat.th.ac.su.reg.homecarese;
 public class PlannerDetail {
 
     private String title;
-    private boolean status;
+    private String status;
 
-    public PlannerDetail(String title, boolean status) {
+    public PlannerDetail(String title, String status) {
         this.title = title;
         this.status = status;
     }
@@ -18,11 +18,11 @@ public class PlannerDetail {
         this.title = title;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

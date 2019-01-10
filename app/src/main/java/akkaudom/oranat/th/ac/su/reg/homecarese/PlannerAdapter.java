@@ -72,7 +72,7 @@ public class PlannerAdapter extends BaseAdapter {
             h.checklist.setButtonTintList(mContext.getResources().getColorStateList(R.color.holo_green_dark));
             h.checklist.setChecked (true);
 
-        }
+        }//checklist
 
 
 

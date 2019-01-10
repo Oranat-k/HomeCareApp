@@ -40,6 +40,8 @@ public class PlannerListActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_planner_list);
         getDataToArr();
+
+        getSupportActionBar().setTitle("Planner");
     }
 
     public  void  checkStatus(JSONObject obj , String during , ArrayList<PlannerDetail> arrPlanner){
@@ -149,6 +151,7 @@ public class PlannerListActivity extends AppCompatActivity {
 
                     }
 
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -162,25 +165,6 @@ public class PlannerListActivity extends AppCompatActivity {
 
         RequestQueue rQueue = Volley.newRequestQueue(PlannerListActivity.this);
         rQueue.add(request);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }//ดึงข้อมูลมาโชว์
 

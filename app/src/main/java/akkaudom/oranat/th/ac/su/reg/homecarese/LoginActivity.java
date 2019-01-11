@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edtUser,edtPass;
     String userStr,passStr;
-    Button btnLogin;
+    Button btnLogin,fb;
     LoginButton btnFBLogin;
     TextView nextReg;
 
@@ -48,6 +48,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+
+        getSupportActionBar().hide();
+        //not nev bar
+
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView (R.layout.activity_login);
 
@@ -134,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                                     reference.child(userF).child ("profile").child("email").setValue(emailF);
                                 }
                                 UserDetail.userName = userF;
-                                startActivity(new Intent(LoginActivity.this, PlannerListActivity.class));
+                                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -207,7 +211,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (obj.getJSONObject (userStr).getJSONObject ("profile").getString ("password").equals (passStr)) {
                                 UserDetail.userName = userStr;
-                                startActivity (new Intent (LoginActivity.this, PlannerListActivity.class));
+                                startActivity (new Intent (LoginActivity.this, ProfileActivity.class));
                             } else {
 
                                 edtPass.setError ("Password not correct");

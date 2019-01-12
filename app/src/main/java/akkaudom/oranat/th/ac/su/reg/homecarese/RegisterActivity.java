@@ -14,12 +14,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,6 +40,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
 
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -241,10 +240,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                     if(s.equals("null")) {
 
+                        InsertData();
+                        reference.child(usernameStr).child ("profile").child("password").setValue(passwordStr);
 
                         reference.child(usernameStr).child ("profile").child("email").setValue(emailStr);
 
-                        startActivity(new Intent (RegisterActivity.this, ProfileActivity.class));
+                       startActivity(new Intent (RegisterActivity.this, ProfileActivity.class));
 
                     }
                     else {
@@ -252,10 +253,11 @@ public class RegisterActivity extends AppCompatActivity {
                             JSONObject obj = new JSONObject(s);
 
                             if (!obj.has(usernameStr)) {
-                                reference.child(usernameStr).child ("profile").child("password").setValue(passwordStr);
+                                InsertData();
+;                               reference.child(usernameStr).child ("profile").child("password").setValue(passwordStr);
                                 reference.child(usernameStr).child ("profile").child("email").setValue(emailStr);
 
-                                startActivity(new Intent (RegisterActivity.this, ProfileActivity.class));
+                               startActivity(new Intent (RegisterActivity.this, ProfileActivity.class));
                             } else {
                                 usernameid.setError("username already exists");
 
@@ -282,7 +284,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }//check
 
-    public void InsertData(View view) {
+    public void InsertData() {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream ();
         imageSelect.compress (Bitmap.CompressFormat.JPEG, 100, baos);
@@ -292,7 +294,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient[UserDetail.selectPatient]+"/"+id+".jpg"); //พาทรูป
+        StorageReference imagesRef = storageRef.child("images/users/"+usernameStr+"/porfile_"+id+".jpg"); //พาทรูป
         UploadTask uploadTask = imagesRef.putBytes(dataPic);
         uploadTask.addOnFailureListener (new OnFailureListener () {
             @Override

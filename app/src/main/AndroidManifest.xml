@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -22,11 +21,9 @@
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
             //จอเเนวตั้ง
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+
         </activity>
         <activity
             android:name=".AddPlannerActivity"
@@ -34,7 +31,7 @@
         <activity
             android:name=".PlannerActivity"
             android:parentActivityName=".AddPlannerActivity">
-            >
+
         </activity>
         <activity
             android:name=".HistoryMedicineActivity"
@@ -46,17 +43,21 @@
         <activity android:name=".AddSugarActivity" />
         <activity android:name=".AddPressureActivity" />
         <activity android:name=".AddDoctorActivity" />
-        <activity android:name=".PlannerListActivity" />
+        <activity android:name=".PlannerListActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProfileActivity"></activity>
-
-
+        <activity android:name=".ProfileActivity" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>

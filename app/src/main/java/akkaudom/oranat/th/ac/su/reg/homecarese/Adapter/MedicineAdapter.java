@@ -1,4 +1,4 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.Adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -20,8 +18,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.MedicineDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MedicineAdapter extends BaseAdapter {
@@ -78,6 +78,11 @@ public class MedicineAdapter extends BaseAdapter {
                 .into(h.imageMed);
 
         h.switchMed = (Switch) (view.findViewById (R.id.switchMed));
+
+        if (list.get (position).getStatus ().equals ("true")) {
+            h.switchMed.setChecked (true);
+
+        }//checklist
 
         h.switchMed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

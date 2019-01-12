@@ -1,7 +1,6 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,6 +15,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class AddPressureActivity extends AppCompatActivity {
 

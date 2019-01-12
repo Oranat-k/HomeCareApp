@@ -1,10 +1,8 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +10,8 @@ import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class AddTherapyActivity extends AppCompatActivity {
 

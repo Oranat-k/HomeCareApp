@@ -12,6 +12,8 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+
 public class AddSymptomActivity extends AppCompatActivity {
 
     Button btnMorning,btnAfternoon,btnEvening,btnBeforeBed;

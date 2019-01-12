@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -33,14 +33,18 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+
 public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
 
     EditText edtUser,edtPass;
     String userStr,passStr;
-    Button btnLogin,fb;
+    Button btnLogin;
     LoginButton btnFBLogin;
     TextView nextReg;
+
+    ImageButton fb;
 
 
     String userF,nameF,genderF,birthdayF,emailF;
@@ -70,10 +74,19 @@ public class LoginActivity extends AppCompatActivity {
 
         btnFBLogin = (LoginButton) findViewById (R.id.btnFBLogin);
 
+        fb = (ImageButton)findViewById (R.id.fbLogin) ;
+
         btnFBLogin.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
                 loginWithFB();
+            }
+        });
+
+        fb.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                btnFBLogin.performClick ();
             }
         });
 
@@ -110,6 +123,8 @@ public class LoginActivity extends AppCompatActivity {
                                     genderF = me.optString("gender");
                                     birthdayF = me.optString("birthday");
                                     emailF = me.optString ("email");
+
+                                    fb.setImageResource (R.drawable.camera3);
 
 
                                 }

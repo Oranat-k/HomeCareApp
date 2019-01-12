@@ -11,6 +11,8 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ListView listPlanner ;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -28,38 +31,9 @@ public class ProfileActivity extends AppCompatActivity {
 //
 //        getDataToArr();
 
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle("Profile");
 
 
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-//
-//        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
-//        for (int i = 0; i < menuView.getChildCount(); i++) {
-//            final View iconView = menuView.getChildAt(i).findViewById(android.support.design.R.id.icon);
-//            final ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
-//            final DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-//            layoutParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, displayMetrics);
-//            layoutParams.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, displayMetrics);
-//            iconView.setLayoutParams(layoutParams);
-//        }
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.itemHome:
-//                        return true;
-//                    case R.id.itemChart:
-//                        //startActivity(new Intent(ProfileActivity.this, MomActivity.class));
-//                        return true;
-//                    case R.id.itemPlanner:
-//                        startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
-//        bottomNavigationView.setSelectedItemId(R.id.itemProfile);
 
 
 
@@ -67,8 +41,10 @@ public class ProfileActivity extends AppCompatActivity {
     public void onClickButtonMenu(View view){
         switch (view.getId()) {
             case R.id.homepageM:
+                startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
                 break;
             case R.id.chartM:
+                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
                 break;
             case R.id.plannerM:
                 startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
@@ -77,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
                 break;
             case R.id.profileM:
-                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
+
                 break;
 
         }
@@ -87,8 +63,6 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity (new Intent(ProfileActivity.this,PlannerActivity.class));
     }//back page
 
-    public void onClickPlanner(View view){
-        startActivity (new Intent(ProfileActivity.this,PlannerListActivity.class));
-    }//back page
+
 
 }

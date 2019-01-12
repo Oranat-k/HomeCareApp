@@ -1,7 +1,6 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +19,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class AddDoctorActivity extends AppCompatActivity {
 

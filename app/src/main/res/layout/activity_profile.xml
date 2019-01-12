@@ -14,31 +14,19 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp">
 
-        <LinearLayout
+        <TextView
+            android:text="Profile"
+            android:textSize="30dp"
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical">
-
-
-            <Button
-                android:background="@drawable/border_button"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="@color/colorButton"
-                android:onClick="onClickPlanner"
-                android:text="แผนการดูแล"
-                android:textColor="@color/colorTextWrite" />
-
-        </LinearLayout>
+            android:layout_height="match_parent" />
 
 
     </ScrollView>
 
-    <LinearLayout
 
+    <!--menu-->
+    <LinearLayout
         android:background="@drawable/solid_line"
         android:layout_width="match_parent"
         android:layout_height="130dp"
@@ -50,11 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:scaleType="fitXY"
-            android:scaleY="0.7"
-            android:scaleX="0.7"
             android:layout_gravity="bottom"
-            android:src="@drawable/h"
-            android:background="@null"
+            android:background="@mipmap/ic_launcher_home"
             android:onClick="onClickButtonMenu"
             android:layout_weight="1"/>
         <ImageButton
@@ -62,11 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:scaleType="fitXY"
-            android:scaleY="0.8"
-            android:scaleX="0.8"
             android:layout_gravity="bottom"
-            android:src="@drawable/c"
-            android:background="@null"
+            android:background="@mipmap/ic_launcher_chart"
             android:onClick="onClickButtonMenu"
             android:layout_weight="1" />
         <ImageButton
@@ -84,35 +66,21 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:scaleType="fitXY"
-            android:scaleY="0.4"
-            android:scaleX="0.4"
             android:layout_gravity="bottom"
-            android:src="@drawable/n"
-            android:background="@null"
+            android:background="@mipmap/ic_launcher_noti"
             android:onClick="onClickButtonMenu"
             android:layout_weight="1" />
         <ImageButton
             android:id="@+id/profileM"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:scaleType="fitXY"
-            android:scaleY="0.4"
-            android:scaleX="0.4"
             android:layout_gravity="bottom"
-            android:src="@drawable/p"
-            android:background="@null"
+            android:scaleType="fitXY"
+            android:background="@mipmap/ic_launcher_profile"
             android:onClick="onClickButtonMenu"
             android:layout_weight="1" />
     </LinearLayout>
 
-
-    <!--<android.support.design.widget.BottomNavigationView-->
-        <!--android:id="@+id/bottom_nav_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:background="?android:attr/windowBackground"-->
-        <!--app:menu="@menu/bottom_nav" />-->
 
 
 </RelativeLayout>

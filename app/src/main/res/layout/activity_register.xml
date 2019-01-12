@@ -18,7 +18,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile"
-        android:src="@drawable/camera"
+        android:src="@drawable/camera3"
         android:layout_width="match_parent"
         android:layout_marginTop="80dp"
         android:layout_height="200dp"
@@ -56,7 +56,6 @@
         android:hint="รหัสผ่าน"/>
 
     <Button
-        android:onClick="InsertData"
         android:id="@+id/btnRegis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

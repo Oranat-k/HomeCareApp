@@ -37,11 +37,18 @@
         android:id="@+id/btnFBLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/border_button"
+        android:background="@drawable/doctor"
         android:textColor="@color/colorTextDark"
         android:layout_marginTop="10dp"
         android:paddingTop="15dp"
-        android:paddingBottom="15dp"/>
+        android:paddingBottom="15dp"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/fbLogin"
+        android:src="@drawable/doctor"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
 
     <ImageView

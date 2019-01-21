@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -70,6 +71,10 @@ public class PlannerAdapter extends BaseAdapter {
                 setMedicine(position,parent);
                 break;
 
+            case "pressure":
+                setPressure(position,parent);
+                break;
+
         }
 
         notifyDataSetChanged();
@@ -77,6 +82,38 @@ public class PlannerAdapter extends BaseAdapter {
 
         return view;
     }
+
+
+
+    private void setPressure(final int position, ViewGroup parent) {
+
+        view = mLayoutInflater.inflate(R.layout.list_item_planner_note,parent,false);
+        final pessureHolder h = new pessureHolder ();
+
+        h.imagePessure = (ImageView) (view.findViewById (R.id.imagePessure));
+
+//        StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+//                .child(list.get (position).getImagePath ());
+//
+//        Glide.with(mContext)
+//                .using(new FirebaseImageLoader ())
+//                .load(storageReference)
+//                .into(h.imagePessure);
+
+
+        // set id's
+        h.title = (TextView)(view.findViewById(R.id.titlePr));
+
+        h.title.setText("ค่าความดัน");
+
+        h.subtitle = (TextView)(view.findViewById(R.id.subtitlePr));
+
+        h.subtitle.setText(list.get (position).getSubtitle ());
+
+        h.border = (LinearLayout) (view.findViewById (R.id.border)) ;
+
+
+    }//Pressure layout box
 
 
 
@@ -115,7 +152,7 @@ public class PlannerAdapter extends BaseAdapter {
             h.checklist.setButtonTintList(mContext.getResources().getColorStateList(R.color.holo_green_dark));
             h.checklist.setChecked (true);
 
-        }//checklist
+        }//CheckBox
 
 
 
@@ -136,13 +173,15 @@ public class PlannerAdapter extends BaseAdapter {
                     setPlannerDB(list.get(position).getTitle (), false);
 
                 }
+
             }
-        });
+        });//เปลี่ยนสีเมื่อกด checkbox
 
 
 
 
     }//medicine layout box
+
 
 
     public void setPlannerDB(String title , boolean status){
@@ -221,6 +260,15 @@ public class PlannerAdapter extends BaseAdapter {
         TextView subtitle;
         CheckBox checklist;
         RelativeLayout border;
+
+    }
+
+    private class pessureHolder
+    {
+        ImageView  imagePessure;
+        TextView title;
+        TextView subtitle;
+        LinearLayout border;
 
     }
 }

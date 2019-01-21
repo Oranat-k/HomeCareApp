@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,7 +31,7 @@ public class AddPressureActivity extends AppCompatActivity {
 
     String rangePressure;
 
-    final Calendar myCalendar = Calendar.getInstance ();
+    ArrayList<Boolean> checkRangePress = new ArrayList<> ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,11 @@ public class AddPressureActivity extends AppCompatActivity {
         topPressure = (EditText) findViewById (R.id.topPressure);
         belowPressure = (EditText) findViewById (R.id.belowPressure);
 
-        datePress = (Button) findViewById (R.id.datePress);
-        timePress = (Button) findViewById (R.id.timePress);
+
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -49,7 +53,13 @@ public class AddPressureActivity extends AppCompatActivity {
         //กดกลับ ตั้งชื่อหน้านั้น
 
 
-        //Createwidget();
+        Createwidget();
+
+        checkRangePress.add (false);
+        checkRangePress.add (false);
+        checkRangePress.add (false);
+        checkRangePress.add (false);
+
 
     }
 
@@ -70,57 +80,6 @@ public class AddPressureActivity extends AppCompatActivity {
         }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
-    public void setDate(View view) {
-
-        new DatePickerDialog (AddPressureActivity.this,date,
-                myCalendar.get (Calendar.YEAR),myCalendar.get (Calendar.MONTH),
-                myCalendar.get (Calendar.DAY_OF_MONTH)).show ();
-
-    }
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-            // TODO Auto-generated method stub
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            showDateTime ();
-        }
-
-    };//Calendar date
-
-
-
-    public void setTime(View view) {
-
-        new TimePickerDialog (AddPressureActivity.this,time,
-                myCalendar.get (Calendar.HOUR_OF_DAY),myCalendar.get (Calendar.MINUTE),true).show ();
-    }
-
-    TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener () {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-            myCalendar.set (Calendar.HOUR_OF_DAY,hourOfDay);
-            myCalendar.set (Calendar.MINUTE,minute);
-            showDateTime ();
-        }
-    };//Calendar time
-
-
-
-
-
-    private void showDateTime() {
-
-        datePress.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+"/"+myCalendar.get (Calendar.MONTH)+"/"+myCalendar.get (Calendar.YEAR));
-        timePress.setText (myCalendar.get (Calendar.HOUR_OF_DAY)+":"+myCalendar.get (Calendar.MINUTE));
-
-
-    }//show
 
 
     public void dataPress(View view) {
@@ -141,18 +100,18 @@ public class AddPressureActivity extends AppCompatActivity {
                 .child("Pressures").child(datetime)
                 .child("Below").setValue (belowPressure.getText ().toString ());
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Pressures").child(datetime)
-                .child ("Date").setValue (datePress.getText ().toString ());
-
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Pressures").child(datetime)
-                .child ("Time").setValue (timePress.getText ().toString ());
-
-
-//        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-//                .child("Pressures").child(datetime).child (time)
-//                .child ("Range").setValue(rangePressure);
+        for (int i = 0 ; i < checkRangePress.size ();i++){
+            String range = "";
+            switch (i){
+                case 0: range = "Morning"; break;
+                case 1: range = "Afternoon"; break;
+                case 2: range = "Evening"; break;
+                case 3: range = "Beforbed"; break;
+            }
+            referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    .child("Pressures").child(datetime).child ("Range")
+                    .child (range).setValue (checkRangePress.get (i).toString ());
+        }
 
 
 
@@ -160,5 +119,69 @@ public class AddPressureActivity extends AppCompatActivity {
 
     }//input ข้อมูล จากปุ่ม onclick
 
+    private void Createwidget() {
+
+
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
+
+        topPressure = (EditText) findViewById (R.id.topPressure);
+        belowPressure = (EditText) findViewById (R.id.belowPressure);
+
+        //สลับสีปุ่ม
+
+        btnMorning.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnMorning,0);
+
+            }
+        });
+
+        btnAfternoon.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnAfternoon,1);
+
+            }
+        });
+
+        btnEvening.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnEvening,2);
+            }
+        });
+
+        btnBeforeBed.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnBeforeBed,3);
+
+            }
+        });
+
+    }
+
+    public void btnActive(Button btnSelect,int index){
+
+        if (!checkRangePress.get (index)){
+            btnSelect.setBackgroundResource (R.drawable.border_box_active);
+            checkRangePress.set (index,true);
+        }else{
+            btnSelect.setBackgroundResource (R.drawable.border_box);
+            checkRangePress.set (index,false);
+        }
+
+
+    }
+
 
 }
+

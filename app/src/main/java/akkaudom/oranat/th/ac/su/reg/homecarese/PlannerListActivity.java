@@ -47,10 +47,10 @@ public class PlannerListActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_planner_list);
 
-        BeforBedPlanner = findViewById (R.id.BeforBedPlanner);
         MorningPlanner = findViewById (R.id.MorningPlanner);
         AfternoonPlanner = findViewById (R.id.AfternoonPlanner);
         EveningPlanner = findViewById (R.id.EveningPlanner);
+        BeforBedPlanner = findViewById (R.id.BeforBedPlanner);
         getDataToArr();
 
         setScrollList(MorningPlanner);
@@ -112,7 +112,6 @@ public class PlannerListActivity extends AppCompatActivity {
         befoebedArrPlanner.add (plan);
         befoebedArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
         befoebedArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
-
     }
 
     public void setAdapter(ArrayList<PlannerDetail> arrAdapter,String date,String dauring ,ListView listPlaner){
@@ -160,14 +159,14 @@ public class PlannerListActivity extends AppCompatActivity {
                                 morningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"เช้า"));
                             }
                             if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Afternoon").equals ("true")){
-                                afternoonArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Afternoon"));
+                                afternoonArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"กลางวัน"));
                             }
 
                             if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Evening").equals ("true")){
-                                eveningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Evening"));
+                                eveningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"เย็น"));
                             }
-                            if(obj.getJSONObject (key).getJSONObject ("Range").getString ("BeforBed").equals ("true")){
-                                befoebedArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"BeforBed"));
+                            if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Beforbed").equals ("true")){
+                                befoebedArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"ก่อนนอน"));
                             }
 
                         }
@@ -205,6 +204,7 @@ public class PlannerListActivity extends AppCompatActivity {
 
         setDafault(date);
         getMedicine();
+
 
         setAdapter (morningArrPlanner,date,"Morning",MorningPlanner);
         setAdapter (afternoonArrPlanner,date,"Afternoon",AfternoonPlanner);

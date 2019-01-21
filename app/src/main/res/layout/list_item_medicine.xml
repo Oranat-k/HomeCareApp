@@ -38,11 +38,12 @@
         android:textSize="20dp"/>
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/subTitleMed"
-        android:text="foik"
-        android:textSize="16dp"/>
+            android:id="@+id/subTitleMed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="100dp"
+            android:text="foik"
+            android:textSize="16dp" />
 
     </LinearLayout>
 

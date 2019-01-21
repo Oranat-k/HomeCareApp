@@ -3,7 +3,7 @@ package akkaudom.oranat.th.ac.su.reg.homecarese.Detail;
 public class PlannerDetail {
 
     private String title;
-    private  String subtitle;
+    private String subtitle;
     private String imagePath;
     private String mode;
     private String value;
@@ -45,6 +45,7 @@ public class PlannerDetail {
         this.status = status;
 
     }//Medicine mode
+
 
     public PlannerDetail(String title, String subtitle, String mode, String status) {
         this.title = title;

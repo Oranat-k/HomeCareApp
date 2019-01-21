@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/dataSugar"
+        android:id="@+id/noteSugar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
@@ -19,8 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:paddingBottom="10dp"
         android:textSize="20dp"
-        android:text="เวลา"/>
+        android:text="ช่วง"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,12 +31,17 @@
             android:id="@+id/btnBeforSugar"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
+            android:layout_marginBottom="10dp"
+            android:textSize="18dp"
             android:text="ก่อนอาหาร"/>
         <Button
             android:id="@+id/btnAfterSugar"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
             android:text="หลังอาหาร"/>
 
     </RelativeLayout>
@@ -46,41 +53,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:paddingBottom="10dp"
         android:text="เวลา"/>
 
     <RelativeLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/btnMorning"
+            android:onClick="setDate"
+            android:id="@+id/dateSugar"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="เช้า"/>
+            android:textSize="18dp"
+            android:text="วันที่"
+            android:background="@drawable/border_box"/>
         <Button
-            android:id="@+id/btnAfternoon"
+            android:onClick="setTime"
+            android:id="@+id/timeSugar"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="กลางวัน"/>
-        <Button
-            android:id="@+id/btnEvening"
-            android:layout_marginTop="60dp"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="เย็น"/>
-        <Button
-            android:id="@+id/btnBeforeBed"
-            android:layout_marginTop="60dp"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="ก่อนนอน"/>
+            android:textSize="18dp"
+            android:text="เวลา"
+            android:background="@drawable/border_box" />
 
     </RelativeLayout>
 
-
     <Button
-        android:onClick="InsertData"
+        android:onClick="dataSugar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

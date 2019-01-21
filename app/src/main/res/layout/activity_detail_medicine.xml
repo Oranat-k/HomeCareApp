@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailMedicineActivity">
+
+    <ImageView
+        android:src="@drawable/camera3"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
+
+    <TextView
+        android:text="ชื่อยา : พารา"
+        android:textSize="22dp"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/solid_line" />
+
+    <TextView
+        android:text="เวลา : ก่อนอาหาร"
+        android:textSize="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="ช่วง : เช้า"
+        android:textSize="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="ครั้งละ : 1 เม็ด"
+        android:textSize="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

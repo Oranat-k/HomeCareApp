@@ -17,7 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.MedicineDetail;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
@@ -51,6 +55,16 @@ public class MedicineAdapter extends BaseAdapter {
         return position;
     }
 
+    public String checkRange(String key){
+        switch (key){
+            case "Morning": return "เช้า";
+            case "Afternoon": return "กลางวัน";
+            case "Evening": return "เย็น";
+            default: return "ก่อนนอน";
+
+        }
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -64,8 +78,24 @@ public class MedicineAdapter extends BaseAdapter {
         h.titleMed.setText(list.get(position).getNameMed ());
 
         h.subTitleMed = (TextView)(view.findViewById(R.id.subTitleMed));
+        String ranges = "";
 
-        h.subTitleMed.setText(list.get(position).getRange ()+","+list.get(position).getTimeMed ()+","+list.get(position).getAmount ()+"เม็ด");
+        JSONObject obj = list.get (position).getRange ();
+
+        Iterator i = obj.keys();
+        String key = "";
+        while(i.hasNext()){
+            key = i.next().toString();
+            try {
+                if (obj.getString (key).equals ("true")){
+                    ranges += " "+checkRange(key);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace ();
+            }
+
+        }
+        h.subTitleMed.setText(ranges+","+list.get(position).getTimeMed ()+","+list.get(position).getAmount ()+"เม็ด");
 
         h.imageMed = (CircleImageView) (view.findViewById (R.id.imageMed));
 

@@ -44,14 +44,33 @@
         android:paddingLeft="20dp"
         android:hint="ชื่อยา"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:paddingLeft="20dp"
-        android:paddingBottom="10dp"
-        android:text="เวลา"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:text="เวลา"/>
+
+        <TextView
+            android:id="@+id/errorTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="#FF0000"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:text=""/>
+    </LinearLayout>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -75,13 +94,31 @@
 
     </RelativeLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:paddingLeft="20dp"
         android:text="ช่วง"/>
+
+        <TextView
+            android:id="@+id/errorRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="#FF0000"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:text=""/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
@@ -36,16 +38,17 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 public class AddPlannerActivity extends AppCompatActivity {
 
     private ImageView ProfileImage;
-    private static final int PICK_IMAGE = 1;
-    Uri imageUri;
     Bitmap imageSelect;
 
+    TextView errorTime,errorRange;
 
     Button btnBeforMed,btnAfterMed,btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
     EditText nameMedicine,coutMedicine;
 
-    String timeMedicine,rangeMedicine;
+    String timeMedicine , nameMedicinestr,coutMedicinestr;
+    Boolean checkImg;
 
+    ArrayList<Boolean> checkRangeMedicine = new ArrayList<> ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,19 @@ public class AddPlannerActivity extends AppCompatActivity {
         // menu bar
 
         Createwidget();
+
+        checkImg = false;
+
+        timeMedicine = "";
+
+        checkRangeMedicine.add (false);
+        checkRangeMedicine.add (false);
+        checkRangeMedicine.add (false);
+        checkRangeMedicine.add (false);
+
+        errorTime = (TextView) findViewById (R.id.errorTime);
+        errorRange = (TextView) findViewById (R.id.errorRange);
+
 
         ProfileImage = (ImageView) findViewById (R.id.profile_Medicine);
         ProfileImage.setOnClickListener (new View.OnClickListener () {
@@ -137,55 +153,102 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             }
 
+            checkImg = true;
             imageSelect = Bitmap.createScaledBitmap(imageSelect, 100,100,true);
             ProfileImage.setImageBitmap(imageSelect);
         }
 
     }//เลือกรูป
+    public boolean checkData(){
+        nameMedicinestr = nameMedicine.getText ().toString ();
+        coutMedicinestr = coutMedicine.getText ().toString ();
+
+
+        if(nameMedicinestr.equals ("") && coutMedicinestr.equals ("") &&timeMedicine.equals ("") && !checkRangeMedicine.contains (true) && !checkImg ){
+            if (nameMedicinestr.equals ("")){
+                nameMedicine.setError ("กรุณากรอกชื่อยา");
+            }
+            if(coutMedicinestr.equals ("")){
+                coutMedicine.setError ("กรุณากรอกจำนวนยา");
+            }
+            if(timeMedicine.equals ("")){
+                errorTime.setText ("กรุณาเลือกมื้ออาหาร");
+            }
+            if (!checkRangeMedicine.contains (true)){
+                errorRange.setText ("กรุณาเลือกช่วงเวลา");
+
+            }
+            if(!checkImg){
+                Toast.makeText (AddPlannerActivity.this,"กรุณาใส่รูป",Toast.LENGTH_LONG).show ();
+            }
+
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
 
     public void InsertData(View view) {
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imageSelect.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] dataPic = baos.toByteArray();
+        if(checkData ()){
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imageSelect.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] dataPic = baos.toByteArray();
 
-        String id = UUID.randomUUID().toString();// ชื่อรูปไม่ซ้ำกัน Random
+            String id = UUID.randomUUID().toString();// ชื่อรูปไม่ซ้ำกัน Random
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient[UserDetail.selectPatient]+"/"+id+".jpg"); //พาทรูป
-        UploadTask uploadTask = imagesRef.putBytes(dataPic);
-        uploadTask.addOnFailureListener(new OnFailureListener () {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(AddPlannerActivity.this, "incorrect ", Toast.LENGTH_LONG).show();
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient[UserDetail.selectPatient]+"/"+id+".jpg"); //พาทรูป
+            UploadTask uploadTask = imagesRef.putBytes(dataPic);
+            uploadTask.addOnFailureListener(new OnFailureListener () {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Toast.makeText(AddPlannerActivity.this, "incorrect ", Toast.LENGTH_LONG).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot> () {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(AddPlannerActivity.this, "correct ", Toast.LENGTH_LONG).show(); //บันทึกเข้าแล้ว
+                }
+            });
+
+
+            DatabaseReference referenMedicine = FirebaseDatabase.getInstance()
+                    .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    .child("Medicines").child(nameMedicinestr).child ("Amount").setValue(coutMedicine.getText ().toString ());
+
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    .child("Medicines").child(nameMedicinestr).child ("Time").setValue(timeMedicine);
+
+            for (int i = 0 ; i < checkRangeMedicine.size ();i++){
+                String range = "";
+                switch (i){
+                    case 0: range = "Morning"; break;
+                    case 1: range = "Afternoon"; break;
+                    case 2: range = "Evening"; break;
+                    case 3: range = "Beforbed"; break;
+                }
+                referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                        .child("Medicines").child(nameMedicinestr).child ("Range")
+                        .child (range).setValue (checkRangeMedicine.get (i).toString ());
             }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot> () {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(AddPlannerActivity.this, "correct ", Toast.LENGTH_LONG).show(); //บันทึกเข้าแล้ว
-            }
-        });
 
 
-        DatabaseReference referenMedicine = FirebaseDatabase.getInstance()
-                .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
-        referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Medicines").child(nameMedicine.getText ().toString ()).child ("Amount").setValue(coutMedicine.getText ().toString ());
 
-        referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Medicines").child(nameMedicine.getText ().toString ()).child ("Time").setValue(timeMedicine);
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    .child("Medicines").child(nameMedicinestr).child ("ImageUrl").setValue(imagesRef.getPath ());
 
-        referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Medicines").child(nameMedicine.getText ().toString ()).child ("Range").setValue(rangeMedicine);
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    .child("Medicines").child(nameMedicinestr).child ("Status").setValue("true");
 
-        referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Medicines").child(nameMedicine.getText ().toString ()).child ("ImageUrl").setValue(imagesRef.getPath ());
+            startActivity (new Intent(AddPlannerActivity.this,HistoryMedicineActivity.class));
+        }
 
-        referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Medicines").child(nameMedicine.getText ().toString ()).child ("Status").setValue("true");
 
-        startActivity (new Intent(AddPlannerActivity.this,HistoryMedicineActivity.class));
 
 
     }
@@ -231,11 +294,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box_active);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangeMedicine = "Morning";
+                btnActive(btnMorning,0);
 
             }
         });
@@ -244,11 +303,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box_active);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangeMedicine = "Afternoon";
+                btnActive(btnAfternoon,1);
 
             }
         });
@@ -257,12 +312,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box_active);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangeMedicine = "Evening";
-
+                btnActive(btnEvening,2);
             }
         });
 
@@ -270,14 +320,23 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box_active);
-                rangeMedicine = "BeforeBed";
+                btnActive(btnBeforeBed,3);
 
             }
         });
+
+    }
+
+    public void btnActive(Button btnSelect,int index){
+
+        if (!checkRangeMedicine.get (index)){
+            btnSelect.setBackgroundResource (R.drawable.border_box_active);
+            checkRangeMedicine.set (index,true);
+        }else{
+            btnSelect.setBackgroundResource (R.drawable.border_box);
+            checkRangeMedicine.set (index,false);
+        }
+
 
     }
 

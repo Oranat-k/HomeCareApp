@@ -38,29 +38,29 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
-    public void onClickButtonMenu(View view){
-        switch (view.getId()) {
-            case R.id.homepageM:
-                startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
-                break;
-            case R.id.chartM:
-                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
-                break;
-            case R.id.plannerM:
-                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
-                break;
-            case R.id.notiM:
-                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
-                break;
-            case R.id.profileM:
+//    public void onClickButtonMenu(View view){
+//        switch (view.getId()) {
+//            case R.id.homepageM:
+//                startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
+//                break;
+//            case R.id.chartM:
+//                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
+//                break;
+//            case R.id.plannerM:
+//                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
+//                break;
+//            case R.id.notiM:
+//                startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
+//                break;
+//            case R.id.profileM:
+//
+//                break;
+//
+//        }
+//    }//back page
 
-                break;
-
-        }
-    }//back page
-
-    public void onClickaddPlanner(View view){
-        startActivity (new Intent(ProfileActivity.this,PlannerActivity.class));
+    public void onClickaddPatient(View view){
+        startActivity (new Intent(ProfileActivity.this,AddPatientActivity.class));
     }//back page
 
 

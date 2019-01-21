@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/border"
     android:layout_margin="10dp"
-    android:background="@drawable/border_none">
+    android:background="@drawable/border_active">
 
 
     <LinearLayout
@@ -36,14 +36,14 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextDark"
         android:id="@+id/titleMed"
-        android:text="Djuokl"
+        android:text="ชื่อ"
         android:textSize="20dp"/>
 
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/subTitleMed"
-        android:text="foik"
+        android:text="สถานะ"
         android:textSize="16dp"/>
 
     </LinearLayout>
@@ -55,13 +55,11 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true">
 
-        <CheckBox
-            android:id="@+id/checklist"
+        <ImageView
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/colorActive"/>
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/next" />
 
     </LinearLayout>
 

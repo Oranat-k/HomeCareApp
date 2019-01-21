@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AddPatientActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/proPatient"
+        android:src="@drawable/camera3"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="180dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorButton"
+        app:civ_circle_background_color="@color/colorTextWrite"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/namePatient"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:paddingLeft="20dp"
+            android:textSize="18dp"
+            android:hint="ชื่อเล่น"
+            android:background="@drawable/border_box"/>
+        <EditText
+            android:id="@+id/staPatient"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="20dp"
+            android:textSize="18dp"
+            android:hint="สถานะ"
+            android:background="@drawable/border_box" />
+
+    </RelativeLayout>
+
+        <EditText
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_box"
+            android:paddingLeft="20dp"
+            android:hint="ชื่อจริง"/>
+
+        <EditText
+            android:id="@+id/birthday"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_box"
+            android:paddingLeft="20dp"
+            android:hint="เกิดเมื่อ"/>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="11dp"
+            android:text="เพศ"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnMale"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="82dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/border_box"
+            android:text="ช"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btnFemale"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/border_box"
+            android:text="ญ"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
+        android:hint="ที่อยู่"/>
+    <EditText
+        android:id="@+id/hospital"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
+        android:hint="โรงพยาบาลประจำตัว"/>
+    <EditText
+        android:id="@+id/disease"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
+        android:hint="โรคประจำตัว"/>
+    <EditText
+        android:id="@+id/allergic"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
+        android:hint="ประวัติเเพ้ยา"/>
+    <EditText
+        android:id="@+id/numberHn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
+        android:hint="หมายเลขผู้ป่วย"/>
+
+    <Button
+        android:onClick="dataPatient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/btnSave"
+        android:background="@drawable/border_button"
+        android:textColor="@color/colorTextWrite"
+        android:backgroundTint="@color/colorButton"
+        android:text="บันทึก"/>
+
+</LinearLayout>
+
+</ScrollView>

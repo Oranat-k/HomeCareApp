@@ -53,7 +53,7 @@ public class HistoryMedicineActivity extends AppCompatActivity {
                         MedicineDetail newMed = new MedicineDetail ();
                         newMed.setNameMed (key);
                         newMed.setTimeMed (obj.getJSONObject (key).getString ("Time"));
-                        newMed.setRange (obj.getJSONObject (key).getString ("Range"));
+                        newMed.setRange (obj.getJSONObject (key).getJSONObject ("Range"));
                         newMed.setAmount (obj.getJSONObject (key).getString ("Amount"));
                         newMed.setImageUrl (obj.getJSONObject (key).getString ("ImageUrl"));
                         newMed.setStatus (obj.getJSONObject (key).getString ("Status"));

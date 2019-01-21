@@ -1,12 +1,16 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,13 +26,22 @@ public class AddPressureActivity extends AppCompatActivity {
 
     Button btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
     EditText topPressure,belowPressure;
+    Button datePress, timePress;
 
     String rangePressure;
+
+    final Calendar myCalendar = Calendar.getInstance ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_add_pressure);
+
+        topPressure = (EditText) findViewById (R.id.topPressure);
+        belowPressure = (EditText) findViewById (R.id.belowPressure);
+
+        datePress = (Button) findViewById (R.id.datePress);
+        timePress = (Button) findViewById (R.id.timePress);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -36,7 +49,7 @@ public class AddPressureActivity extends AppCompatActivity {
         //กดกลับ ตั้งชื่อหน้านั้น
 
 
-        Createwidget();
+        //Createwidget();
 
     }
 
@@ -57,24 +70,85 @@ public class AddPressureActivity extends AppCompatActivity {
         }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
+    public void setDate(View view) {
 
-    public void InsertData(View view) {
+        new DatePickerDialog (AddPressureActivity.this,date,
+                myCalendar.get (Calendar.YEAR),myCalendar.get (Calendar.MONTH),
+                myCalendar.get (Calendar.DAY_OF_MONTH)).show ();
+
+    }
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            showDateTime ();
+        }
+
+    };//Calendar date
+
+
+
+    public void setTime(View view) {
+
+        new TimePickerDialog (AddPressureActivity.this,time,
+                myCalendar.get (Calendar.HOUR_OF_DAY),myCalendar.get (Calendar.MINUTE),true).show ();
+    }
+
+    TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener () {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+            myCalendar.set (Calendar.HOUR_OF_DAY,hourOfDay);
+            myCalendar.set (Calendar.MINUTE,minute);
+            showDateTime ();
+        }
+    };//Calendar time
+
+
+
+
+
+    private void showDateTime() {
+
+        datePress.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+"/"+myCalendar.get (Calendar.MONTH)+"/"+myCalendar.get (Calendar.YEAR));
+        timePress.setText (myCalendar.get (Calendar.HOUR_OF_DAY)+":"+myCalendar.get (Calendar.MINUTE));
+
+
+    }//show
+
+
+    public void dataPress(View view) {
 
         Calendar dateNow = Calendar.getInstance ();
-        String time = CheckTime(dateNow);
+        //String time = CheckTime(dateNow);
+
         DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
         String datetime = formater.format (new Date ());
-
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
         referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Pressures").child(datetime).child (time)
+                .child("Pressures").child(datetime)
                 .child("Top").setValue(topPressure.getText ().toString ());
 
         referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Pressures").child(datetime).child (time)
+                .child("Pressures").child(datetime)
                 .child("Below").setValue (belowPressure.getText ().toString ());
+
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                .child ("Pressures").child(datetime)
+                .child ("Date").setValue (datePress.getText ().toString ());
+
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                .child ("Pressures").child(datetime)
+                .child ("Time").setValue (timePress.getText ().toString ());
+
 
 //        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
 //                .child("Pressures").child(datetime).child (time)
@@ -86,84 +160,5 @@ public class AddPressureActivity extends AppCompatActivity {
 
     }//input ข้อมูล จากปุ่ม onclick
 
-    private String CheckTime(Calendar dateNow) {
-       if(dateNow.get (Calendar.HOUR_OF_DAY) >= 1&& dateNow.get (Calendar.HOUR_OF_DAY) <= 10){
-           return "Morning";
-       }else if (dateNow.get (Calendar.HOUR_OF_DAY) >= 11&& dateNow.get (Calendar.HOUR_OF_DAY) <= 15){
-           return "Afternoon";
-       }else if (dateNow.get (Calendar.HOUR_OF_DAY) >= 16&& dateNow.get (Calendar.HOUR_OF_DAY) <= 18){
-           return "Evening";
-       }else {
-           return "Before Bed";
-       }
 
-    }
-
-    private void Createwidget() {
-
-
-        btnMorning = (Button) findViewById (R.id.btnMorning);
-        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
-        btnEvening = (Button) findViewById (R.id.btnEvening);
-        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
-
-        topPressure = (EditText) findViewById (R.id.topPressure);
-        belowPressure = (EditText) findViewById (R.id.belowPressure);
-
-
-        //สลับสีปุ่ม
-
-        btnMorning.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box_active);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangePressure = "Morning";
-
-            }
-        });
-
-        btnAfternoon.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box_active);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangePressure = "Afternoon";
-
-            }
-        });
-
-        btnEvening.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box_active);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangePressure = "Evening";
-
-            }
-        });
-
-        btnBeforeBed.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box_active);
-                rangePressure = "BeforeBed";
-
-            }
-        });
-
-    }
 }

@@ -124,9 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                                     birthdayF = me.optString("birthday");
                                     emailF = me.optString ("email");
 
-                                    fb.setImageResource (R.drawable.camera3);
-
-
+                                    fb.setImageResource (R.drawable.logoutfb);
                                 }
                             }
                         });
@@ -153,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                     reference.child(userF).child ("profile").child("email").setValue(emailF);
                                 }
                                 UserDetail.userName = userF;
-                                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -226,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (obj.getJSONObject (userStr).getJSONObject ("profile").getString ("password").equals (passStr)) {
                                 UserDetail.userName = userStr;
-                                startActivity (new Intent (LoginActivity.this, ProfileActivity.class));
+                                startActivity (new Intent (LoginActivity.this, HomeActivity.class));
                             } else {
 
                                 edtPass.setError ("Password not correct");

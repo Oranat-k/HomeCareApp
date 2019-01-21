@@ -245,7 +245,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         reference.child(usernameStr).child ("profile").child("email").setValue(emailStr);
 
-                       startActivity(new Intent (RegisterActivity.this, ProfileActivity.class));
+                       startActivity(new Intent (RegisterActivity.this, HomeActivity.class));
 
                     }
                     else {
@@ -257,7 +257,7 @@ public class RegisterActivity extends AppCompatActivity {
 ;                               reference.child(usernameStr).child ("profile").child("password").setValue(passwordStr);
                                 reference.child(usernameStr).child ("profile").child("email").setValue(emailStr);
 
-                               startActivity(new Intent (RegisterActivity.this, ProfileActivity.class));
+                               startActivity(new Intent (RegisterActivity.this, HomeActivity.class));
                             } else {
                                 usernameid.setError("username already exists");
 

@@ -19,7 +19,7 @@
     <ImageView
         android:src="@drawable/logo"
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_height="230dp" />
 
     <TextView
@@ -46,7 +46,9 @@
 
     <ImageButton
         android:id="@+id/fbLogin"
-        android:src="@drawable/doctor"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:src="@drawable/loginfb"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 

@@ -27,29 +27,57 @@
         app:civ_circle_background_color="@color/colorTextWrite"/>
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="ชื่อผู้ใช้"/>
     <EditText
         android:id="@+id/usernameid"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/border_box"
-        android:paddingLeft="20dp"
-        android:fontFamily="@font/sukhumvitset_light"
-        android:hint="ชื่อจริง"/>
-    <EditText
-        android:id="@+id/emailid"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:fontFamily="@font/sukhumvitset_light"
         android:hint="ชื่อผู้ใช้"/>
-    <EditText
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="อีเมล"/>
+        <EditText
+        android:id="@+id/emailid"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/sukhumvitset_light"
+        android:hint="อีเมล"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="รหัสผ่าน"/>
+
+        <EditText
         android:id="@+id/passwordid"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:fontFamily="@font/sukhumvitset_light"

@@ -72,7 +72,7 @@ public class PlannerListActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }//ScrollList
 
     public  void  checkStatus(JSONObject obj , String during , ArrayList<PlannerDetail> arrPlanner){
 
@@ -88,7 +88,7 @@ public class PlannerListActivity extends AppCompatActivity {
             e.printStackTrace ();
         }
 
-    }
+    }//Status Morning afternoon evening
 
 
     private void setDafault(String date) {
@@ -104,11 +104,12 @@ public class PlannerListActivity extends AppCompatActivity {
         afternoonArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
         afternoonArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
-        eveningArrPlanner.add (new PlannerDetail ("พลิกตัว","default","false"));
+
+        eveningArrPlanner.add (plan);
         eveningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
         eveningArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
-        befoebedArrPlanner.add (new PlannerDetail ("พลิกตัว","default","false"));
+        befoebedArrPlanner.add (plan);
         befoebedArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
         befoebedArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
@@ -119,11 +120,15 @@ public class PlannerListActivity extends AppCompatActivity {
         listPlaner.setAdapter (AP);
 
     }
+
     public PlannerDetail setNewPlaner(JSONObject obj,String key,String during) throws JSONException {
+
+        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+
 
         return new PlannerDetail (
                 key,
-                during+" , "+ obj.getString ("Time")+" , "
+                during+" , "+ time +" , "
                         +obj.getString ("Amount"),
                 obj.getString ("ImageUrl"),
                 "medicine",
@@ -132,6 +137,7 @@ public class PlannerListActivity extends AppCompatActivity {
         );
 
     }
+
     private void getMedicine() {
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
@@ -148,25 +154,20 @@ public class PlannerListActivity extends AppCompatActivity {
                         key = i.next().toString();
 
 
-
                         if(obj.getJSONObject (key).getString ("Status").equals ("true")){
 
+                            if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Morning").equals ("true")){
+                                morningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"เช้า"));
+                            }
+                            if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Afternoon").equals ("true")){
+                                afternoonArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Afternoon"));
+                            }
 
-                            switch (obj.getJSONObject (key).getString ("Range")){
-                                case "Morning":
-                                    morningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Morning"));
-                                    Log.d ("testt" , morningArrPlanner.get (3).getStatus ());
-
-                                    break;
-                                case "Afternoon":
-                                    afternoonArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Afternoon"));
-                                    break;
-                                case "Evening":
-                                    eveningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Evening"));
-                                    break;
-                                case "BeforBed":
-                                    befoebedArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"BeforBed"));
-                                    break;
+                            if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Evening").equals ("true")){
+                                eveningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"Evening"));
+                            }
+                            if(obj.getJSONObject (key).getJSONObject ("Range").getString ("BeforBed").equals ("true")){
+                                befoebedArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"BeforBed"));
                             }
 
                         }
@@ -188,7 +189,9 @@ public class PlannerListActivity extends AppCompatActivity {
 
         RequestQueue rQueue = Volley.newRequestQueue(PlannerListActivity.this);
         rQueue.add(request);
-    }
+
+    }//getMedicine
+
 
     private void getDataToArr() {
 
@@ -264,7 +267,6 @@ public class PlannerListActivity extends AppCompatActivity {
         rQueue.add(request);
 
     }//ดึงข้อมูลมาโชว์
-
 
 
 

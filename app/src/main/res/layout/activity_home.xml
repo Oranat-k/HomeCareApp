@@ -1,80 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/solid_line">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/homepageM"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@mipmap/ic_launcher_home"
+            android:onClick="onClickButtonMenu" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/chartM"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@mipmap/ic_launcher_chart"
+            android:onClick="onClickButtonMenu" />
 
-                <ImageView
-                    android:layout_width="127dp"
-                    android:layout_height="148dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/colorActive" />
-            </LinearLayout>
+        <ImageButton
+            android:id="@+id/plannerM"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClickButtonMenu"
+            android:scaleType="fitXY"
+            android:src="@drawable/pn" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/notiM"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@mipmap/ic_launcher_noti"
+            android:onClick="onClickButtonMenu" />
 
-                <ImageView
-                    android:layout_width="127dp"
-                    android:layout_height="148dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/colorActive" />
-            </LinearLayout>
+        <ImageButton
+            android:id="@+id/profileM"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@mipmap/ic_launcher_profile"
+            android:onClick="onClickButtonMenu" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="127dp"
-                    android:layout_height="148dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/colorActive" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="127dp"
-                    android:layout_height="148dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/colorActive" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="127dp"
-                    android:layout_height="148dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/colorActive" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-    </HorizontalScrollView>
 
 </LinearLayout>

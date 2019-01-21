@@ -72,13 +72,14 @@ public class PlannerAdapter extends BaseAdapter {
 
         }
 
-
-
         notifyDataSetChanged();
 
 
         return view;
     }
+
+
+
 
     private void setMedicine(final int position, ViewGroup parent) {
 
@@ -103,7 +104,7 @@ public class PlannerAdapter extends BaseAdapter {
 
         h.subtitle = (TextView)(view.findViewById(R.id.subTitleMed));
 
-        h.subtitle.setText(list.get(position).getTitle ());
+        h.subtitle.setText(list.get (position).getSubtitle ());
 
         h.border = (RelativeLayout) (view.findViewById (R.id.border)) ;
 
@@ -141,7 +142,8 @@ public class PlannerAdapter extends BaseAdapter {
 
 
 
-    }
+    }//medicine layout box
+
 
     public void setPlannerDB(String title , boolean status){
 
@@ -199,7 +201,8 @@ public class PlannerAdapter extends BaseAdapter {
                 }
             }
         });
-    }
+
+    }//default layout box
 
 
     private class defaultHolder

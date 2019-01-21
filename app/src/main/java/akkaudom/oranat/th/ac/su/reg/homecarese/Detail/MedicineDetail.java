@@ -1,10 +1,14 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese.Detail;
 
+import android.util.JsonReader;
+
+import org.json.JSONObject;
+
 public class MedicineDetail {
     private String nameMed;
     private  String imageUrl;
     private String timeMed;
-    private String range;
+    private JSONObject range;
     private String amount;
     private String status;
 
@@ -29,15 +33,13 @@ public class MedicineDetail {
         return timeMed;
     }
 
-    public void setTimeMed(String timeMed) {
-        this.timeMed = timeMed;
-    }
+    public void setTimeMed(String timeMed) { this.timeMed = timeMed; }
 
-    public String getRange() {
+    public JSONObject getRange() {
         return range;
     }
 
-    public void setRange(String range) {
+    public void setRange(JSONObject range) {
         this.range = range;
     }
 

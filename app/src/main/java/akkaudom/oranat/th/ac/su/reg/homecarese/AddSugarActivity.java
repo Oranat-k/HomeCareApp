@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -31,7 +32,8 @@ public class AddSugarActivity extends AppCompatActivity {
 
     String timeMeeet, rangeSugar;
 
-    final Calendar myCalendar = Calendar.getInstance ();
+//    final Calendar myCalendar = Calendar.getInstance ();
+    ArrayList<Boolean> checkRangeSugar = new ArrayList<> ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,10 @@ public class AddSugarActivity extends AppCompatActivity {
 
         noteSugar = (EditText) findViewById (R.id.noteSugar);
 
-        dateSugar = (Button) findViewById (R.id.dateSugar);
-        timeSugar = (Button) findViewById (R.id.timeSugar);
-
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
         getSupportActionBar ().setDisplayShowHomeEnabled (true);
@@ -51,6 +54,13 @@ public class AddSugarActivity extends AppCompatActivity {
 
 
         Createwidget ();
+
+        checkRangeSugar.add (false);
+        checkRangeSugar.add (false);
+        checkRangeSugar.add (false);
+        checkRangeSugar.add (false);
+
+        timeMeeet = "";
 
     }
 
@@ -72,77 +82,38 @@ public class AddSugarActivity extends AppCompatActivity {
     } //กดกลับ ตั้งชื่อหน้านั้น
 
 
-    public void setDate(View view) {
 
-        new DatePickerDialog (AddSugarActivity.this, date,
-                myCalendar.get (Calendar.YEAR), myCalendar.get (Calendar.MONTH),
-                myCalendar.get (Calendar.DAY_OF_MONTH)).show ();
-
-    }
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener () {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-            // TODO Auto-generated method stub
-            myCalendar.set (Calendar.YEAR, year);
-            myCalendar.set (Calendar.MONTH, monthOfYear);
-            myCalendar.set (Calendar.DAY_OF_MONTH, dayOfMonth);
-            showDateTime ();
-        }
-
-    };//Calendar date
-
-
-    public void setTime(View view) {
-
-        new TimePickerDialog (AddSugarActivity.this, time,
-                myCalendar.get (Calendar.HOUR_OF_DAY), myCalendar.get (Calendar.MINUTE), true).show ();
-    }
-
-    TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener () {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-            myCalendar.set (Calendar.HOUR_OF_DAY, hourOfDay);
-            myCalendar.set (Calendar.MINUTE, minute);
-            showDateTime ();
-        }
-    };//Calendar time
-
-
-    private void showDateTime() {
-
-        dateSugar.setText (myCalendar.get (Calendar.DAY_OF_MONTH) + "/" + myCalendar.get (Calendar.MONTH) + "/" + myCalendar.get (Calendar.YEAR));
-        timeSugar.setText (myCalendar.get (Calendar.HOUR_OF_DAY) + ":" + myCalendar.get (Calendar.MINUTE));
-
-
-    }//show
 
     public void dataSugar(View view) {
 
-        Calendar dateNow = Calendar.getInstance ();
-        //String time = CheckTime(dateNow);
 
         DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
         String datetime = formater.format (new Date ());
 
-        DatabaseReference referenSymptom = FirebaseDatabase.getInstance ()
+        DatabaseReference referenSugar = FirebaseDatabase.getInstance ()
                 .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
 
+        for (int i = 0 ; i < checkRangeSugar.size ();i++){
+            String range = "";
+            switch (i){
+                case 0: range = "Morning"; break;
+                case 1: range = "Afternoon"; break;
+                case 2: range = "Evening"; break;
+                case 3: range = "Beforbed"; break;
+            }
+            if (checkRangeSugar.get (i)){
 
-        referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Sugars").child (datetime)
-                .child ("Value").setValue (noteSugar.getText ().toString ());
+                referenSugar.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                        .child("Sugars").child(datetime).child (range)
+                        .child ("Value").setValue(noteSugar.getText ().toString ());
 
-        referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Sugars").child (datetime)
-                .child ("Date").setValue (dateSugar.getText ().toString ());
+                referenSugar.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                        .child("Sugars").child(datetime).child (range)
+                        .child ("time").setValue (timeMeeet);
 
-        referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Sugars").child (datetime)
-                .child ("Time").setValue (timeSugar.getText ().toString ());
+            }
+
+        }
 
         startActivity (new Intent (AddSugarActivity.this, PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
@@ -151,12 +122,17 @@ public class AddSugarActivity extends AppCompatActivity {
 
     private void Createwidget() {
 
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
+
         btnBeforSugar = (Button) findViewById (R.id.btnBeforSugar);
         btnAfterSugar = (Button) findViewById (R.id.btnAfterSugar);
 
 
         //สลับสีปุ่ม
-        btnBeforSugar.setOnClickListener (new View.OnClickListener () {
+        btnBeforSugar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -166,7 +142,7 @@ public class AddSugarActivity extends AppCompatActivity {
             }
         });
 
-        btnAfterSugar.setOnClickListener (new View.OnClickListener () {
+        btnAfterSugar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -177,6 +153,57 @@ public class AddSugarActivity extends AppCompatActivity {
             }
         });
 
+        //สลับสีปุ่ม
+
+        btnMorning.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnMorning,0);
+
+            }
+        });
+
+        btnAfternoon.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnAfternoon,1);
+
+            }
+        });
+
+        btnEvening.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnEvening,2);
+            }
+        });
+
+        btnBeforeBed.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                btnActive(btnBeforeBed,3);
+
+            }
+        });
 
     }
+
+    public void btnActive(Button btnSelect,int index){
+
+        if (!checkRangeSugar.get (index)){
+            btnSelect.setBackgroundResource (R.drawable.border_box_active);
+            checkRangeSugar.set (index,true);
+        }else{
+            btnSelect.setBackgroundResource (R.drawable.border_box);
+            checkRangeSugar.set (index,false);
+        }
+
+
+    }
+
+
 }

@@ -19,8 +19,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.MedicineAdapter;
@@ -40,12 +43,16 @@ public class PlannerListActivity extends AppCompatActivity {
     ListView MorningPlanner,AfternoonPlanner,EveningPlanner,BeforBedPlanner ;
 
     Calendar dateSelect;
+    String dateNow;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_planner_list);
+
+        DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
+        dateNow = formater.format (new Date ());
 
         MorningPlanner = findViewById (R.id.MorningPlanner);
         AfternoonPlanner = findViewById (R.id.AfternoonPlanner);
@@ -120,7 +127,7 @@ public class PlannerListActivity extends AppCompatActivity {
 
     }
 
-    public PlannerDetail setNewPlaner(JSONObject obj,String key,String during) throws JSONException {
+    public PlannerDetail setNewMedicine(JSONObject obj,String key,String during) throws JSONException {
 
         String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
 
@@ -133,6 +140,52 @@ public class PlannerListActivity extends AppCompatActivity {
                 "medicine",
                 obj.getString ("Status")
 
+        );
+
+    }
+
+    public PlannerDetail setNewPressure(JSONObject obj) throws JSONException {
+        String status = "default";
+        int top = Integer.parseInt (obj.getString ("Top"));
+        int below =  Integer.parseInt (obj.getString ("Below"));
+
+        if (top >= 100 && top < 130 && below >= 60 && below < 80 ){
+            status = "very good";
+        }else if (top >= 130 && top < 135 && below >= 80 && below < 85){
+            status = "good";
+        }else if (top >= 135 && below >= 85){
+            status = "bad";
+        }
+
+
+        return new PlannerDetail (
+               "ค่าความดัน",
+                 top +" / "+below,
+                "pressure",
+                status
+        );
+
+    }
+
+    public PlannerDetail setNewSugar(JSONObject obj) throws JSONException {
+        String status = "default";
+        int Value = Integer.parseInt (obj.getString ("Value"));
+        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+
+        if (Value >= 100 && Value < 130 && Value >= 60 && Value < 80 ){
+            status = "very good";
+        }else if (Value >= 130 && Value < 135 && Value >= 80 && Value < 85){
+            status = "good";
+        }else if (Value >= 135 && Value >= 85){
+            status = "bad";
+        }
+
+
+        return new PlannerDetail (
+                "ค่าน้ำตาล",
+                Value +" / "+time,
+                "pressure",
+                status
         );
 
     }
@@ -156,17 +209,17 @@ public class PlannerListActivity extends AppCompatActivity {
                         if(obj.getJSONObject (key).getString ("Status").equals ("true")){
 
                             if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Morning").equals ("true")){
-                                morningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"เช้า"));
+                                morningArrPlanner.add(setNewMedicine(obj.getJSONObject (key),key,"เช้า"));
                             }
                             if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Afternoon").equals ("true")){
-                                afternoonArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"กลางวัน"));
+                                afternoonArrPlanner.add(setNewMedicine(obj.getJSONObject (key),key,"กลางวัน"));
                             }
 
                             if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Evening").equals ("true")){
-                                eveningArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"เย็น"));
+                                eveningArrPlanner.add(setNewMedicine(obj.getJSONObject (key),key,"เย็น"));
                             }
                             if(obj.getJSONObject (key).getJSONObject ("Range").getString ("Beforbed").equals ("true")){
-                                befoebedArrPlanner.add(setNewPlaner(obj.getJSONObject (key),key,"ก่อนนอน"));
+                                befoebedArrPlanner.add(setNewMedicine(obj.getJSONObject (key),key,"ก่อนนอน"));
                             }
 
                         }
@@ -192,7 +245,88 @@ public class PlannerListActivity extends AppCompatActivity {
     }//getMedicine
 
 
-    private void getDataToArr() {
+    private void getPressure() {
+
+        String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
+                + UserDetail.patient[UserDetail.selectPatient] + "/Pressures/"+dateNow+".json";
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject obj = new JSONObject (s);
+
+                    if (obj.has("Morning")) {
+                        morningArrPlanner.add (setNewPressure(obj.getJSONObject ("Morning")));
+                    }
+                    if (obj.has("Afternoon")) {
+                        afternoonArrPlanner.add (setNewPressure(obj.getJSONObject ("Afternoon")));
+                    }
+                    if (obj.has("Evening")) {
+                        eveningArrPlanner.add (setNewPressure(obj.getJSONObject ("Evening")));
+                    }
+                    if (obj.has("Beforbed")) {
+                        befoebedArrPlanner.add (setNewPressure(obj.getJSONObject ("Beforbed")));
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace ();
+                }
+            }
+        }, new Response.ErrorListener () {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println ("" + volleyError);
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue (PlannerListActivity.this);
+        rQueue.add (request);
+
+    }//getPressure
+
+    private void getSugar() {
+
+        String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
+                + UserDetail.patient[UserDetail.selectPatient] + "/Sugars/"+dateNow+".json";
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject obj = new JSONObject (s);
+
+                        if (obj.has("Morning")) {
+                            morningArrPlanner.add (setNewSugar(obj.getJSONObject ("Morning")));
+                        }
+                        if (obj.has("Afternoon")) {
+                            afternoonArrPlanner.add (setNewSugar(obj.getJSONObject ("Afternoon")));
+                        }
+                        if (obj.has("Evening")) {
+                            eveningArrPlanner.add (setNewSugar(obj.getJSONObject ("Evening")));
+                        }
+                        if (obj.has("Beforbed")) {
+                            befoebedArrPlanner.add (setNewSugar(obj.getJSONObject ("Beforbed")));
+                        }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace ();
+                }
+            }
+        }, new Response.ErrorListener () {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println ("" + volleyError);
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue (PlannerListActivity.this);
+        rQueue.add (request);
+
+    }//getSugar
+
+
+        private void getDataToArr() {
 
         dateSelect = Calendar.getInstance ();
         dateSelect.set (Calendar.HOUR_OF_DAY,0);
@@ -204,7 +338,8 @@ public class PlannerListActivity extends AppCompatActivity {
 
         setDafault(date);
         getMedicine();
-
+        getPressure();
+        getSugar();
 
         setAdapter (morningArrPlanner,date,"Morning",MorningPlanner);
         setAdapter (afternoonArrPlanner,date,"Afternoon",AfternoonPlanner);

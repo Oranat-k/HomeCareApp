@@ -1,9 +1,14 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -23,17 +28,36 @@ public class ProfileActivity extends AppCompatActivity {
 
     ListView listPlanner ;
 
+    Button b;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_profile);
+
+
+        if (ContextCompat.checkSelfPermission(ProfileActivity.this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(ProfileActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},1);
+        }//รูป pop up take photo//galley
 //
 //        getDataToArr();
 
         getSupportActionBar().setTitle("Profile");
 
+    b = findViewById (R.id.call);
 
+    b.setOnClickListener (new View.OnClickListener () {
+        @Override
+        public void onClick(View v)
+        {
+            Intent callIntent=new Intent (Intent.ACTION_CALL);
+            callIntent.setData (Uri.parse ("tel:123"));
+            startActivity(callIntent);
+        }
+    });
 
 
 

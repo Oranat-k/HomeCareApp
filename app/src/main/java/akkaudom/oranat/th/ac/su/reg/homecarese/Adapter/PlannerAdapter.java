@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -75,6 +76,10 @@ public class PlannerAdapter extends BaseAdapter {
                 setPressure(position,parent);
                 break;
 
+            case "sugar":
+                setSugar(position,parent);
+                break;
+
         }
 
         notifyDataSetChanged();
@@ -84,6 +89,38 @@ public class PlannerAdapter extends BaseAdapter {
     }
 
 
+    private void setSugar(final int position, ViewGroup parent) {
+
+        view = mLayoutInflater.inflate(R.layout.list_item_planner_note,parent,false);
+        final pessureHolder h = new pessureHolder ();
+
+        h.imagePessure = (ImageView) (view.findViewById (R.id.imagePessure));
+
+
+
+        // set id's
+        h.title = (TextView)(view.findViewById(R.id.titlePr));
+
+        h.title.setText(list.get (position).getTitle ());
+
+        h.subtitle = (TextView)(view.findViewById(R.id.subtitlePr));
+
+        h.subtitle.setText(list.get (position).getSubtitle ());
+
+        switch(list.get (position).getStatus ()){
+            case "bad":
+                h.imagePessure.setImageResource (R.drawable.bad);
+                break;
+            case "good":
+                h.imagePessure.setImageResource (R.drawable.good);
+                break;
+            case "very good":
+                h.imagePessure.setImageResource (R.drawable.good);
+                break;
+        }
+
+
+    }//Pressure layout box
 
     private void setPressure(final int position, ViewGroup parent) {
 
@@ -92,25 +129,28 @@ public class PlannerAdapter extends BaseAdapter {
 
         h.imagePessure = (ImageView) (view.findViewById (R.id.imagePessure));
 
-//        StorageReference storageReference = FirebaseStorage.getInstance().getReference()
-//                .child(list.get (position).getImagePath ());
-//
-//        Glide.with(mContext)
-//                .using(new FirebaseImageLoader ())
-//                .load(storageReference)
-//                .into(h.imagePessure);
 
 
         // set id's
         h.title = (TextView)(view.findViewById(R.id.titlePr));
 
-        h.title.setText("ค่าความดัน");
+        h.title.setText(list.get (position).getTitle ());
 
         h.subtitle = (TextView)(view.findViewById(R.id.subtitlePr));
 
         h.subtitle.setText(list.get (position).getSubtitle ());
 
-        h.border = (LinearLayout) (view.findViewById (R.id.border)) ;
+        switch(list.get (position).getStatus ()){
+            case "bad":
+                h.imagePessure.setImageResource (R.drawable.bad);
+                break;
+            case "good":
+                h.imagePessure.setImageResource (R.drawable.good);
+                break;
+            case "very good":
+                h.imagePessure.setImageResource (R.drawable.good);
+                break;
+        }
 
 
     }//Pressure layout box
@@ -268,7 +308,6 @@ public class PlannerAdapter extends BaseAdapter {
         ImageView  imagePessure;
         TextView title;
         TextView subtitle;
-        LinearLayout border;
 
     }
 }

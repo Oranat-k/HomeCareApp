@@ -61,6 +61,8 @@ public class AddPressureActivity extends AppCompatActivity {
         checkRangePress.add (false);
 
 
+
+
     }
 
     @Override
@@ -92,13 +94,6 @@ public class AddPressureActivity extends AppCompatActivity {
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
-        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Pressures").child(datetime)
-                .child("Top").setValue(topPressure.getText ().toString ());
-
-        referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Pressures").child(datetime)
-                .child("Below").setValue (belowPressure.getText ().toString ());
 
         for (int i = 0 ; i < checkRangePress.size ();i++){
             String range = "";
@@ -108,9 +103,18 @@ public class AddPressureActivity extends AppCompatActivity {
                 case 2: range = "Evening"; break;
                 case 3: range = "Beforbed"; break;
             }
-            referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                    .child("Pressures").child(datetime).child ("Range")
-                    .child (range).setValue (checkRangePress.get (i).toString ());
+            if (checkRangePress.get (i)){
+
+                referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                        .child("Pressures").child(datetime).child (range)
+                        .child ("Top").setValue(topPressure.getText ().toString ());
+
+                referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                        .child("Pressures").child(datetime).child (range)
+                        .child("Below").setValue (belowPressure.getText ().toString ());
+
+            }
+
         }
 
 

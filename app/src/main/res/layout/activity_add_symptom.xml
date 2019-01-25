@@ -16,36 +16,68 @@
         android:hint="อาการผิดปกติ"/>
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:paddingBottom="10dp"
-        android:text="เวลา"/>
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="ช่วง"/>
+
+        <TextView
+            android:id="@+id/errorRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="#FF0000"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:text=""/>
+
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:onClick="setDate"
-            android:id="@+id/datePress"
+            android:id="@+id/btnMorning"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
             android:textSize="18dp"
-            android:text="วันที่"
-            android:background="@drawable/border_box"/>
+            android:text="เช้า"/>
         <Button
-            android:onClick="setTime"
-            android:id="@+id/timePress"
+            android:id="@+id/btnAfternoon"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
             android:textSize="18dp"
-            android:text="เวลา"
-            android:background="@drawable/border_box"/>
+            android:text="กลางวัน"/>
+        <Button
+            android:id="@+id/btnEvening"
+            android:layout_marginTop="60dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_box"
+            android:layout_marginBottom="10dp"
+            android:textSize="18dp"
+            android:text="เย็น"/>
+        <Button
+            android:id="@+id/btnBeforeBed"
+            android:layout_marginTop="60dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/border_box"
+            android:textSize="18dp"
+            android:text="ก่อนนอน"/>
 
     </RelativeLayout>
 

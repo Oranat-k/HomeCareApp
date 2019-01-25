@@ -78,6 +78,7 @@ public class MedicineAdapter extends BaseAdapter {
         h.titleMed.setText(list.get(position).getNameMed ());
 
         h.subTitleMed = (TextView)(view.findViewById(R.id.subTitleMed));
+
         String ranges = "";
 
         JSONObject obj = list.get (position).getRange ();
@@ -96,6 +97,7 @@ public class MedicineAdapter extends BaseAdapter {
 
         }
         h.subTitleMed.setText(ranges+","+list.get(position).getTimeMed ()+","+list.get(position).getAmount ()+"เม็ด");
+
 
         h.imageMed = (CircleImageView) (view.findViewById (R.id.imageMed));
 

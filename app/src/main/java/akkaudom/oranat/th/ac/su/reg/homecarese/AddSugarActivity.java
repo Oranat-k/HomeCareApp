@@ -109,7 +109,7 @@ public class AddSugarActivity extends AppCompatActivity {
 
                 referenSugar.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
                         .child("Sugars").child(datetime).child (range)
-                        .child ("time").setValue (timeMeeet);
+                        .child ("Time").setValue (timeMeeet);
 
             }
 

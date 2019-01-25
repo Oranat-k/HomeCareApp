@@ -157,7 +157,6 @@ public class PlannerListActivity extends AppCompatActivity {
             status = "bad";
         }
 
-
         return new PlannerDetail (
                "ค่าความดัน",
                  top +" / "+below,
@@ -170,20 +169,20 @@ public class PlannerListActivity extends AppCompatActivity {
     public PlannerDetail setNewSugar(JSONObject obj) throws JSONException {
         String status = "default";
         int Value = Integer.parseInt (obj.getString ("Value"));
-        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+//        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
 
-        if (Value >= 100 && Value < 130 && Value >= 60 && Value < 80 ){
+        if (Value >= 60 && Value < 100){
             status = "very good";
-        }else if (Value >= 130 && Value < 135 && Value >= 80 && Value < 85){
+        }else if (Value >= 100 && Value < 126){
             status = "good";
-        }else if (Value >= 135 && Value >= 85){
+        }else if (Value >= 126 && Value >= 200){
             status = "bad";
         }
 
 
         return new PlannerDetail (
                 "ค่าน้ำตาล",
-                Value +" / "+time,
+                Value +"  ",
                 "pressure",
                 status
         );
@@ -267,7 +266,6 @@ public class PlannerListActivity extends AppCompatActivity {
                     if (obj.has("Beforbed")) {
                         befoebedArrPlanner.add (setNewPressure(obj.getJSONObject ("Beforbed")));
                     }
-
 
                 } catch (JSONException e) {
                     e.printStackTrace ();

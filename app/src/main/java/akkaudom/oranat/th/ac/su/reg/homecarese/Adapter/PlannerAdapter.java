@@ -115,7 +115,7 @@ public class PlannerAdapter extends BaseAdapter {
                 h.imagePessure.setImageResource (R.drawable.good);
                 break;
             case "very good":
-                h.imagePessure.setImageResource (R.drawable.good);
+                h.imagePessure.setImageResource (R.drawable.verygood);
                 break;
         }
 
@@ -148,7 +148,7 @@ public class PlannerAdapter extends BaseAdapter {
                 h.imagePessure.setImageResource (R.drawable.good);
                 break;
             case "very good":
-                h.imagePessure.setImageResource (R.drawable.good);
+                h.imagePessure.setImageResource (R.drawable.verygood);
                 break;
         }
 

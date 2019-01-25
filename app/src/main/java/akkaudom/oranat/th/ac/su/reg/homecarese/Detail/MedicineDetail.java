@@ -13,9 +13,7 @@ public class MedicineDetail {
     private String status;
 
 
-    public String getNameMed() {
-        return nameMed;
-    }
+    public String getNameMed() { return nameMed; }
 
     public void setNameMed(String nameMed) {
         this.nameMed = nameMed;

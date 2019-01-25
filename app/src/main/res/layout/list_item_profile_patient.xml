@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/border"
-    android:layout_margin="10dp"
-    android:background="@drawable/border_active">
+    android:layout_margin="20dp"
+    android:background="@drawable/border_patient">
 
 
     <LinearLayout
@@ -22,7 +22,7 @@
         android:layout_height="80dp"
         android:src="@drawable/camera3"
         app:civ_border_width="2dp"
-        android:id="@+id/imageMed"
+        android:id="@+id/imagePatient"
         app:civ_border_color="#ffffff"/>
 
     <LinearLayout
@@ -35,16 +35,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextDark"
-        android:id="@+id/titleMed"
+        android:id="@+id/namePatient"
         android:text="ชื่อ"
         android:textSize="20dp"/>
 
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/subTitleMed"
+        android:id="@+id/statusPatient"
         android:text="สถานะ"
         android:textSize="16dp"/>
+
+
 
     </LinearLayout>
 
@@ -57,8 +59,9 @@
 
         <ImageView
             android:layout_marginLeft="50dp"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
             android:src="@drawable/next" />
 
     </LinearLayout>

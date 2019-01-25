@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -31,7 +32,9 @@ public class AddSymptomActivity extends AppCompatActivity {
 
     String rangeSymptom;
 
-    final Calendar myCalendar = Calendar.getInstance ();
+    ArrayList<Boolean> checkRangeSymptom = new ArrayList<> ();
+
+//    final Calendar myCalendar = Calendar.getInstance ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,10 @@ public class AddSymptomActivity extends AppCompatActivity {
 
         dataSymptom = (EditText) findViewById (R.id.dataSymptom);
 
-        datePress = (Button) findViewById (R.id.datePress);
-        timePress = (Button) findViewById (R.id.timePress);
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -49,7 +54,12 @@ public class AddSymptomActivity extends AppCompatActivity {
         //กดกลับ ตั้งชื่อหน้านั้น
 
 
-//        Createwidget();
+        Createwidget();
+
+        checkRangeSymptom.add (false);
+        checkRangeSymptom.add (false);
+        checkRangeSymptom.add (false);
+        checkRangeSymptom.add (false);
     }
 
     @Override
@@ -69,56 +79,7 @@ public class AddSymptomActivity extends AppCompatActivity {
         }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
-    public void setDate(View view) {
 
-        new DatePickerDialog (AddSymptomActivity.this,date,
-                myCalendar.get (Calendar.YEAR),myCalendar.get (Calendar.MONTH),
-                myCalendar.get (Calendar.DAY_OF_MONTH)).show ();
-
-    }
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-            // TODO Auto-generated method stub
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            showDateTime ();
-        }
-
-    };//Calendar date
-
-
-
-    public void setTime(View view) {
-
-        new TimePickerDialog (AddSymptomActivity.this,time,
-                myCalendar.get (Calendar.HOUR_OF_DAY),myCalendar.get (Calendar.MINUTE),true).show ();
-    }
-
-    TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener () {
-        @Override
-        public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-            myCalendar.set (Calendar.HOUR_OF_DAY,hourOfDay);
-            myCalendar.set (Calendar.MINUTE,minute);
-            showDateTime ();
-        }
-    };//Calendar time
-
-
-
-
-    private void showDateTime() {
-
-        datePress.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+"/"+myCalendar.get (Calendar.MONTH)+"/"+myCalendar.get (Calendar.YEAR));
-        timePress.setText (myCalendar.get (Calendar.HOUR_OF_DAY)+":"+myCalendar.get (Calendar.MINUTE));
-
-
-    }//show
 
 
     public void dataSym(View view) {
@@ -129,23 +90,100 @@ public class AddSymptomActivity extends AppCompatActivity {
         DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
         String datetime = formater.format (new Date ());
 
-        DatabaseReference referenSymptom = FirebaseDatabase.getInstance()
-                .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
+        DatabaseReference referenSymptom = FirebaseDatabase.getInstance ()
+                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
 
-        referenSymptom.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child ("Symptoms").child(datetime)
-                .child("Value").setValue(dataSymptom.getText ().toString ());
+        for (int i = 0; i < checkRangeSymptom.size (); i++) {
+            String range = "";
+            switch (i) {
+                case 0:
+                    range = "Morning";
+                    break;
+                case 1:
+                    range = "Afternoon";
+                    break;
+                case 2:
+                    range = "Evening";
+                    break;
+                case 3:
+                    range = "Beforbed";
+                    break;
+            }
+            if (checkRangeSymptom.get (i)) {
 
-        referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Symptoms").child(datetime)
-                .child ("Date").setValue (datePress.getText ().toString ());
 
-        referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
-                .child ("Symptoms").child(datetime)
-                .child ("Time").setValue (timePress.getText ().toString ());
+                referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                        .child ("Symptoms").child (datetime).child (range)
+                        .child ("Value").setValue (dataSymptom.getText ().toString ());
 
-        startActivity (new Intent(AddSymptomActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+            }
+        }
+
+            startActivity (new Intent (AddSymptomActivity.this, PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+
 
     }
 
-}
+        private void Createwidget() {
+
+
+            btnMorning = (Button) findViewById (R.id.btnMorning);
+            btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+            btnEvening = (Button) findViewById (R.id.btnEvening);
+            btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
+
+
+            //สลับสีปุ่ม
+
+            btnMorning.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    btnActive(btnMorning,0);
+
+                }
+            });
+
+            btnAfternoon.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    btnActive(btnAfternoon,1);
+
+                }
+            });
+
+            btnEvening.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    btnActive(btnEvening,2);
+                }
+            });
+
+            btnBeforeBed.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    btnActive(btnBeforeBed,3);
+
+                }
+            });
+
+        }
+
+        public void btnActive(Button btnSelect,int index){
+
+            if (!checkRangeSymptom.get (index)){
+                btnSelect.setBackgroundResource (R.drawable.border_box_active);
+                checkRangeSymptom.set (index,true);
+            }else{
+                btnSelect.setBackgroundResource (R.drawable.border_box);
+                checkRangeSymptom.set (index,false);
+            }
+
+
+        }
+
+
+    }

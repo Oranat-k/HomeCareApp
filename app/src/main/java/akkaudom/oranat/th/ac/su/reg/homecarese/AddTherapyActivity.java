@@ -11,6 +11,12 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class AddTherapyActivity extends AppCompatActivity {
@@ -20,10 +26,19 @@ public class AddTherapyActivity extends AppCompatActivity {
 
     String rangeTherapy;
 
+    ArrayList<Boolean> checkRangeTherapy = new ArrayList<> ();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_add_therapy);
+
+        dataTherapy = (EditText) findViewById (R.id.dataTherapy);
+
+        btnMorning = (Button) findViewById (R.id.btnMorning);
+        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
+        btnEvening = (Button) findViewById (R.id.btnEvening);
+        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -32,6 +47,11 @@ public class AddTherapyActivity extends AppCompatActivity {
 
 
         Createwidget();
+
+        checkRangeTherapy.add (false);
+        checkRangeTherapy.add (false);
+        checkRangeTherapy.add (false);
+        checkRangeTherapy.add (false);
 
     }
 
@@ -52,13 +72,44 @@ public class AddTherapyActivity extends AppCompatActivity {
         }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
+
     public void InsertData(View view) {
+
+        Calendar dateNow = Calendar.getInstance ();
+        //String time = CheckTime(dateNow);
+
+        DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
+        String datetime = formater.format (new Date ());
 
         DatabaseReference referenTherapy = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
 
-        referenTherapy.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
-                .child("Therapys").child(dataTherapy.getText ().toString ()).child ("Range").setValue(rangeTherapy);
+        for (int i = 0; i < checkRangeTherapy.size (); i++) {
+            String range = "";
+            switch (i) {
+                case 0:
+                    range = "Morning";
+                    break;
+                case 1:
+                    range = "Afternoon";
+                    break;
+                case 2:
+                    range = "Evening";
+                    break;
+                case 3:
+                    range = "Beforbed";
+                    break;
+            }
+            if (checkRangeTherapy.get (i)) {
+
+
+                referenTherapy.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                        .child ("Therapys").child (datetime).child (range)
+                        .child ("Value").setValue (dataTherapy.getText ().toString ());
+
+            }
+        }
+
 
         startActivity (new Intent(AddTherapyActivity.this,PlannerActivity.class));
 
@@ -72,7 +123,6 @@ public class AddTherapyActivity extends AppCompatActivity {
         btnEvening = (Button) findViewById (R.id.btnEvening);
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
-        dataTherapy = (EditText) findViewById (R.id.dataTherapy);
 
 
         //สลับสีปุ่ม
@@ -81,11 +131,7 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box_active);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangeTherapy = "Morning";
+                btnActive(btnMorning,0);
 
             }
         });
@@ -94,11 +140,7 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box_active);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangeTherapy = "Afternoon";
+                btnActive(btnAfternoon,1);
 
             }
         });
@@ -107,12 +149,7 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box_active);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box);
-                rangeTherapy = "Evening";
-
+                btnActive(btnEvening,2);
             }
         });
 
@@ -120,14 +157,24 @@ public class AddTherapyActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                btnMorning.setBackgroundResource (R.drawable.border_box);
-                btnAfternoon.setBackgroundResource (R.drawable.border_box);
-                btnEvening.setBackgroundResource (R.drawable.border_box);
-                btnBeforeBed.setBackgroundResource (R.drawable.border_box_active);
-                rangeTherapy = "BeforeBed";
+                btnActive(btnBeforeBed,3);
 
             }
         });
+
+    }
+
+    public void btnActive(Button btnSelect,int index){
+
+        if (!checkRangeTherapy.get (index)){
+            btnSelect.setBackgroundResource (R.drawable.border_box_active);
+            checkRangeTherapy.set (index,true);
+        }else{
+            btnSelect.setBackgroundResource (R.drawable.border_box);
+            checkRangeTherapy.set (index,false);
+        }
+
+
     }
 
 }

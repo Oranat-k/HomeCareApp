@@ -20,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-        public void onClickButtonMenu(View view){
+         public void onClickButtonMenu(View view){
         switch (view.getId()) {
             case R.id.homepageM:
                 break;
@@ -38,6 +38,6 @@ public class HomeActivity extends AppCompatActivity {
                 break;
 
         }
-    }//back page
+    }//next page
 
 }

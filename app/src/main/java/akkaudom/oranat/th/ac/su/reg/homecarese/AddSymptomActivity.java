@@ -117,6 +117,7 @@ public class AddSymptomActivity extends AppCompatActivity {
                         .child ("Value").setValue (dataSymptom.getText ().toString ());
 
             }
+
         }
 
             startActivity (new Intent (AddSymptomActivity.this, PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า

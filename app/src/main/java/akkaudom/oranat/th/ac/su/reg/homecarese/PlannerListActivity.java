@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -53,6 +54,7 @@ public class PlannerListActivity extends AppCompatActivity {
 
         DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
         dateNow = formater.format (new Date ());
+
 
         MorningPlanner = findViewById (R.id.MorningPlanner);
         AfternoonPlanner = findViewById (R.id.AfternoonPlanner);
@@ -109,12 +111,10 @@ public class PlannerListActivity extends AppCompatActivity {
 
         afternoonArrPlanner.add (plan);
         afternoonArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
-        afternoonArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
 
         eveningArrPlanner.add (plan);
         eveningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
-        eveningArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
         befoebedArrPlanner.add (plan);
         befoebedArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
@@ -188,6 +188,23 @@ public class PlannerListActivity extends AppCompatActivity {
         );
 
     }
+
+    public PlannerDetail setNewSymptom(JSONObject obj) throws JSONException {
+        String status = "symptom";
+        String Value  = (obj.getString ("Value"));
+//        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+
+
+
+        return new PlannerDetail (
+                "อาการ",
+                Value +"  ",
+                "symptom",
+                status
+        );
+
+    }
+
 
     private void getMedicine() {
 
@@ -285,26 +302,67 @@ public class PlannerListActivity extends AppCompatActivity {
 
     private void getSugar() {
 
+    String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
+            + UserDetail.patient[UserDetail.selectPatient] + "/Sugars/"+dateNow+".json";
+    StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+        @Override
+        public void onResponse(String s) {
+            try {
+                JSONObject obj = new JSONObject (s);
+
+                if (obj.has("Morning")) {
+                    morningArrPlanner.add (setNewSugar(obj.getJSONObject ("Morning")));
+                }
+                if (obj.has("Afternoon")) {
+                    afternoonArrPlanner.add (setNewSugar(obj.getJSONObject ("Afternoon")));
+                }
+                if (obj.has("Evening")) {
+                    eveningArrPlanner.add (setNewSugar(obj.getJSONObject ("Evening")));
+                }
+                if (obj.has("Beforbed")) {
+                    befoebedArrPlanner.add (setNewSugar(obj.getJSONObject ("Beforbed")));
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace ();
+            }
+        }
+    }, new Response.ErrorListener () {
+        @Override
+        public void onErrorResponse(VolleyError volleyError) {
+            System.out.println ("" + volleyError);
+        }
+    });
+
+    RequestQueue rQueue = Volley.newRequestQueue (PlannerListActivity.this);
+        rQueue.add (request);
+
+}//getSugar
+
+
+    private void getSymptom() {
+
         String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
-                + UserDetail.patient[UserDetail.selectPatient] + "/Sugars/"+dateNow+".json";
+                + UserDetail.patient[UserDetail.selectPatient] + "/Symptoms/"+dateNow+".json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
                 try {
                     JSONObject obj = new JSONObject (s);
 
-                        if (obj.has("Morning")) {
-                            morningArrPlanner.add (setNewSugar(obj.getJSONObject ("Morning")));
-                        }
-                        if (obj.has("Afternoon")) {
-                            afternoonArrPlanner.add (setNewSugar(obj.getJSONObject ("Afternoon")));
-                        }
-                        if (obj.has("Evening")) {
-                            eveningArrPlanner.add (setNewSugar(obj.getJSONObject ("Evening")));
-                        }
-                        if (obj.has("Beforbed")) {
-                            befoebedArrPlanner.add (setNewSugar(obj.getJSONObject ("Beforbed")));
-                        }
+                    if (obj.has("Morning")) {
+                        morningArrPlanner.add (setNewSymptom(obj.getJSONObject ("Morning")));
+                    }
+                    if (obj.has("Afternoon")) {
+                        afternoonArrPlanner.add (setNewSymptom(obj.getJSONObject ("Afternoon")));
+                    }
+                    if (obj.has("Evening")) {
+                        eveningArrPlanner.add (setNewSymptom(obj.getJSONObject ("Evening")));
+                    }
+                    if (obj.has("Beforbed")) {
+                        befoebedArrPlanner.add (setNewSymptom(obj.getJSONObject ("Beforbed")));
+                    }
 
 
                 } catch (JSONException e) {
@@ -321,7 +379,7 @@ public class PlannerListActivity extends AppCompatActivity {
         RequestQueue rQueue = Volley.newRequestQueue (PlannerListActivity.this);
         rQueue.add (request);
 
-    }//getSugar
+    }//getSymptom
 
 
         private void getDataToArr() {
@@ -338,6 +396,7 @@ public class PlannerListActivity extends AppCompatActivity {
         getMedicine();
         getPressure();
         getSugar();
+        getSymptom();
 
         setAdapter (morningArrPlanner,date,"Morning",MorningPlanner);
         setAdapter (afternoonArrPlanner,date,"Afternoon",AfternoonPlanner);

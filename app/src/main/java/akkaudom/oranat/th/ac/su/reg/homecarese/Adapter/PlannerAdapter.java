@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -80,6 +79,10 @@ public class PlannerAdapter extends BaseAdapter {
                 setSugar(position,parent);
                 break;
 
+            case "symptom":
+                setSymptom(position,parent);
+                break;
+
         }
 
         notifyDataSetChanged();
@@ -87,6 +90,26 @@ public class PlannerAdapter extends BaseAdapter {
 
         return view;
     }
+
+
+    private void setSymptom(final int position, ViewGroup parent) {
+
+        view = mLayoutInflater.inflate(R.layout.list_item_planner_symtom,parent,false);
+        final symptomHolder h = new symptomHolder ();
+
+
+
+        // set id's
+        h.titleSy = (TextView)(view.findViewById(R.id.titleSy));
+
+        h.titleSy.setText(list.get (position).getTitle ());
+
+        h.subtitleSy = (TextView)(view.findViewById(R.id.subtitleSy));
+
+        h.subtitleSy.setText(list.get (position).getSubtitle ());
+
+    }//setSymptom
+
 
 
     private void setSugar(final int position, ViewGroup parent) {
@@ -309,6 +332,11 @@ public class PlannerAdapter extends BaseAdapter {
         TextView title;
         TextView subtitle;
 
+    }
+    private class symptomHolder
+    {
+        TextView titleSy;
+        TextView subtitleSy;
     }
 }
 

@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -91,6 +92,7 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
 
                         medArrl.add (newMed);
 
+
                     }
 
                     ProfileAdapter medicineAdapter = new ProfileAdapter (medArrl,ProfileActivity.this);
@@ -115,8 +117,6 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
 
 
     }
-
-
 
     public void onClickaddPatient(View view){
         startActivity (new Intent(ProfileActivity.this,AddPatientActivity.class));

@@ -203,46 +203,46 @@ public class AddPatientActivity extends AppCompatActivity {
 
 
 
-        DatabaseReference referenSymptom = FirebaseDatabase.getInstance()
-                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users");
+        DatabaseReference referenPatient = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users");
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child("ProfilePatient")
                 .child ("ImageUrl").setValue(imagesRef.getPath ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Nickname").setValue(namePatient.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Status").setValue(staPatient.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Name").setValue(fullname.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Birthday").setValue(birthday.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Address").setValue(address.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Hospital").setValue(hospital.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Disease").setValue(disease.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("Allergic").setValue(allergic.getText ().toString ());
 
-        referenSymptom.child(UserDetail.userName).child("patients")
+        referenPatient.child(UserDetail.userName).child("patients")
                 .child ("ProfilePatient")
                 .child("HN").setValue(numberHn.getText ().toString ());
 

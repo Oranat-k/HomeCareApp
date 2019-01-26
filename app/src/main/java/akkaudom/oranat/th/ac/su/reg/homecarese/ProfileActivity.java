@@ -35,6 +35,7 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 public class ProfileActivity extends AppCompatActivity {
 
 //    ArrayList <ProfileDetail> patientlst = new ArrayList<> ();
+
 ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
 
     ListView lstHisPatient;
@@ -74,7 +75,7 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
         }); //call
 
 
-        String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients.json";
+        String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/.json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -114,9 +115,8 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
         rQueue.add(request);
 
 
-
-
     }
+
 
     public void onClickaddPatient(View view){
         startActivity (new Intent(ProfileActivity.this,AddPatientActivity.class));

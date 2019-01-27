@@ -74,9 +74,10 @@ public class ProfileAdapter extends BaseAdapter {
 
 
         h.imageMed = (CircleImageView) (view.findViewById (R.id.imagePatient));
+        String img = list.get (position).getImagePatient ();
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference()
-                .child(list.get (position).getImagePatient ());
+                .child(img.substring (1,img.length ()));
 
         Glide.with(mContext)
                 .using(new FirebaseImageLoader ())
@@ -100,6 +101,7 @@ public class ProfileAdapter extends BaseAdapter {
 
     }
 }
+
 
 
 

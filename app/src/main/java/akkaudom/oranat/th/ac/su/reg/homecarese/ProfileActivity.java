@@ -75,7 +75,7 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
         }); //call
 
 
-        String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/.json";
+        String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/ProfilePatient.json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -87,12 +87,11 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
                     while(i.hasNext()){
                         key = i.next().toString();
                         ProfileDetail newMed = new ProfileDetail (
-                            obj.getJSONObject (key).getJSONObject ("ProfilePatient").getString ("Name"),
-                            obj.getJSONObject (key).getJSONObject ("ProfilePatient").getString ("ImageUrl"),
-                            obj.getJSONObject (key).getJSONObject ("ProfilePatient").getString ("Status"));
+                                obj.getJSONObject (key).getString ("Name"),
+                                obj.getJSONObject (key).getString ("ImageUrl"),
+                                obj.getJSONObject (key).getString ("Status"));
 
                         medArrl.add (newMed);
-
 
                     }
 

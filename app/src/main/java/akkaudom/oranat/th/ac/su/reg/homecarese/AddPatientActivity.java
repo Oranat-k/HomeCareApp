@@ -46,8 +46,8 @@ public class AddPatientActivity extends AppCompatActivity {
     Uri imageUri;
     Bitmap imageSelect;
 
-    Button btnMale,btnFemale;
-    EditText namePatient,staPatient,fullname,birthday,address,hospital,disease,allergic,numberHn;
+    Button btnMale, btnFemale;
+    EditText namePatient, staPatient, fullname, birthday, address, hospital, disease, allergic, numberHn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +56,8 @@ public class AddPatientActivity extends AppCompatActivity {
 
         ProPatient = (CircleImageView) findViewById (R.id.proPatient);
 
-        btnMale = (Button)  findViewById (R.id.btnMale);
-        btnFemale = (Button)  findViewById (R.id.btnFemale);
+        btnMale = (Button) findViewById (R.id.btnMale);
+        btnFemale = (Button) findViewById (R.id.btnFemale);
 
         namePatient = (EditText) findViewById (R.id.namePatient);
         staPatient = (EditText) findViewById (R.id.staPatient);
@@ -70,21 +70,21 @@ public class AddPatientActivity extends AppCompatActivity {
         numberHn = (EditText) findViewById (R.id.numberHn);
 
 
-        if (ContextCompat.checkSelfPermission(AddPatientActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission (AddPatientActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(AddPatientActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED&&
-                ContextCompat.checkSelfPermission(AddPatientActivity.this, android.Manifest.permission.CAMERA)
+                ContextCompat.checkSelfPermission (AddPatientActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission (AddPatientActivity.this, android.Manifest.permission.CAMERA)
                         != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(AddPatientActivity.this,
+            ActivityCompat.requestPermissions (AddPatientActivity.this,
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
                             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                            android.Manifest.permission.CAMERA},1);
+                            android.Manifest.permission.CAMERA}, 1);
         }//รูป pop up take photo//galley
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("ProfilePatient");
+        getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
+        getSupportActionBar ().setDisplayShowHomeEnabled (true);
+        getSupportActionBar ().setTitle ("ProfilePatient");
         //กดกลับ ตั้งชื่อหน้านั้น
 
         ProPatient = (CircleImageView) findViewById (R.id.proPatient);
@@ -93,37 +93,37 @@ public class AddPatientActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                imgClick();
+                imgClick ();
 
             }
         });
 
     }
 
-    public void imgClick(){
+    public void imgClick() {
 
 
         final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AddPatientActivity.this);
-        builder.setTitle("Add Photo!");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder (AddPatientActivity.this);
+        builder.setTitle ("Add Photo!");
+        builder.setItems (items, new DialogInterface.OnClickListener () {
             @Override
             public void onClick(DialogInterface dialog, int item) {
 
-                if (items[item].equals("Take Photo")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 0);
-                } else if (items[item].equals("Choose from Library")) {
-                    Intent intent = new Intent(
+                if (items[item].equals ("Take Photo")) {
+                    Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult (intent, 0);
+                } else if (items[item].equals ("Choose from Library")) {
+                    Intent intent = new Intent (
                             Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent,1);
-                } else if (items[item].equals("Cancel")) {
-                    dialog.dismiss();
+                    startActivityForResult (intent, 1);
+                } else if (items[item].equals ("Cancel")) {
+                    dialog.dismiss ();
                 }
             }
         });
-        builder.show();
+        builder.show ();
 
     }//click img
 
@@ -131,48 +131,48 @@ public class AddPatientActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult (requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK && null != data){
-            switch(requestCode) {
+        if (resultCode == RESULT_OK && null != data) {
+            switch (requestCode) {
                 case 0:
-                    Bundle extras = data.getExtras();
-                    imageSelect = (Bitmap) extras.get("data");
+                    Bundle extras = data.getExtras ();
+                    imageSelect = (Bitmap) extras.get ("data");
                     break;
                 case 1:
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                    Uri selectedImage = data.getData ();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-                    Cursor cursor = getContentResolver().query(selectedImage,
+                    Cursor cursor = getContentResolver ().query (selectedImage,
                             filePathColumn, null, null, null);
-                    cursor.moveToFirst();
+                    cursor.moveToFirst ();
 
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String picturePath = cursor.getString(columnIndex);
-                    cursor.close();
-                    imageSelect = BitmapFactory.decodeFile(picturePath);
+                    int columnIndex = cursor.getColumnIndex (filePathColumn[0]);
+                    String picturePath = cursor.getString (columnIndex);
+                    cursor.close ();
+                    imageSelect = BitmapFactory.decodeFile (picturePath);
                     break;
 
             }
 
-            imageSelect = Bitmap.createScaledBitmap(imageSelect, 100,100,true);
-            ProPatient.setImageBitmap(imageSelect);
+            imageSelect = Bitmap.createScaledBitmap (imageSelect, 100, 100, true);
+            ProPatient.setImageBitmap (imageSelect);
         }
 
     }//เลือกรูป
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId ()) {
             case android.R.id.home:
                 // todo: goto back activity from here
 
-                Intent intent = new Intent(AddPatientActivity.this, ProfileActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+                Intent intent = new Intent (AddPatientActivity.this, ProfileActivity.class);
+                intent.addFlags (Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity (intent);
+                finish ();
                 return true;
 
             default:
-                return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected (item);
         }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
@@ -185,10 +185,10 @@ public class AddPatientActivity extends AppCompatActivity {
 
         String id = UUID.randomUUID ().toString ();// ชื่อรูปไม่ซ้ำกัน Random
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference imagesRef = storageRef.child("images/users/"+"proPatient"+"/"+id+".jpg"); //พาทรูป
-        UploadTask uploadTask = imagesRef.putBytes(dataPic);
+        FirebaseStorage storage = FirebaseStorage.getInstance ();
+        StorageReference storageRef = storage.getReference ();
+        StorageReference imagesRef = storageRef.child ("images/users/" + "proPatient" + "/" + id + ".jpg"); //พาทรูป
+        UploadTask uploadTask = imagesRef.putBytes (dataPic);
         uploadTask.addOnFailureListener (new OnFailureListener () {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -202,55 +202,42 @@ public class AddPatientActivity extends AppCompatActivity {
         });
 
 
+        DatabaseReference referenSymptom = FirebaseDatabase.getInstance ()
+                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users/");
 
-        DatabaseReference referenPatient = FirebaseDatabase.getInstance()
-                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users");
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("ImageUrl").setValue (imagesRef.getPath ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child("ProfilePatient")
-                .child ("ImageUrl").setValue(imagesRef.getPath ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Nickname").setValue (namePatient.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Nickname").setValue(namePatient.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Status").setValue (staPatient.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Status").setValue(staPatient.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Name").setValue (fullname.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Name").setValue(fullname.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Birthday").setValue (birthday.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Birthday").setValue(birthday.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Address").setValue (address.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Address").setValue(address.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Hospital").setValue (hospital.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Hospital").setValue(hospital.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Disease").setValue (disease.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Disease").setValue(disease.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("Allergic").setValue (allergic.getText ().toString ());
 
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("Allergic").setValue(allergic.getText ().toString ());
-
-        referenPatient.child(UserDetail.userName).child("patients")
-                .child ("ProfilePatient")
-                .child("HN").setValue(numberHn.getText ().toString ());
+        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
+                .child ("HN").setValue (numberHn.getText ().toString ());
 
 
-        startActivity (new Intent(AddPatientActivity.this,ProfileActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+        startActivity (new Intent (AddPatientActivity.this, ProfileActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
 
     }
-
-
 }

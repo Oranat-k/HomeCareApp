@@ -111,10 +111,11 @@ public class PlannerListActivity extends AppCompatActivity {
 
         afternoonArrPlanner.add (plan);
         afternoonArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
-
+        afternoonArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
         eveningArrPlanner.add (plan);
         eveningArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));
+        eveningArrPlanner.add (new PlannerDetail ("ตรวจเท้า","default","false"));
 
         befoebedArrPlanner.add (plan);
         befoebedArrPlanner.add (new PlannerDetail ("กายภาพบำบัด","default","false"));

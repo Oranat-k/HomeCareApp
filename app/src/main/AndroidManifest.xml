@@ -33,25 +33,43 @@
 
         <activity
             android:name=".AddPlannerActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".HistoryMedicineActivity" />
         <activity
             android:name=".PlannerActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".AddPlannerActivity" />
         <activity
             android:name=".HistoryMedicineActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".PlannerActivity">
         </activity>
         <activity
             android:name=".AddTherapyActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".AddSymptomActivity" />
-        <activity android:name=".AddSugarActivity" />
-        <activity android:name=".AddPressureActivity" />
-        <activity android:name=".AddDoctorActivity" />
-        <activity android:name=".PlannerListActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProfileActivity" >
+
+        <activity android:name=".AddSymptomActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".AddSugarActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".AddPressureActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".AddDoctorActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".PlannerListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ProfileActivity"
+            android:screenOrientation="portrait">
         </activity>
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -60,8 +78,10 @@
         <activity android:name=".HomeActivity" >
 
         </activity>
-        <activity android:name=".DetailMedicineActivity" />
-        <activity android:name=".AddPatientActivity"></activity>
+        <activity android:name=".DetailMedicineActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddPatientActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
     
 

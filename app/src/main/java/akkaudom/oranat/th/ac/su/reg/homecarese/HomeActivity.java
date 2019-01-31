@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(Second);
                         break;
                     case R.id.itemChart:
-                        Intent Third = new Intent(HomeActivity.this, PlannerListActivity.class);
+                        Intent Third = new Intent(HomeActivity.this, ChartActivity.class);
                         startActivity(Third);
                         break;
                     case R.id.itemPlanner:

@@ -1,73 +1,384 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-
-    <LinearLayout
-        android:layout_gravity="bottom"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/solid_line">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/homepageM"
+        <LinearLayout
+            android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_launcher_home"
-            android:onClick="onClickButtonMenu" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/chartM"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_launcher_chart"
-            android:onClick="onClickButtonMenu" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/plannerM"
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:src="@drawable/line" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorTextDark"
+                    android:id="@+id/titleMed"
+                    android:fontFamily="@font/sukhumvitset_medium"
+                    android:text="เนื้อหาใหม่"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/subTitleMed"
+                    android:text="ข้อมูลเนื้อหาใหม่ที่เกี่ยวกับผู้ป่วยติดเตียง"
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            app:cardCornerRadius="10dp"
+                            android:elevation="10dp">
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="350dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:id="@+id/picnewone"
+                                android:background="@drawable/border_active"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/pic" />
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            app:cardCornerRadius="10dp"
+                            android:elevation="10dp">
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="350dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:id="@+id/picnewtwo"
+                                android:background="@drawable/border_active"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/pic" />
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            app:cardCornerRadius="10dp"
+                            android:elevation="10dp">
+
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="350dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:id="@+id/picnewthree"
+                                android:background="@drawable/border_active"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/pic" />
+
+                        </android.support.v7.widget.CardView>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+            //page01
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@null"
-            android:onClick="onClickButtonMenu"
-            android:scaleType="fitXY"
-            android:src="@drawable/pn" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/titlePr"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sukhumvitset_semibold"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"
+                android:text="Heard"/>
 
-        <ImageButton
-            android:id="@+id/notiM"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_launcher_noti"
-            android:onClick="onClickButtonMenu" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/profileM"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@mipmap/ic_launcher_profile"
-            android:onClick="onClickButtonMenu" />
-    </LinearLayout>
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/subtitlePr"
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:text="ในทางการแพทย์แล้วอาการนอนติดเตียงหมายถึงการที่ผู้ที่มี
+สุขภาพร่างกายอยู่ในภาวะเสื่อมโทรมจนต้องนอนอยู่บนเตียง
+อย่างเดียวตลอดเวลา..."/>
+            </LinearLayout>
+        </LinearLayout>//page01
 
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-</LinearLayout>
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:src="@drawable/line" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextDark"
+                        android:text="การดูเเลเบื้องต้น"
+                        android:fontFamily="@font/sukhumvitset_medium"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="คู่มือสอนขั้นตอนการดูเเลเบื้องต้น"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/border_active"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/border_active"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/border_active"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+            //page02
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:src="@drawable/line" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextDark"
+                        android:text="อาหาร"
+                        android:fontFamily="@font/sukhumvitset_medium"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="สูตรอาหารที่เหมาะสมกับผู้ป่วยติดเตียง"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <HorizontalScrollView
+                android:layout_marginBottom="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/border_active"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/border_active"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                        <ImageView
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/border_active"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+            //page03
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/material_design_android_floating_action_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        fab:menu_animationDelayPerItem="55"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_colorNormal="#1b90d8"
+        fab:menu_colorPressed="#0063a6"
+        fab:menu_colorRipple="#99d4d4d4"
+        fab:menu_fab_label="Floating Action Menu"
+        fab:menu_fab_size="normal"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_labels_colorNormal="#333"
+        fab:menu_labels_colorPressed="#444"
+        fab:menu_labels_colorRipple="#66efecec"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_margin="0dp"
+        fab:menu_labels_maxLines="-1"
+        fab:menu_labels_padding="8dp"
+        fab:menu_labels_position="left"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_textColor="#f2f1f1"
+        fab:menu_labels_textSize="15sp"
+        fab:menu_openDirection="up"
+        fab:menu_shadowColor="#66a9a9a9"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="4dp"
+        fab:menu_showShadow="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings_black_24dp"
+            fab:fab_label="Menu Item 1"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings_black_24dp"
+            fab:fab_label="Menu Item 2"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings_black_24dp"
+            fab:fab_label="Menu Item 3"
+            fab:fab_size="mini" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+    <android.support.design.widget.BottomNavigationView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_nav" />
+
+</RelativeLayout>

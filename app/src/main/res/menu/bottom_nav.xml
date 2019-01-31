@@ -4,24 +4,24 @@
 
     <item
         android:id="@+id/itemHome"
-        android:icon="@drawable/homepage_m"
-        android:title="Home"/>
+        android:icon="@drawable/home_me"
+        android:title="หน้าเเรก"/>
     <item
         android:id="@+id/itemChart"
-        android:icon="@drawable/chart_m"
-        android:title="Chart"/>
+        android:icon="@drawable/chart_me"
+        android:title="กราฟ"/>
     <item
         android:id="@+id/itemPlanner"
-        android:icon="@drawable/planner_m"
-       android:title="Planner"/>
+        android:icon="@drawable/planner_me"
+       android:title="วางแผน"/>
     <item
         android:id="@+id/itemNoti"
-        android:icon="@drawable/noti_m"
-        android:title="Noti"/>
+        android:icon="@drawable/noti_me"
+        android:title="เเจ้งเตือน"/>
     <item
         android:id="@+id/itemProfile"
-        android:icon="@drawable/profile_m"
-        android:title="Profile"/>
+        android:icon="@drawable/profile_me"
+        android:title="ประวัติ"/>
 
 
 </menu>

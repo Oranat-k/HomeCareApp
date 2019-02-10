@@ -24,5 +24,17 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/sukhumvitset_semibold" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/mn_paethai_b" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/mn_paethai_li_b" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/mn_paethai_med_b" />
 
 </font-family>

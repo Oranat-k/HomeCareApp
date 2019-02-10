@@ -15,9 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,7 +41,7 @@ import java.util.UUID;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AddPatientActivity extends AppCompatActivity {
+public class AddPatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     private CircleImageView ProPatient;
@@ -47,7 +50,8 @@ public class AddPatientActivity extends AppCompatActivity {
     Bitmap imageSelect;
 
     Button btnMale, btnFemale;
-    EditText namePatient, staPatient, fullname, birthday, address, hospital, disease, allergic, numberHn;
+    EditText namePatient, staPatient, fullname, birthday, address, hospital,disease, allergic, numberHn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +64,23 @@ public class AddPatientActivity extends AppCompatActivity {
         btnFemale = (Button) findViewById (R.id.btnFemale);
 
         namePatient = (EditText) findViewById (R.id.namePatient);
-        staPatient = (EditText) findViewById (R.id.staPatient);
+//        staPatient = (EditText) findViewById (R.id.staPatient);
         fullname = (EditText) findViewById (R.id.fullname);
         birthday = (EditText) findViewById (R.id.birthday);
         address = (EditText) findViewById (R.id.address);
         hospital = (EditText) findViewById (R.id.hospital);
         disease = (EditText) findViewById (R.id.disease);
+
+        Spinner spinner = findViewById(R.id.staPatient);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.numbers, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
         allergic = (EditText) findViewById (R.id.allergic);
         numberHn = (EditText) findViewById (R.id.numberHn);
+
 
 
         if (ContextCompat.checkSelfPermission (AddPatientActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -238,6 +251,17 @@ public class AddPatientActivity extends AppCompatActivity {
 
         startActivity (new Intent (AddPatientActivity.this, ProfileActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

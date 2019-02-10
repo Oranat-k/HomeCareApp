@@ -36,15 +36,17 @@
             android:textSize="18dp"
             android:hint="ชื่อเล่น"
             android:background="@drawable/border_box"/>
-        <EditText
+
+        <Spinner
             android:id="@+id/staPatient"
-            android:layout_width="170dp"
+            android:layout_width="190dp"
             android:layout_height="50dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:paddingLeft="20dp"
-            android:textSize="18dp"
-            android:hint="สถานะ"
-            android:background="@drawable/border_box" />
+            android:layout_marginRight="0dp"
+            android:background="@drawable/border_box"
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
@@ -120,11 +122,21 @@
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:hint="โรงพยาบาลประจำตัว"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="โรคประจำตัว"/>
     <EditText
         android:id="@+id/disease"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:hint="โรคประจำตัว"/>

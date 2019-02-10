@@ -3,16 +3,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center">
 
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="ค่าน้ำตาลในเลือด"/>
     <EditText
+        android:inputType="number"
         android:id="@+id/noteSugar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_height="50dp"
+        android:background="@drawable/border_box"
+        android:fontFamily="@font/sukhumvitset_text"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="5dp"
         android:hint="ค่าน้ำตาลในเลือด"/>
 
     <TextView
@@ -21,8 +35,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:paddingBottom="10dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
         android:textSize="20dp"
-        android:text="ช่วง"/>
+        android:text="มื้ออารหาร"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,6 +49,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="ก่อนอาหาร"/>
         <Button
@@ -41,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="หลังอาหาร"/>
 
@@ -57,6 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
             android:textSize="20dp"
             android:paddingLeft="20dp"
             android:text="ช่วง"/>
@@ -82,6 +102,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="เช้า"/>
         <Button
@@ -90,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="กลางวัน"/>
         <Button
@@ -98,6 +120,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:layout_marginBottom="10dp"
             android:textSize="18dp"
             android:text="เย็น"/>
@@ -108,6 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="ก่อนนอน"/>
 
@@ -123,6 +147,8 @@
         android:background="@drawable/border_button"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textSize="20dp"
         android:text="บันทึก"/>
 
 

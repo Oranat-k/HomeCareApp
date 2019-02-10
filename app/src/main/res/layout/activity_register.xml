@@ -81,7 +81,8 @@
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:fontFamily="@font/sukhumvitset_light"
-        android:hint="รหัสผ่าน"/>
+        android:hint="รหัสผ่าน"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btnRegis"

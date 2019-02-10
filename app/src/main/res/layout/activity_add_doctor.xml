@@ -10,22 +10,42 @@
     android:orientation="vertical">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="โรงพยาบาล"/>
     <EditText
         android:id="@+id/hospitalName"
         android:layout_width="match_parent"
-        android:paddingLeft="20dp"
         android:layout_height="50dp"
-        android:layout_marginTop="90dp"
         android:background="@drawable/border_box"
+        android:fontFamily="@font/sukhumvitset_text"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="5dp"
         android:hint="โรงพยาบาล"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="ชื่อหมอ"/>
     <EditText
         android:id="@+id/nameDoc"
         android:layout_width="match_parent"
         android:paddingLeft="20dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
+        android:fontFamily="@font/sukhumvitset_text"
         android:hint="ชื่อหมอ"/>
     <TextView
         android:layout_width="match_parent"
@@ -33,8 +53,10 @@
         android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:paddingLeft="20dp"
-        android:paddingBottom="10dp"
-        android:text="เวลา"/>
+        android:paddingBottom="5dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:text="ช่วง"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,6 +66,7 @@
         android:id="@+id/dateDoc"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_text"
         android:textSize="18dp"
         android:text="วันที่"
         android:background="@drawable/border_box"/>
@@ -53,6 +76,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:fontFamily="@font/sukhumvitset_text"
         android:textSize="18dp"
         android:text="เวลา"
         android:background="@drawable/border_box"
@@ -70,6 +94,8 @@
         android:background="@drawable/border_button"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textSize="20dp"
         android:text="บันทึก"/>
 
 </LinearLayout>

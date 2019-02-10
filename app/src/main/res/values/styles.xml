@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <string-array name="numbers">
+        <item>ความสัมพันธ์กับผู้ดูเเล</item>
+        <item>มารดา</item>
+        <item>บิดา</item>
+        <item>คุณปู่</item>
+        <item>คุณย่า</item>
+        <item>คุณลุง</item>
+        <item>คุณป้า</item>
+        <item>สามี</item>
+        <item>ภรรยา</item>
+        <item>บุตร</item>
+        <item>ญาติ</item>
+    </string-array>
+
 </resources>

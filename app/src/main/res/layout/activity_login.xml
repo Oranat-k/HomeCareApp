@@ -93,7 +93,8 @@
         android:background="@drawable/border_box"
         android:fontFamily="@font/sukhumvitset_light"
         android:paddingLeft="20dp"
-        android:hint="รหัสผ่าน"/>
+        android:hint="รหัสผ่าน"
+        android:inputType="textPassword"/>
 
     <Button
         android:layout_width="match_parent"

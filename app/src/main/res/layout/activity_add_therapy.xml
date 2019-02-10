@@ -3,25 +3,59 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:gravity="center">
-
-
-
-    <EditText
-        android:id="@+id/dataTherapy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:hint="เพิ่มการดูเเล"/>
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:layout_marginTop="50dp"
         android:textSize="20dp"
-        android:text="เวลา"/>
+        android:paddingLeft="20dp"
+        android:text="เพิ่มการดูเเล"/>
+
+    <EditText
+        android:id="@+id/dataTherapy"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/border_box"
+        android:fontFamily="@font/sukhumvitset_text"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:hint="เพิ่มการดูเเล"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="ช่วง"/>
+
+        <TextView
+            android:id="@+id/errorRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="#FF0000"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:text=""/>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,6 +65,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="เช้า"/>
         <Button
@@ -39,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="กลางวัน"/>
         <Button
@@ -47,6 +83,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="เย็น"/>
         <Button
@@ -56,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="ก่อนนอน"/>
 
@@ -71,6 +109,8 @@
         android:background="@drawable/border_button"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textSize="20dp"
         android:text="บันทึก"/>
 
 

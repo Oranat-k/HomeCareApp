@@ -20,6 +20,7 @@
         android:paddingLeft="20dp"
         android:text="ค่าบน"/>
     <EditText
+        android:inputType="number"
         android:id="@+id/topPressure"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -37,6 +38,7 @@
         android:paddingLeft="20dp"
         android:text="ค่าล่าง"/>
     <EditText
+        android:inputType="number"
         android:id="@+id/belowPressure"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -55,6 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
             android:textSize="20dp"
             android:paddingLeft="20dp"
             android:text="ช่วง"/>
@@ -80,6 +84,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="เช้า"/>
         <Button
@@ -88,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="กลางวัน"/>
         <Button
@@ -96,6 +102,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:layout_marginBottom="10dp"
             android:textSize="18dp"
             android:text="เย็น"/>
@@ -106,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/border_box"
+            android:fontFamily="@font/sukhumvitset_text"
             android:textSize="18dp"
             android:text="ก่อนนอน"/>
 
@@ -121,6 +129,8 @@
         android:background="@drawable/border_button"
         android:textColor="@color/colorTextWrite"
         android:backgroundTint="@color/colorButton"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textSize="20dp"
         android:text="บันทึก"/>
 
 

@@ -1,6 +1,7 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -11,6 +12,7 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
     FloatingActionMenu materialDesignFAM;
-    FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
+    FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3,floatingActionButton4,floatingActionButton5,floatingActionButton6;
 
     BottomNavigationView mBottomNavigation;
 
@@ -31,10 +33,21 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_home);
 
-//      getSupportActionBar().setTitle("Home");
+        //getSupportActionBar().setTitle("Home");
 
         getSupportActionBar().hide();
         //not nev bar
+
+        ImageView imageView = (ImageView) findViewById(R.id.picnewone);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Uri uri = Uri.parse("http://www.google.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -62,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(noti);
                         break;
                     case R.id.itemProfile:
-                        Intent profile = new Intent(HomeActivity.this, PlannerListActivity.class);
+                        Intent profile = new Intent(HomeActivity.this, ProfileActivity.class);
                         startActivity(profile);
                         break;
                 }
@@ -77,35 +90,60 @@ public class HomeActivity extends AppCompatActivity {
             layoutParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 28, displayMetrics);
             layoutParams.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 28, displayMetrics);
             iconView.setLayoutParams(layoutParams);
-        }
+        }//menu size
+
+
 
         materialDesignFAM = (FloatingActionMenu) findViewById(R.id.material_design_android_floating_action_menu);
         floatingActionButton1 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item1);
         floatingActionButton2 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item2);
         floatingActionButton3 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item3);
+        floatingActionButton4 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item4);
+        floatingActionButton5 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item5);
+        floatingActionButton6 = (FloatingActionButton) findViewById(R.id.material_design_floating_action_menu_item6);
 
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent addPlanner = new Intent(HomeActivity.this,  PlannerActivity.class);
+                Intent addPlanner = new Intent(HomeActivity.this,  AddPressureActivity.class);
                 startActivity(addPlanner);
 
             }
         });
         floatingActionButton2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TODO something when floating action menu second item clicked
+                Intent addPlanner = new Intent(HomeActivity.this,  AddSugarActivity.class);
+                startActivity(addPlanner);
 
             }
         });
         floatingActionButton3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //TODO something when floating action menu third item clicked
+                Intent addPlanner = new Intent(HomeActivity.this,  AddSymptomActivity.class);
+                startActivity(addPlanner);
 
             }
         });
+        floatingActionButton4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent addPlanner = new Intent(HomeActivity.this,  AddPlannerActivity.class);
+                startActivity(addPlanner);
+
+            }
+        });
+        floatingActionButton5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent addPlanner = new Intent(HomeActivity.this,  AddDoctorActivity.class);
+                startActivity(addPlanner);
+
+            }
+        });
+        floatingActionButton6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent addPlanner = new Intent(HomeActivity.this,  AddTherapyActivity.class);
+                startActivity(addPlanner);
+
+            }
+        });//FloatingActionMenu
 
     }
-
-
-
 }

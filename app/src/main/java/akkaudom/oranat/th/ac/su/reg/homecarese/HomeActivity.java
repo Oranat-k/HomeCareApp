@@ -53,31 +53,32 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
 
+
         mBottomNavigation =(BottomNavigationView) findViewById(R.id.bottomBar);
         mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.itemHome:
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.itemHome:
 //                    startActivity(new Intent(HomeActivity.this, HomeActivity.class));
-                    return true;
-                case R.id.itemChart:
-                     startActivity(new Intent(HomeActivity.this, ChartActivity.class));
-                    return true;
-                case R.id.itemPlanner:
-                    startActivity(new Intent(HomeActivity.this, PlannerListActivity.class));
-                    return true;
-                case R.id.itemNoti:
-                    startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
-                    return true;
-                case R.id.itemProfile:
-                    startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
-                    return true;
+                        return true;
+                    case R.id.itemChart:
+                        startActivity(new Intent(HomeActivity.this, ChartActivity.class));
+                        return true;
+                    case R.id.itemPlanner:
+                        startActivity(new Intent(HomeActivity.this, PlannerListActivity.class));
+                        return true;
+                    case R.id.itemNoti:
+                        startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+                        return true;
+                    case R.id.itemProfile:
+                        startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                        return true;
+                }
+                return false;
             }
-            return false;
-        }
-    });
+        });
 
 
         for (int i = 0; i < menuView.getChildCount(); i++) {

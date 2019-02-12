@@ -28,13 +28,8 @@
             android:parentActivityName=".HistoryMedicineActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PlannerActivity"
-            android:parentActivityName=".AddPlannerActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".HistoryMedicineActivity"
-            android:parentActivityName=".PlannerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddTherapyActivity"
             android:screenOrientation="portrait" />
@@ -58,7 +53,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -79,7 +74,8 @@
         <activity
             android:name=".AddPatientActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChartActivity"></activity>
+        <activity android:name=".ChartActivity" />
+        <activity android:name=".NotificationActivity"></activity>
     </application>
 
 </manifest>

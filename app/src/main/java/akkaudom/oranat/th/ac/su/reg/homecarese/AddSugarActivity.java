@@ -51,8 +51,8 @@ public class AddSugarActivity extends AppCompatActivity {
         btnEvening = (Button) findViewById (R.id.btnEvening);
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
-        getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
-        getSupportActionBar ().setDisplayShowHomeEnabled (true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
         getSupportActionBar ().setTitle ("Sugar");
         //กดกลับ ตั้งชื่อหน้านั้น
 
@@ -70,22 +70,13 @@ public class AddSugarActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId ()) {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
-
-                Intent intent = new Intent (AddSugarActivity.this, PlannerActivity.class);
-                intent.addFlags (Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity (intent);
-                finish ();
+                onBackPressed();
                 return true;
-
-            default:
-                return super.onOptionsItemSelected (item);
         }
+        return super.onOptionsItemSelected(item);
     } //กดกลับ ตั้งชื่อหน้านั้น
-
-
 
 
     public void dataSugar(View view) {
@@ -119,7 +110,7 @@ public class AddSugarActivity extends AppCompatActivity {
 
         }
 
-        startActivity (new Intent (AddSugarActivity.this, PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+        startActivity (new Intent (AddSugarActivity.this, PlannerListActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
 
     }

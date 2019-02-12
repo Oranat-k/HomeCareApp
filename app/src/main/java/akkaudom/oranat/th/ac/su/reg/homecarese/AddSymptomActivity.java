@@ -49,7 +49,7 @@ public class AddSymptomActivity extends AppCompatActivity {
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
         getSupportActionBar().setTitle("Symptom");
         //กดกลับ ตั้งชื่อหน้านั้น
 
@@ -66,17 +66,10 @@ public class AddSymptomActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
-
-                Intent intent = new Intent(AddSymptomActivity.this, PlannerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+                onBackPressed();
                 return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     } //กดกลับ ตั้งชื่อหน้านั้น
 
 
@@ -120,7 +113,7 @@ public class AddSymptomActivity extends AppCompatActivity {
 
         }
 
-            startActivity (new Intent (AddSymptomActivity.this, PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+            startActivity (new Intent (AddSymptomActivity.this, PlannerListActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
 
     }

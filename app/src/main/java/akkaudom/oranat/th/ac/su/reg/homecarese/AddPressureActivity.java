@@ -51,7 +51,7 @@ public class AddPressureActivity extends AppCompatActivity {
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
         getSupportActionBar().setTitle("Pressure");
         //กดกลับ ตั้งชื่อหน้านั้น
 
@@ -64,25 +64,17 @@ public class AddPressureActivity extends AppCompatActivity {
         checkRangePress.add (false);
 
 
-
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
-
-                Intent intent = new Intent(AddPressureActivity.this, PlannerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-                return true;
-
-            default:
+                        onBackPressed();
+                        return true;
+                }
                 return super.onOptionsItemSelected(item);
-        }
     } //กดกลับ ตั้งชื่อหน้านั้น
 
 
@@ -122,7 +114,7 @@ public class AddPressureActivity extends AppCompatActivity {
 
 
 
-        startActivity (new Intent(AddPressureActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+        startActivity (new Intent(AddPressureActivity.this,PlannerListActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
     }//input ข้อมูล จากปุ่ม onclick
 

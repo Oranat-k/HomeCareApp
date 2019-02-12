@@ -42,27 +42,22 @@ public class AddDoctorActivity extends AppCompatActivity {
         timeDoc = (Button) findViewById (R.id.timeDoc);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
         getSupportActionBar().setTitle("Doctor");
         //กดกลับ ตั้งชื่อหน้านั้น
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
-
-                Intent intent = new Intent(AddDoctorActivity.this, PlannerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+                onBackPressed();
                 return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     } //กดกลับ ตั้งชื่อหน้านั้น
+
 
 
 
@@ -148,7 +143,7 @@ public class AddDoctorActivity extends AppCompatActivity {
 //                .child ("Doctors").child ("Date").setValue (dateDoc.getText ().toString ());
 
 
-        startActivity (new Intent (AddDoctorActivity.this,PlannerActivity.class));
+        startActivity (new Intent (AddDoctorActivity.this,PlannerListActivity.class));
     }
 
 

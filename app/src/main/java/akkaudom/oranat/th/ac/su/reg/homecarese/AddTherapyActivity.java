@@ -41,7 +41,7 @@ public class AddTherapyActivity extends AppCompatActivity {
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
         getSupportActionBar().setTitle("Therapy");
         //กดกลับ ตั้งชื่อหน้านั้น
 
@@ -59,17 +59,10 @@ public class AddTherapyActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
-
-                Intent intent = new Intent(AddTherapyActivity.this, PlannerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+                onBackPressed();
                 return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     } //กดกลับ ตั้งชื่อหน้านั้น
 
 
@@ -111,7 +104,7 @@ public class AddTherapyActivity extends AppCompatActivity {
         }
 
 
-        startActivity (new Intent(AddTherapyActivity.this,PlannerActivity.class));
+        startActivity (new Intent(AddTherapyActivity.this,PlannerListActivity.class));
 
     }
 

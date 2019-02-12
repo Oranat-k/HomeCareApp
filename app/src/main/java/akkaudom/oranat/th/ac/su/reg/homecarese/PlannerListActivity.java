@@ -463,7 +463,8 @@ public class PlannerListActivity extends AppCompatActivity {
 
 
 
-    public void onClickaddPlanner(View view){
-        startActivity (new Intent (PlannerListActivity.this,PlannerActivity.class));
-    }//back page
+//    public void onClickaddPlanner(View view){
+//        startActivity (new Intent (PlannerListActivity.this,AddPlannerActivity.class));
+//    }//back page
+
 }

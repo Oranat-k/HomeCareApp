@@ -3,6 +3,7 @@ package akkaudom.oranat.th.ac.su.reg.homecarese;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -32,7 +33,11 @@ public class HistoryMedicineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
+        getSupportActionBar().setTitle("ประวัติยา");
+
 
         setContentView (R.layout.activity_history_medicine);
 
@@ -81,6 +86,17 @@ public class HistoryMedicineActivity extends AppCompatActivity {
         rQueue.add(request);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    } //กดกลับ ตั้งชื่อหน้านั้น
+
 
     public void onClickaddMedicine(View view){
         startActivity (new Intent (HistoryMedicineActivity.this,AddPlannerActivity.class));

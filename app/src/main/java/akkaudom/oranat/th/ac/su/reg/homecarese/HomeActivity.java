@@ -55,34 +55,31 @@ public class HomeActivity extends AppCompatActivity {
 
         mBottomNavigation =(BottomNavigationView) findViewById(R.id.bottomBar);
         mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.itemHome:
-                        Intent Second = new Intent(HomeActivity.this, HomeActivity.class);
-                        startActivity(Second);
-                        break;
-                    case R.id.itemChart:
-                        Intent Third = new Intent(HomeActivity.this, ChartActivity.class);
-                        startActivity(Third);
-                        break;
-                    case R.id.itemPlanner:
-                        Intent planner = new Intent(HomeActivity.this, PlannerListActivity.class);
-                        startActivity(planner);
-                        break;
-                    case R.id.itemNoti:
-                        Intent noti = new Intent(HomeActivity.this, PlannerListActivity.class);
-                        startActivity(noti);
-                        break;
-                    case R.id.itemProfile:
-                        Intent profile = new Intent(HomeActivity.this, ProfileActivity.class);
-                        startActivity(profile);
-                        break;
-                }
 
-                return true;
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.itemHome:
+//                    startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                    return true;
+                case R.id.itemChart:
+                     startActivity(new Intent(HomeActivity.this, ChartActivity.class));
+                    return true;
+                case R.id.itemPlanner:
+                    startActivity(new Intent(HomeActivity.this, PlannerListActivity.class));
+                    return true;
+                case R.id.itemNoti:
+                    startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+                    return true;
+                case R.id.itemProfile:
+                    startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                    return true;
             }
-        });
+            return false;
+        }
+    });
+
+
         for (int i = 0; i < menuView.getChildCount(); i++) {
             final View iconView = menuView.getChildAt(i).findViewById(android.support.design.R.id.icon);
             final ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
@@ -125,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         });
         floatingActionButton4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent addPlanner = new Intent(HomeActivity.this,  AddPlannerActivity.class);
+                Intent addPlanner = new Intent(HomeActivity.this,  HistoryMedicineActivity.class);
                 startActivity(addPlanner);
 
             }

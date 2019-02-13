@@ -44,7 +44,7 @@ public class HistoryMedicineActivity extends AppCompatActivity {
         lstHisMed = (ListView) findViewById (R.id.lstHisMed) ;
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
-                +UserDetail.patient[UserDetail.selectPatient]+"/Medicines.json";
+                +UserDetail.patient.get (UserDetail.selectPatient)+"/Medicines.json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {

@@ -15,6 +15,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,12 +29,18 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.MedicineAdapter;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.ProfileAdapter;
@@ -65,6 +72,7 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        bottomNavigationView.setSelectedItemId (R.id.itemProfile);
 
         mBottomNavigation =(BottomNavigationView) findViewById(R.id.bottomBar);
         mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -164,6 +172,14 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
 
         lstHisPatient = (ListView) findViewById (R.id.lstHisPatient) ;
 
+        lstHisPatient.setOnTouchListener(new View.OnTouchListener () {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
 
         b = findViewById (R.id.call);
 
@@ -177,44 +193,33 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
             }
         }); //call
 
+        DatabaseReference reference1 = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients");
 
-        String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/ProfilePatient.json";
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+        reference1.addValueEventListener(new ValueEventListener () {
             @Override
-            public void onResponse(String s) {
-                try {
-                    JSONObject obj = new JSONObject(s);
+            public void onDataChange(DataSnapshot snapshot) {
 
-                    Iterator i = obj.keys();
-                    String key = "";
-                    while(i.hasNext()){
-                        key = i.next().toString();
-                        ProfileDetail newMed = new ProfileDetail (
-                                obj.getJSONObject (key).getString ("Name"),
-                                obj.getJSONObject (key).getString ("ImageUrl"),
-                                obj.getJSONObject (key).getString ("Status"));
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String, String> map = (Map) ds.child ("ProfilePatient").getValue ();
 
-                        medArrl.add (newMed);
+                    ProfileDetail newMed = new ProfileDetail (
+                            map.get ("Name").toString (),
+                            map.get ("ImageUrl").toString (),
+                            map.get ("Status").toString ());
 
-                    }
-
-                    ProfileAdapter medicineAdapter = new ProfileAdapter (medArrl,ProfileActivity.this);
-                    lstHisPatient.setAdapter(medicineAdapter);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    medArrl.add (newMed);
                 }
-
+                ProfileAdapter medicineAdapter = new ProfileAdapter (medArrl,ProfileActivity.this);
+                lstHisPatient.setAdapter(medicineAdapter);
             }
-        },new Response.ErrorListener(){
+
             @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                System.out.println("" + volleyError);
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
 
-        RequestQueue rQueue = Volley.newRequestQueue(ProfileActivity.this);
-        rQueue.add(request);
 
 
     }

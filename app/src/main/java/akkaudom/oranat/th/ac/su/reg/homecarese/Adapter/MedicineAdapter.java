@@ -121,11 +121,13 @@ public class MedicineAdapter extends BaseAdapter {
                 DatabaseReference referenMedicine = FirebaseDatabase.getInstance()
                         .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
                 if (isChecked){
-                    referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                            .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                             .child("Medicines").child(list.get (position).getNameMed ()).child ("Status").setValue("true");
                 }else {
 
-                    referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                    referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                            .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                             .child("Medicines").child(list.get (position).getNameMed ()).child ("Status").setValue("false");
                 }
             }

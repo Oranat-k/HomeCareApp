@@ -98,11 +98,13 @@ public class AddSugarActivity extends AppCompatActivity {
             }
             if (checkRangeSugar.get (i)){
 
-                referenSugar.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                referenSugar.child ("users").child(UserDetail.userName).child("patients")
+                        .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child("Sugars").child(datetime).child (range)
                         .child ("Value").setValue(noteSugar.getText ().toString ());
 
-                referenSugar.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                referenSugar.child ("users").child (UserDetail.userName).child ("patients")
+                        .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child("Sugars").child(datetime).child (range)
                         .child ("Time").setValue (timeMeeet);
 

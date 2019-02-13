@@ -25,14 +25,21 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Map;
 
+import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.ProfileAdapter;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.PatientDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.ProfileDetail;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ImageButton fb;
 
-
+    DatabaseReference referencePatient;
     String userF,nameF,genderF,birthdayF,emailF;
 
     @Override
@@ -103,6 +110,8 @@ public class LoginActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Login");
         //กดกลับ ตั้งชื่อหน้านั้น
+
+
     }
 
     private void loginWithFB(){
@@ -224,6 +233,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (obj.getJSONObject (userStr).getJSONObject ("profile").getString ("password").equals (passStr)) {
                                 UserDetail.userName = userStr;
+                                getPatients(userStr);
                                 startActivity (new Intent (LoginActivity.this, HomeActivity.class));
                             } else {
 
@@ -257,6 +267,35 @@ public class LoginActivity extends AppCompatActivity {
             rQueue.add(request);
             }
 
+    }
+
+    public void getPatients(String user){
+
+        referencePatient = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+user+"/patients/");
+
+
+        referencePatient.addValueEventListener(new ValueEventListener () {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String,String> map = (Map) ds.child ("ProfilePatient").getValue ();
+                    PatientDetail newPatient = new PatientDetail (
+                            ds.getKey (),
+                            map.get ("Name"),
+                            map.get ("ImageUrl")
+                    );
+                  UserDetail.patient.add (newPatient);
+                }
+                Log.d ("Patient", String.valueOf (UserDetail.patient));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
     }
 
     @Override

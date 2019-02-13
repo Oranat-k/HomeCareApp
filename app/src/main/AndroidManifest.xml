@@ -22,6 +22,11 @@
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
             //จอเเนวตั้ง
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AddPlannerActivity"
@@ -62,11 +67,7 @@
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".DetailMedicineActivity"
@@ -75,7 +76,8 @@
             android:name=".AddPatientActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ChartActivity" />
-        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".PlannerActivity"></activity>
     </application>
 
 </manifest>

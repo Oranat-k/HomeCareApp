@@ -96,7 +96,8 @@ public class AddTherapyActivity extends AppCompatActivity {
             if (checkRangeTherapy.get (i)) {
 
 
-                referenTherapy.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                referenTherapy.child ("users").child (UserDetail.userName).child ("patients")
+                        .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child ("Therapys").child (datetime).child (range)
                         .child ("Value").setValue (dataTherapy.getText ().toString ());
 

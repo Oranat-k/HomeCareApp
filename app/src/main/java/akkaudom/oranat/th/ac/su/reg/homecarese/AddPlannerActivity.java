@@ -205,7 +205,7 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
-            StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient[UserDetail.selectPatient]+"/"+id+".jpg"); //พาทรูป
+            StorageReference imagesRef = storageRef.child("images/users/"+UserDetail.patient.get (UserDetail.selectPatient)+"/"+id+".jpg"); //พาทรูป
             UploadTask uploadTask = imagesRef.putBytes(dataPic);
             uploadTask.addOnFailureListener(new OnFailureListener () {
                 @Override
@@ -222,10 +222,12 @@ public class AddPlannerActivity extends AppCompatActivity {
 
             DatabaseReference referenMedicine = FirebaseDatabase.getInstance()
                     .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
-            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                    .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                     .child("Medicines").child(nameMedicinestr).child ("Amount").setValue(coutMedicine.getText ().toString ());
 
-            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                    .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                     .child("Medicines").child(nameMedicinestr).child ("Time").setValue(timeMedicine);
 
             for (int i = 0 ; i < checkRangeMedicine.size ();i++){
@@ -236,17 +238,20 @@ public class AddPlannerActivity extends AppCompatActivity {
                     case 2: range = "Evening"; break;
                     case 3: range = "Beforbed"; break;
                 }
-                referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                        .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child("Medicines").child(nameMedicinestr).child ("Range")
                         .child (range).setValue (checkRangeMedicine.get (i).toString ());
             }
 
 
 
-            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                    .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                     .child("Medicines").child(nameMedicinestr).child ("ImageUrl").setValue(imagesRef.getPath ());
 
-            referenMedicine.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+            referenMedicine.child ("users").child(UserDetail.userName).child("patients")
+                    .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                     .child("Medicines").child(nameMedicinestr).child ("Status").setValue("true");
 
             startActivity (new Intent(AddPlannerActivity.this,HistoryMedicineActivity.class));

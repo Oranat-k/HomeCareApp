@@ -123,19 +123,23 @@ public class AddDoctorActivity extends AppCompatActivity {
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance ()
                 .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                 .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
                 .child ("Hospital").setValue (hospitalName.getText ().toString ());
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                 .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
                 .child ("DoctorName").setValue (nameDoc.getText ().toString ());
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                 .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
                 .child ("Date").setValue (dateDoc.getText ().toString ());
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                 .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
                 .child ("Time").setValue (timeDoc.getText ().toString ());
 

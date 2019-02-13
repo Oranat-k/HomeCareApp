@@ -36,6 +36,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
@@ -50,8 +52,9 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
     Bitmap imageSelect;
 
     Button btnMale, btnFemale;
-    EditText namePatient, staPatient, fullname, birthday, address, hospital,disease, allergic, numberHn;
+    EditText namePatient, fullname, birthday, address, hospital,disease, allergic, numberHn;
 
+    Spinner staPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,19 +67,18 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
         btnFemale = (Button) findViewById (R.id.btnFemale);
 
         namePatient = (EditText) findViewById (R.id.namePatient);
-//        staPatient = (EditText) findViewById (R.id.staPatient);
+        staPatient = (Spinner) findViewById (R.id.staPatient);
         fullname = (EditText) findViewById (R.id.fullname);
         birthday = (EditText) findViewById (R.id.birthday);
         address = (EditText) findViewById (R.id.address);
         hospital = (EditText) findViewById (R.id.hospital);
         disease = (EditText) findViewById (R.id.disease);
 
-        Spinner spinner = findViewById(R.id.staPatient);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.numbers, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        staPatient.setAdapter(adapter);
+        staPatient.setOnItemSelectedListener(this);
 
         allergic = (EditText) findViewById (R.id.allergic);
         numberHn = (EditText) findViewById (R.id.numberHn);
@@ -214,39 +216,26 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
             }
         });
 
+        String idPatient = UUID.randomUUID ().toString ();
 
         DatabaseReference referenSymptom = FirebaseDatabase.getInstance ()
-                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users/");
+                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName
+                +"/patients/"+idPatient+"/ProfilePatient/");
 
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("ImageUrl").setValue (imagesRef.getPath ());
+        Map<String, String> map = new HashMap<String, String> ();
+        map.put("ImageUrl", imagesRef.getPath ());
+        map.put("Nickname", namePatient.getText ().toString ());
+        map.put("Status", staPatient.getSelectedItem ().toString ());
+        map.put("Name", fullname.getText ().toString ());
+        map.put("Birthday", birthday.getText ().toString ());
+        map.put("Address", address.getText ().toString ());
+        map.put("Hospital", hospital.getText ().toString ());
+        map.put("Disease", disease.getText ().toString ());
+        map.put("Allergic", allergic.getText ().toString ());
+        map.put("HN", numberHn.getText ().toString ());
 
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Nickname").setValue (namePatient.getText ().toString ());
 
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Status").setValue (staPatient.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Name").setValue (fullname.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Birthday").setValue (birthday.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Address").setValue (address.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Hospital").setValue (hospital.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Disease").setValue (disease.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("Allergic").setValue (allergic.getText ().toString ());
-
-        referenSymptom.child (UserDetail.userName).child ("patients").child ("ProfilePatient").child (id)
-                .child ("HN").setValue (numberHn.getText ().toString ());
+        referenSymptom.setValue (map);
 
 
         startActivity (new Intent (AddPatientActivity.this, ProfileActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า

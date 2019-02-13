@@ -30,6 +30,7 @@ public class NotificationActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        bottomNavigationView.setSelectedItemId (R.id.itemNoti);
 
         mBottomNavigation =(BottomNavigationView) findViewById(R.id.bottomBar);
         mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, ChartActivity.class));
                         return true;
                     case R.id.itemPlanner:
-                        startActivity(new Intent(HomeActivity.this, PlannerListActivity.class));
+                        startActivity(new Intent(HomeActivity.this, PlannerActivity.class));
                         return true;
                     case R.id.itemNoti:
                         startActivity(new Intent(HomeActivity.this, NotificationActivity.class));

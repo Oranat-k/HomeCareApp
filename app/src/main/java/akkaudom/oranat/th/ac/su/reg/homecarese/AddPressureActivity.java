@@ -100,11 +100,13 @@ public class AddPressureActivity extends AppCompatActivity {
             }
             if (checkRangePress.get (i)){
 
-                referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                referenPressure.child ("users").child(UserDetail.userName).child("patients")
+                        .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child("Pressures").child(datetime).child (range)
                         .child ("Top").setValue(topPressure.getText ().toString ());
 
-                referenPressure.child ("users").child(UserDetail.userName).child("patients").child(UserDetail.patient[UserDetail.selectPatient])
+                referenPressure.child ("users").child(UserDetail.userName).child("patients")
+                        .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child("Pressures").child(datetime).child (range)
                         .child("Below").setValue (belowPressure.getText ().toString ());
 

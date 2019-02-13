@@ -251,7 +251,8 @@ public class PlannerAdapter extends BaseAdapter {
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance ()
                 .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                 .child ("Planners").child(dateNow).child(during)
                 .child (title).setValue (status);
 

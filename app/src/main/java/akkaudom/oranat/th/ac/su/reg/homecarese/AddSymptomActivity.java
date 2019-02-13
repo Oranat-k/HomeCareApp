@@ -105,7 +105,8 @@ public class AddSymptomActivity extends AppCompatActivity {
             if (checkRangeSymptom.get (i)) {
 
 
-                referenSymptom.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
+                referenSymptom.child ("users").child (UserDetail.userName).child ("patients")
+                        .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
                         .child ("Symptoms").child (datetime).child (range)
                         .child ("Value").setValue (dataSymptom.getText ().toString ());
 

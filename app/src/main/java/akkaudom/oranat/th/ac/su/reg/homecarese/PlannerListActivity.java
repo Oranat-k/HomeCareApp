@@ -210,7 +210,7 @@ public class PlannerListActivity extends AppCompatActivity {
     private void getMedicine() {
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
-                +UserDetail.patient[UserDetail.selectPatient]+"/Medicines.json";
+                +UserDetail.patient.get (UserDetail.selectPatient)+"/Medicines.json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -265,7 +265,7 @@ public class PlannerListActivity extends AppCompatActivity {
     private void getPressure() {
 
         String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
-                + UserDetail.patient[UserDetail.selectPatient] + "/Pressures/"+dateNow+".json";
+                + UserDetail.patient.get (UserDetail.selectPatient) + "/Pressures/"+dateNow+".json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -304,7 +304,7 @@ public class PlannerListActivity extends AppCompatActivity {
     private void getSugar() {
 
     String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
-            + UserDetail.patient[UserDetail.selectPatient] + "/Sugars/"+dateNow+".json";
+            + UserDetail.patient.get (UserDetail.selectPatient) + "/Sugars/"+dateNow+".json";
     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
         @Override
         public void onResponse(String s) {
@@ -345,7 +345,7 @@ public class PlannerListActivity extends AppCompatActivity {
     private void getSymptom() {
 
         String url = "https://homecare-90544.firebaseio.com/users/" + UserDetail.userName + "/patients/"
-                + UserDetail.patient[UserDetail.selectPatient] + "/Symptoms/"+dateNow+".json";
+                + UserDetail.patient.get (UserDetail.selectPatient)+ "/Symptoms/"+dateNow+".json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -407,7 +407,7 @@ public class PlannerListActivity extends AppCompatActivity {
 
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
-                +UserDetail.patient[UserDetail.selectPatient]+"/Planners/"+date+".json";
+                +UserDetail.patient.get (UserDetail.selectPatient)+"/Planners/"+date+".json";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override

@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Map;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.ProfileAdapter;
@@ -271,31 +272,47 @@ public class LoginActivity extends AppCompatActivity {
 
     public void getPatients(String user){
 
-        referencePatient = FirebaseDatabase.getInstance()
-                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+user+"/patients/");
 
+        String url = "https://homecare-90544.firebaseio.com/users/"+user+"/patients.json";
 
-        referencePatient.addValueEventListener(new ValueEventListener () {
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void onResponse(String s) {
 
-                for(DataSnapshot ds : snapshot.getChildren()) {
-                    Map<String,String> map = (Map) ds.child ("ProfilePatient").getValue ();
-                    PatientDetail newPatient = new PatientDetail (
-                            ds.getKey (),
-                            map.get ("Name"),
-                            map.get ("ImageUrl")
-                    );
-                  UserDetail.patient.add (newPatient);
+                if (!s.equals ("")){
+                    try {
+                        JSONObject obj = new JSONObject(s);
+                        Iterator i = obj.keys();
+                        String key = "";
+                        while(i.hasNext()) {
+                            key = i.next ().toString ();
+                            PatientDetail newPatient = new PatientDetail (
+                                    key,
+                                    obj.getJSONObject(key).getJSONObject ("ProfilePatient").getString ("Name"),
+                                    obj.getJSONObject(key).getJSONObject ("ProfilePatient").getString ("ImageUrl")
+                            );
+                            UserDetail.patient.add (newPatient);
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace ();
+                    }
                 }
-                Log.d ("Patient", String.valueOf (UserDetail.patient));
+
             }
 
+        },new Response.ErrorListener(){
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getMessage());
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError );
+
             }
         });
+
+        RequestQueue rQueue = Volley.newRequestQueue(LoginActivity.this);
+        rQueue.add(request);
+
+
     }
 
     @Override

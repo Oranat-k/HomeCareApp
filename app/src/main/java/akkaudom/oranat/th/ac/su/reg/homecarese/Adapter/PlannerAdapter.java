@@ -2,6 +2,7 @@ package akkaudom.oranat.th.ac.su.reg.homecarese.Adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -275,6 +276,8 @@ public class PlannerAdapter extends BaseAdapter {
         h.border = (LinearLayout)(view.findViewById (R.id.border)) ;
 
         h.checklist = (CheckBox)(view.findViewById(R.id.checklist));
+
+        Log.d ("error", list.get (position).getStatus ());
 
         if (list.get (position).getStatus () == "true") {
             h.border.setBackground(ContextCompat.getDrawable(mContext,R.drawable.border_active));

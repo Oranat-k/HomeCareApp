@@ -78,6 +78,9 @@
         <activity android:name=".ChartActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".PlannerActivity"></activity>
+
+        <activity android:name=".Tabs.MorningTab" />
+        <activity android:name=".Tabs.AfternoonTab" />
     </application>
 
 </manifest>

@@ -68,8 +68,6 @@ public class PatientAdapter extends BaseAdapter {
                 .into(holder.imagePro);
 
 
-
-
         holder.txtWeek.setText(mData.get(position).getName ());
 
         convertView.setTag(holder);

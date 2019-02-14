@@ -407,7 +407,7 @@ public class PlannerListActivity extends AppCompatActivity {
 
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
-                +UserDetail.patient.get (UserDetail.selectPatient)+"/Planners/"+date+".json";
+                +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Planners/"+date+".json";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override

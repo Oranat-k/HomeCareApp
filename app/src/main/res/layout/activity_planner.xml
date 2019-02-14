@@ -18,25 +18,35 @@
             android:layout_height="wrap_content"/>
 
         <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageButton
                 android:id="@+id/back"
-                android:src="@drawable/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:background="@null"
+                android:src="@drawable/back"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="60dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
             <TextView
                 android:id="@+id/day"
                 android:text="วันที่"
+                android:textSize="18dp"
+                android:fontFamily="@font/sukhumvitset_medium"
+                android:layout_marginRight="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageButton
                 android:id="@+id/next"
                 android:src="@drawable/next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
         </LinearLayout>
     </RelativeLayout>
     <TabHost

@@ -153,13 +153,13 @@ public class PlannerActivity extends AppCompatActivity {
                         startActivity(new Intent(mcontext, ChartActivity.class));
                         return true;
                     case R.id.itemPlanner:
-                        startActivity(new Intent(mcontext, PlannerListActivity.class));
+//                        startActivity(new Intent(mcontext, PlannerListActivity.class));
                         return true;
                     case R.id.itemNoti:
                         startActivity(new Intent(mcontext, NotificationActivity.class));
                         return true;
                     case R.id.itemProfile:
-//                        startActivity(new Intent(ProfileActivity.this, ProfileActivity.class));
+                        startActivity(new Intent(mcontext, ProfileActivity.class));
                         return true;
                 }
                 return false;

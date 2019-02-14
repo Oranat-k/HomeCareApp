@@ -22,6 +22,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextDark"
             android:id="@+id/titleMed"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/sukhumvitset_medium"
             android:text="Djuokl"
             android:textSize="20dp"/>
 

@@ -22,4 +22,18 @@
         <item>ญาติ</item>
     </string-array>
 
+    <string-array name="numbers1">
+        <item>โรคประจำตัว</item>
+        <item>โรคมะเร็ง</item>
+        <item>โรคหลอดเลือดหัวใจ</item>
+        <item>โรคเบาหวาน</item>
+        <item>โรคความดันโลหิตสูง</item>
+        <item>โรควัณโรค</item>
+        <item>โรคปอดเรื้อรัง</item>
+        <item>โรคภูมิแพ้</item>
+        <item>โรคระบบประสาทจิตเวช</item>
+        <item>โรคระบบกล้ามเนื้อ</item>
+        <item>โรคอ้วน</item>
+    </string-array>
+
 </resources>

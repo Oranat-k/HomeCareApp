@@ -1,31 +1,37 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
+import android.app.Activity;
+import android.app.LocalActivityManager;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.PagerAdapter;
+import java.util.ArrayList;
 
-public class ChartActivity extends AppCompatActivity implements Tab1.OnFragmentInteractionListener,Tab2.OnFragmentInteractionListener{
+import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.SugarTab;
+
+public class ChartActivity extends AppCompatActivity {
+    Activity mcontext = ChartActivity.this;
+
+    LocalActivityManager mLocalActivityManager;
 
     FloatingActionMenu materialDesignFAM;
     FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3,floatingActionButton4,floatingActionButton5,floatingActionButton6;
 
     BottomNavigationView mBottomNavigation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,12 @@ public class ChartActivity extends AppCompatActivity implements Tab1.OnFragmentI
         setContentView (R.layout.activity_chart);
 
         getSupportActionBar().setTitle("Chart");
+
+
+
+        mLocalActivityManager = new LocalActivityManager(this, false);
+        mLocalActivityManager.dispatchCreate(savedInstanceState);
+
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -127,38 +139,22 @@ public class ChartActivity extends AppCompatActivity implements Tab1.OnFragmentI
         });//FloatingActionMenu
 
 
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+        TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+        tabHost.setup(mLocalActivityManager);
 
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tab1")
+                .setIndicator("ค่าความดัน")
+                .setContent(new Intent(mcontext, SugarTab.class));
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2")
+                .setIndicator("ค่าน้ำตาล")
+                .setContent(new Intent(mcontext, SugarTab.class));
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        tabHost.addTab(tabSpec);
+        tabHost.addTab(tabSpec2);
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
-    }
 }

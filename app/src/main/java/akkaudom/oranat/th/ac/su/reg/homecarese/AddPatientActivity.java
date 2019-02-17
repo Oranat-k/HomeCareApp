@@ -1,11 +1,15 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -13,14 +17,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,6 +41,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,10 +59,21 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
     Uri imageUri;
     Bitmap imageSelect;
 
-    Button btnMale, btnFemale;
-    EditText namePatient, fullname, birthday, address, hospital,disease, allergic, numberHn;
+    Button btnMale, btnFemale, birthday;
+    EditText namePatient, fullname, address, hospital, allergic, numberHn;
 
-    Spinner staPatient;
+    Spinner staPatient, disease;
+    String gender;
+
+    private static final String TAG = "AddPatientActivity";
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
+    Button mOrder;
+    TextView mItemSelected;
+    String[] listItems;
+    boolean[] checkedItems;
+    ArrayList<Integer> mUserItems = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +85,30 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
         btnMale = (Button) findViewById (R.id.btnMale);
         btnFemale = (Button) findViewById (R.id.btnFemale);
 
+
         namePatient = (EditText) findViewById (R.id.namePatient);
         staPatient = (Spinner) findViewById (R.id.staPatient);
         fullname = (EditText) findViewById (R.id.fullname);
-        birthday = (EditText) findViewById (R.id.birthday);
         address = (EditText) findViewById (R.id.address);
         hospital = (EditText) findViewById (R.id.hospital);
-        disease = (EditText) findViewById (R.id.disease);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//        disease = (Spinner) findViewById (R.id.disease);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource (this,
                 R.array.numbers, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        staPatient.setAdapter(adapter);
-        staPatient.setOnItemSelectedListener(this);
+        adapter.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        staPatient.setAdapter (adapter);
+        staPatient.setOnItemSelectedListener (this);
+        //dropdown status
+
+//        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource (this,
+//                R.array.numbers1, android.R.layout.simple_spinner_item);
+//        adapter1.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+//        disease.setAdapter (adapter1);
+//        disease.setOnItemSelectedListener (this);
 
         allergic = (EditText) findViewById (R.id.allergic);
         numberHn = (EditText) findViewById (R.id.numberHn);
-
 
 
         if (ContextCompat.checkSelfPermission (AddPatientActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -113,7 +139,109 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
             }
         });
 
+        Createwidget ();
+        gender = "";
+
+
+        birthday = (Button) findViewById (R.id.birthday);
+        birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        AddPatientActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
+
+                String date = day + "/" + month + "/" + year;
+                birthday.setText(date);
+            }
+        };//Date Picker
+
+
+
+        mOrder = (Button) findViewById(R.id.btnOrder);
+        mItemSelected = (TextView) findViewById(R.id.tvItemSelected);
+
+        listItems = getResources().getStringArray(R.array.shopping_item);
+        checkedItems = new boolean[listItems.length];
+
+        mOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(AddPatientActivity.this);
+                mBuilder.setTitle(getString(R.string.dialog_title));
+
+                mBuilder.setMultiChoiceItems(listItems, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position, boolean isChecked) {
+
+                        if(isChecked){
+                            mUserItems.add(position);
+                        }else{
+                            mUserItems.remove((Integer.valueOf(position)));
+                        }
+                    }
+                });
+
+                mBuilder.setCancelable(false);
+
+                mBuilder.setPositiveButton(getString(R.string.ok_label), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        String item = "";
+                        for (int i = 0; i < mUserItems.size(); i++) {
+                            item = item + listItems[mUserItems.get(i)];
+                            if (i != mUserItems.size() - 1) {
+                                item = item + ", ";
+                            }
+                        }
+                        mItemSelected.setText(item);
+                    }
+                });
+
+                mBuilder.setNegativeButton(getString(R.string.dismiss_label), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                mBuilder.setNeutralButton(getString(R.string.clear_all_label), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        for (int i = 0; i < checkedItems.length; i++) {
+                            checkedItems[i] = false;
+                            mUserItems.clear();
+                            mItemSelected.setText("");
+                        }
+                    }
+                });
+
+                AlertDialog mDialog = mBuilder.create();
+                mDialog.show();
+            }
+        });
+
+
+
     }
+
 
     public void imgClick() {
 
@@ -219,20 +347,22 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
         String idPatient = UUID.randomUUID ().toString ();
 
         DatabaseReference referenSymptom = FirebaseDatabase.getInstance ()
-                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName
-                +"/patients/"+idPatient+"/ProfilePatient/");
+                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users/" + UserDetail.userName
+                        + "/patients/" + idPatient + "/ProfilePatient/");
 
         Map<String, String> map = new HashMap<String, String> ();
-        map.put("ImageUrl", imagesRef.getPath ());
-        map.put("Nickname", namePatient.getText ().toString ());
-        map.put("Status", staPatient.getSelectedItem ().toString ());
-        map.put("Name", fullname.getText ().toString ());
-        map.put("Birthday", birthday.getText ().toString ());
-        map.put("Address", address.getText ().toString ());
-        map.put("Hospital", hospital.getText ().toString ());
-        map.put("Disease", disease.getText ().toString ());
-        map.put("Allergic", allergic.getText ().toString ());
-        map.put("HN", numberHn.getText ().toString ());
+        map.put ("ImageUrl", imagesRef.getPath ());
+        map.put ("Nickname", namePatient.getText ().toString ());
+        map.put ("Status", staPatient.getSelectedItem ().toString ());
+        map.put ("Name", fullname.getText ().toString ());
+        map.put ("Birthday", birthday.getText ().toString ());
+        map.put ("Address", address.getText ().toString ());
+        map.put ("Gender", gender);
+        map.put ("Hospital", hospital.getText ().toString ());
+
+        map.put ("Disease", mItemSelected.getText ().toString ());
+        map.put ("Allergic", allergic.getText ().toString ());
+        map.put ("HN", numberHn.getText ().toString ());
 
 
         referenSymptom.setValue (map);
@@ -243,14 +373,46 @@ public class AddPatientActivity extends AppCompatActivity implements AdapterView
 
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+        String text = parent.getItemAtPosition (position).toString ();
+        Toast.makeText (parent.getContext (), text, Toast.LENGTH_SHORT).show ();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    private void Createwidget() {
+
+
+        btnMale = (Button) findViewById (R.id.btnMale);
+        btnFemale = (Button) findViewById (R.id.btnFemale);
+
+
+        //สลับสีปุ่ม
+        btnMale.setOnClickListener (new View.OnClickListener () {
+
+            @Override
+            public void onClick(View v) {
+                btnMale.setBackgroundResource (R.drawable.border_box_active);
+                btnFemale.setBackgroundResource (R.drawable.border_box);
+                gender = "ชาย";
+            }
+        });
+
+        btnFemale.setOnClickListener (new View.OnClickListener () {
+
+            @Override
+            public void onClick(View v) {
+                btnFemale.setBackgroundResource (R.drawable.border_box_active);
+                btnMale.setBackgroundResource (R.drawable.border_box);
+                gender = "หญิง";
+
+            }
+        });
 
     }
 }

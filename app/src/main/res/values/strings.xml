@@ -4,5 +4,23 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="make_an_order">โรคประจำตัว</string>
+    <string name="dialog_title">เลือกโรคประจำตัว</string>
+    <string name="ok_label">ยืนยัน</string>
+    <string name="dismiss_label">ยกเลิก</string>
+    <string name="clear_all_label">ลบทั้งหมด</string>
+
+    <string-array name="shopping_item">
+        <item>โรคมะเร็ง</item>
+        <item>โรคหลอดเลือดหัวใจ</item>
+        <item>โรคเบาหวาน</item>
+        <item>โรคความดันโลหิตสูง</item>
+        <item>โรควัณโรค</item>
+        <item>โรคปอดเรื้อรัง</item>
+        <item>โรคภูมิแพ้</item>
+        <item>โรคระบบประสาทจิตเวช</item>
+        <item>โรคระบบกล้ามเนื้อ</item>
+        <item>โรคอ้วน</item>
+    </string-array>
 
 </resources>

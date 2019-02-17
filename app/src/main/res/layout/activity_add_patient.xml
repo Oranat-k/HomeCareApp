@@ -25,9 +25,18 @@
         app:civ_border_color="@color/colorButton"
         app:civ_circle_background_color="@color/colorTextWrite"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="ชื่อเล่น"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/namePatient"
             android:layout_width="170dp"
@@ -48,25 +57,45 @@
             android:textAlignment="center"
             android:textSize="18dp" />
 
+
+
     </RelativeLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="ชื่อจริง"/>
         <EditText
             android:id="@+id/fullname"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/border_box"
             android:paddingLeft="20dp"
             android:hint="ชื่อจริง"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sukhumvitset_medium"
+            android:textColor="@color/colorTextDark"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:text="เกิดเมื่อ"/>
 
-        <EditText
+        <Button
             android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/border_box"
             android:paddingLeft="20dp"
-            android:hint="เกิดเมื่อ"/>
+            android:text="เกิดเมื่อ" />
 
     <RelativeLayout
         android:layout_marginTop="20dp"
@@ -106,22 +135,43 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="ที่อยู่"/>
     <EditText
         android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:hint="ที่อยู่"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="โรงพยาบาลประจำตัว"/>
     <EditText
         android:id="@+id/hospital"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:hint="โรงพยาบาลประจำตัว"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -132,27 +182,59 @@
         android:textSize="20dp"
         android:paddingLeft="20dp"
         android:text="โรคประจำตัว"/>
+
+    <Button
+        android:text="@string/make_an_order"
+        android:id="@+id/btnOrder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border_box"
+        android:paddingLeft="20dp" />
+
+    <TextView
+        android:id="@+id/tvItemSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorActive"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="โรคประจำตัว"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="ประวัติเเพ้ยา"/>
     <EditText
-        android:id="@+id/disease"
+        android:id="@+id/allergic"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
-        android:hint="โรคประจำตัว"/>
-    <EditText
-        android:id="@+id/allergic"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/border_box"
-        android:paddingLeft="20dp"
         android:hint="ประวัติเเพ้ยา"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sukhumvitset_medium"
+        android:textColor="@color/colorTextDark"
+        android:textSize="20dp"
+        android:paddingLeft="20dp"
+        android:text="หมายเลขผู้ป่วย"/>
     <EditText
         android:id="@+id/numberHn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/border_box"
         android:paddingLeft="20dp"
         android:hint="หมายเลขผู้ป่วย"/>

@@ -107,7 +107,7 @@ public class AddDoctorActivity extends AppCompatActivity {
 
     private void showDateTime() {
 
-        dateDoc.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+"/"+myCalendar.get (Calendar.MONTH)+"/"+myCalendar.get (Calendar.YEAR));
+        dateDoc.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+"/"+(myCalendar.get (Calendar.MONTH)+1)+"/"+myCalendar.get (Calendar.YEAR));
         timeDoc.setText (myCalendar.get (Calendar.HOUR_OF_DAY)+":"+myCalendar.get (Calendar.MINUTE));
 
 

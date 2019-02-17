@@ -128,6 +128,7 @@ public class PlannerActivity extends AppCompatActivity {
                 MorningTab.refreshData (mcontext);
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 //optionally do something here

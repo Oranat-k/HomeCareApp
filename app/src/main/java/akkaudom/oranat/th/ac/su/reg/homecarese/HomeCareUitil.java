@@ -64,6 +64,7 @@ public class HomeCareUitil {
     public static void getMorning(final Context mcontext , Calendar selectToday , final ListView listView){
 
         morningArrPlanner.clear ();
+        //clear data
 
         final String date = selectToday.get (Calendar.DAY_OF_MONTH) + "-" +selectToday.get (Calendar.MONTH)+1+"-" +selectToday.get (Calendar.YEAR);
         setDafault (morningArrPlanner);
@@ -109,7 +110,5 @@ public class HomeCareUitil {
 
         RequestQueue rQueue = Volley.newRequestQueue(mcontext);
         rQueue.add(request);
-
-
     }
 }

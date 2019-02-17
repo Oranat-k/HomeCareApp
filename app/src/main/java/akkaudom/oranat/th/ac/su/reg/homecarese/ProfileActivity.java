@@ -204,7 +204,7 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
                     Map<String, String> map = (Map) ds.child ("ProfilePatient").getValue ();
 
                     ProfileDetail newMed = new ProfileDetail (
-                            map.get ("Name").toString (),
+                            map.get ("Nickname").toString (),
                             map.get ("ImageUrl").toString (),
                             map.get ("Status").toString ());
 

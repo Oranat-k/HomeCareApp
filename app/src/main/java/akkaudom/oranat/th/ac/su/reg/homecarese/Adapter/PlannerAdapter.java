@@ -277,7 +277,6 @@ public class PlannerAdapter extends BaseAdapter {
 
         h.checklist = (CheckBox)(view.findViewById(R.id.checklist));
 
-        Log.d ("error", list.get (position).getStatus ());
 
         if (list.get (position).getStatus () == "true") {
             h.border.setBackground(ContextCompat.getDrawable(mContext,R.drawable.border_active));

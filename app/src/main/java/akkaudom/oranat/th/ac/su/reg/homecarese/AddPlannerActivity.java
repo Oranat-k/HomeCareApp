@@ -233,10 +233,10 @@ public class AddPlannerActivity extends AppCompatActivity {
             for (int i = 0 ; i < checkRangeMedicine.size ();i++){
                 String range = "";
                 switch (i){
-                    case 0: range = "Morning"; break;
-                    case 1: range = "Afternoon"; break;
-                    case 2: range = "Evening"; break;
-                    case 3: range = "Beforbed"; break;
+                    case 0: range = "morning"; break;
+                    case 1: range = "afternoon"; break;
+                    case 2: range = "evening"; break;
+                    case 3: range = "beforbed"; break;
                 }
                 referenMedicine.child ("users").child(UserDetail.userName).child("patients")
                         .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())

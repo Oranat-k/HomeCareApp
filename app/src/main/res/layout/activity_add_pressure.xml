@@ -9,13 +9,23 @@
     android:layout_marginRight="10dp"
     android:gravity="center">
 
+    <Button
+        android:onClick="setDate"
+        android:id="@+id/dateDoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_text"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:text="วันที่"
+        android:background="@drawable/border_box"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/sukhumvitset_medium"
         android:textColor="@color/colorTextDark"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textSize="20dp"
         android:paddingLeft="20dp"
         android:text="ค่าบน"/>

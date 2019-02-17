@@ -1,5 +1,6 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -26,18 +27,25 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class AddPressureActivity extends AppCompatActivity {
 
+    Activity mcontext = AddPressureActivity.this;
+
     Button btnMorning,btnAfternoon,btnEvening,btnBeforeBed;
     EditText topPressure,belowPressure;
-    Button datePress, timePress;
+    Button datePress;
 
     String rangePressure;
 
     ArrayList<Boolean> checkRangePress = new ArrayList<> ();
 
+    final Calendar myCalendar = Calendar.getInstance ();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_add_pressure);
+
+
+        datePress = (Button) findViewById (R.id.dateDoc);
 
         topPressure = (EditText) findViewById (R.id.topPressure);
         belowPressure = (EditText) findViewById (R.id.belowPressure);
@@ -56,6 +64,8 @@ public class AddPressureActivity extends AppCompatActivity {
         //กดกลับ ตั้งชื่อหน้านั้น
 
 
+        showDateTime ();
+
         Createwidget();
 
         checkRangePress.add (false);
@@ -65,6 +75,36 @@ public class AddPressureActivity extends AppCompatActivity {
 
 
     }
+
+    public void setDate(View view) {
+
+        new DatePickerDialog (mcontext,date,
+                myCalendar.get (Calendar.YEAR),myCalendar.get (Calendar.MONTH),
+                myCalendar.get (Calendar.DAY_OF_MONTH)).show ();
+
+    }
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            showDateTime ();
+        }
+
+    };//Calendar date
+
+    private void showDateTime() {
+
+        datePress.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+" / "+(myCalendar.get (Calendar.MONTH)+1)+" / "+myCalendar.get (Calendar.YEAR));
+
+
+    }//show
 
 
     @Override
@@ -81,11 +121,8 @@ public class AddPressureActivity extends AppCompatActivity {
 
     public void dataPress(View view) {
 
-        Calendar dateNow = Calendar.getInstance ();
-        //String time = CheckTime(dateNow);
-
         DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
-        String datetime = formater.format (new Date ());
+        String datetime = formater.format (myCalendar.getTime ());
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com");
@@ -93,10 +130,10 @@ public class AddPressureActivity extends AppCompatActivity {
         for (int i = 0 ; i < checkRangePress.size ();i++){
             String range = "";
             switch (i){
-                case 0: range = "Morning"; break;
-                case 1: range = "Afternoon"; break;
-                case 2: range = "Evening"; break;
-                case 3: range = "Beforbed"; break;
+                case 0: range = "morning"; break;
+                case 1: range = "afternoon"; break;
+                case 2: range = "evening"; break;
+                case 3: range = "beforbed"; break;
             }
             if (checkRangePress.get (i)){
 
@@ -121,6 +158,7 @@ public class AddPressureActivity extends AppCompatActivity {
     }//input ข้อมูล จากปุ่ม onclick
 
     private void Createwidget() {
+
 
 
         btnMorning = (Button) findViewById (R.id.btnMorning);

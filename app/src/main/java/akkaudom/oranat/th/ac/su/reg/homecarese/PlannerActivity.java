@@ -56,6 +56,8 @@ public class PlannerActivity extends AppCompatActivity {
 
     Activity mcontext = PlannerActivity.this;
 
+    String checkTab;
+
     LocalActivityManager mLocalActivityManager;
 
 
@@ -68,11 +70,6 @@ public class PlannerActivity extends AppCompatActivity {
     TextView Day;
     public static Calendar today, selectToday;
 
-    public  static ArrayList<PlannerDetail> morningArrPlanner = new ArrayList<> ();
-    public  static ArrayList<PlannerDetail> afternoonArrPlanner = new ArrayList<> ();
-    public  static ArrayList<PlannerDetail> eveningArrPlanner = new ArrayList<> ();
-    public  static ArrayList<PlannerDetail> befoebedArrPlanner = new ArrayList<> ();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +78,8 @@ public class PlannerActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         //not nev bar
+
+        checkTab = "morning";
 
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
@@ -107,12 +106,16 @@ public class PlannerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDay(-1);
+                getTabData();
+
             }
         });
         btnnext.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
                 showDay(1);
+                getTabData();
+
             }
         });
 
@@ -125,7 +128,7 @@ public class PlannerActivity extends AppCompatActivity {
                                        long arg3) {
                 UserDetail.selectPatient = arg2;
                 Log.d ("patient select : ", "{"+arg2+"}");
-                MorningTab.refreshData (mcontext);
+                getTabData();
 
             }
 
@@ -229,14 +232,10 @@ public class PlannerActivity extends AppCompatActivity {
             }
         });//FloatingActionMenu
 
-        setDafault(morningArrPlanner);
-        setDafault(afternoonArrPlanner);
-        setDafault(eveningArrPlanner);
-        setDafault(befoebedArrPlanner);
 
 
 
-        TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
+        final TabHost tabHost = (TabHost) findViewById(R.id.tabhost);
         tabHost.setup(mLocalActivityManager);
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("tab1")
@@ -267,80 +266,44 @@ public class PlannerActivity extends AppCompatActivity {
         tabHost.addTab(tabSpec5);
 
 
+        tabHost.setOnTabChangedListener (new TabHost.OnTabChangeListener () {
+            @Override
+            public void onTabChanged(String s) {
+                switch (tabHost.getCurrentTab()) {
+                    case 0:
+                       checkTab = "morning";
+                        getTabData();
+                        break;
+                    case 1:
+                        checkTab = "afternoon";
+                        getTabData();
+                        break;
+                    case 2:
+                        //do what you want when tab 2 is selected
+                        break;
+
+                    default:
+
+                        break;
+                }
+            }
+        });
+
 
     }
 
-    public  void  checkStatus(JSONObject obj , String during , ArrayList<PlannerDetail> arrPlanner){
-
-        try {
-            JSONObject objDuring =  obj.getJSONObject (during);
-            for(int i = 0 ; i < arrPlanner.size () ; i++) {
-                if (objDuring.has (arrPlanner.get (i).getTitle ())) {
-                    arrPlanner.get (i).setStatus (objDuring.getString (arrPlanner.get (i).getTitle ()));
-
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace ();
+    public void getTabData(){
+        switch (checkTab){
+            case "morning" :
+                MorningTab.refreshData (mcontext);
+                break;
+            case "afternoon":
+                AfternoonTab.refreshData (mcontext);
+                break;
         }
-
-    }//Status Morning afternoon evening
-
+    }
 
 
-//    public void getData(){
-//        final String date = selectToday.get (Calendar.DAY_OF_MONTH) + "-" +selectToday.get (Calendar.MONTH)+1+"-" +selectToday.get (Calendar.YEAR);
-//
-//        String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
-//                +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Planners/"+date+".json";
-//
-//        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
-//            @Override
-//            public void onResponse(String s) {
-//                try {
-//                    JSONObject obj = new JSONObject(s);
-//
-//                    Iterator i = obj.keys();
-//                    String key = "";
-//
-//                    while(i.hasNext()){
-//                        key = i.next().toString();
-//
-//                        switch (key){
-//                            case "Morning":
-//                                checkStatus(obj,key,morningArrPlanner);
-//
-//                                break;
-//                            case "Afternoon":
-//                                checkStatus(obj,key,afternoonArrPlanner);
-//                                break;
-//                            case "Evening":
-//                                checkStatus(obj,key,eveningArrPlanner);
-//                                break;
-//                            case "BeforBed":
-//                                checkStatus(obj,key,befoebedArrPlanner);
-//                                break;
-//                        }
-//
-//
-//                    }
-//
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        },new Response.ErrorListener(){
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                System.out.println("" + volleyError);
-//            }
-//        });
-//
-//        RequestQueue rQueue = Volley.newRequestQueue(mcontext);
-//        rQueue.add(request);
-//    }
 
     public void showDay(int changeDay){
         int day = selectToday.get (Calendar.DAY_OF_MONTH);
@@ -374,20 +337,10 @@ public class PlannerActivity extends AppCompatActivity {
         }
 
 
+
+
     }
 
-
-    private void setDafault(ArrayList<PlannerDetail> list) {
-
-
-        PlannerDetail plan = new PlannerDetail ("พลิกตัว","default","false");
-        PlannerDetail plan1 = new PlannerDetail ("กายภาพบำบัด","default","false");
-        PlannerDetail plan2 = new PlannerDetail ("ตรวจเท้า","default","false");
-
-        list.add (plan);
-        list.add (plan1);
-        list.add (plan2);
-    }
 
     @Override
     protected void onPause() {

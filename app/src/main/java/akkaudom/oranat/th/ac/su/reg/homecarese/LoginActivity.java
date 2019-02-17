@@ -288,7 +288,7 @@ public class LoginActivity extends AppCompatActivity {
                             key = i.next ().toString ();
                             PatientDetail newPatient = new PatientDetail (
                                     key,
-                                    obj.getJSONObject(key).getJSONObject ("ProfilePatient").getString ("Name"),
+                                    obj.getJSONObject(key).getJSONObject ("ProfilePatient").getString ("Nickname"),
                                     obj.getJSONObject(key).getJSONObject ("ProfilePatient").getString ("ImageUrl")
                             );
                             UserDetail.patient.add (newPatient);

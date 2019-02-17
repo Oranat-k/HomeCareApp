@@ -98,6 +98,7 @@ public class AddDoctorActivity extends AppCompatActivity {
             myCalendar.set (Calendar.HOUR_OF_DAY,hourOfDay);
             myCalendar.set (Calendar.MINUTE,minute);
             showDateTime ();
+
         }
     };//Calendar time
 

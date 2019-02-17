@@ -29,16 +29,15 @@
                 android:background="@null"
                 android:src="@drawable/back"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="60dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp" />
             <TextView
                 android:id="@+id/day"
                 android:text="วันที่"
+                android:gravity="center"
                 android:textSize="18dp"
                 android:fontFamily="@font/sukhumvitset_medium"
-                android:layout_marginRight="60dp"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content" />
             <ImageButton
                 android:id="@+id/next"

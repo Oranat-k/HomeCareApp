@@ -1,5 +1,6 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -27,14 +28,18 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class AddSugarActivity extends AppCompatActivity {
 
+    Activity mcontext = AddSugarActivity.this;
+
     Button btnBeforSugar, btnAfterSugar, btnMorning, btnAfternoon, btnEvening, btnBeforeBed;
     EditText noteSugar;
-    Button dateSugar, timeSugar;
+    Button dateSugar;
 
     String timeMeeet, rangeSugar;
 
 //    final Calendar myCalendar = Calendar.getInstance ();
     ArrayList<Boolean> checkRangeSugar = new ArrayList<> ();
+
+    final Calendar myCalendar = Calendar.getInstance ();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class AddSugarActivity extends AppCompatActivity {
 
         EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        dateSugar = (Button) findViewById (R.id.dateSugar);
 
         noteSugar = (EditText) findViewById (R.id.noteSugar);
 
@@ -56,7 +63,7 @@ public class AddSugarActivity extends AppCompatActivity {
         getSupportActionBar ().setTitle ("Sugar");
         //กดกลับ ตั้งชื่อหน้านั้น
 
-
+        showDateTime ();
         Createwidget ();
 
         checkRangeSugar.add (false);
@@ -67,6 +74,36 @@ public class AddSugarActivity extends AppCompatActivity {
         timeMeeet = "";
 
     }
+
+    public void setDate(View view) {
+
+        new DatePickerDialog (mcontext,date,
+                myCalendar.get (Calendar.YEAR),myCalendar.get (Calendar.MONTH),
+                myCalendar.get (Calendar.DAY_OF_MONTH)).show ();
+
+    }
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            showDateTime ();
+        }
+
+    };//Calendar date
+
+    private void showDateTime() {
+
+        dateSugar.setText (myCalendar.get (Calendar.DAY_OF_MONTH)+" / "+(myCalendar.get (Calendar.MONTH)+1)+" / "+myCalendar.get (Calendar.YEAR));
+
+
+    }//show
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -81,9 +118,8 @@ public class AddSugarActivity extends AppCompatActivity {
 
     public void dataSugar(View view) {
 
-
         DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
-        String datetime = formater.format (new Date ());
+        String datetime = formater.format (myCalendar.getTime ());
 
         DatabaseReference referenSugar = FirebaseDatabase.getInstance ()
                 .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
@@ -91,10 +127,10 @@ public class AddSugarActivity extends AppCompatActivity {
         for (int i = 0 ; i < checkRangeSugar.size ();i++){
             String range = "";
             switch (i){
-                case 0: range = "Morning"; break;
-                case 1: range = "Afternoon"; break;
-                case 2: range = "Evening"; break;
-                case 3: range = "Beforbed"; break;
+                case 0: range = "morning"; break;
+                case 1: range = "afternoon"; break;
+                case 2: range = "evening"; break;
+                case 3: range = "beforbed"; break;
             }
             if (checkRangeSugar.get (i)){
 

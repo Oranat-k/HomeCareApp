@@ -1,4 +1,4 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,6 +35,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.HistoryMedicineActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 
 public class AddPlannerActivity extends AppCompatActivity {
 

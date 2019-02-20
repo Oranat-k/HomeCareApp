@@ -1,29 +1,31 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.PlannerActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 
 public class AddPressureActivity extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class AddPressureActivity extends AppCompatActivity {
     EditText topPressure,belowPressure;
     Button datePress;
 
-    String rangePressure;
+    String during = "";
 
     ArrayList<Boolean> checkRangePress = new ArrayList<> ();
 
@@ -45,33 +47,62 @@ public class AddPressureActivity extends AppCompatActivity {
         setContentView (R.layout.activity_add_pressure);
 
 
-        datePress = (Button) findViewById (R.id.dateDoc);
-
-        topPressure = (EditText) findViewById (R.id.topPressure);
-        belowPressure = (EditText) findViewById (R.id.belowPressure);
-
-        EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-
-        btnMorning = (Button) findViewById (R.id.btnMorning);
-        btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
-        btnEvening = (Button) findViewById (R.id.btnEvening);
-        btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
         getSupportActionBar().setTitle("Pressure");
         //กดกลับ ตั้งชื่อหน้านั้น
 
-
-        showDateTime ();
+        checkRangePress.add (false);
+        checkRangePress.add (false);
+        checkRangePress.add (false);
+        checkRangePress.add (false);
 
         Createwidget();
 
-        checkRangePress.add (false);
-        checkRangePress.add (false);
-        checkRangePress.add (false);
-        checkRangePress.add (false);
+        Intent intent = getIntent();
+        datePress = (Button) findViewById (R.id.dateDoc);
+
+        if (intent.hasExtra("Date")) {
+            String dateStr = intent.getExtras ().getString ("Date");
+            during = intent.getExtras ().getString ("During");
+            int top = intent.getExtras ().getInt ("Top");
+            int below = intent.getExtras ().getInt ("Below");
+
+
+            try {
+                Calendar date = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                date.setTime(sdf.parse(dateStr));// all done
+
+                myCalendar.set(Calendar.YEAR, date.get (Calendar.YEAR));
+                myCalendar.set(Calendar.MONTH, date.get (Calendar.MONTH));
+                myCalendar.set(Calendar.DAY_OF_MONTH,date.get (Calendar.DAY_OF_MONTH));
+            } catch (ParseException e) {
+                e.printStackTrace ();
+            }
+
+            Log.d ("check bundle",top +" / " +below);
+
+            topPressure.setText (""+top);
+            belowPressure.setText (""+below);
+
+            switch (during){
+                case  "morning": btnActive(btnMorning,0); break;
+                case  "afternoon": btnActive(btnAfternoon,1);break;
+                case  "evening": btnActive(btnEvening,2);break;
+                case  "beforbed": btnActive(btnBeforeBed,3);break;
+            }
+
+
+        }
+
+
+
+        showDateTime ();
+
+
+
+
 
 
     }
@@ -135,6 +166,11 @@ public class AddPressureActivity extends AppCompatActivity {
                 case 2: range = "evening"; break;
                 case 3: range = "beforbed"; break;
             }
+            if(!during.equals ("")){
+                referenPressure.child ("users").child(UserDetail.userName).child("patients")
+                        .child(UserDetail.patient.get (UserDetail.selectPatient).getId ())
+                        .child("Pressures").child(datetime).child (during).setValue(null);
+            }
             if (checkRangePress.get (i)){
 
                 referenPressure.child ("users").child(UserDetail.userName).child("patients")
@@ -153,21 +189,20 @@ public class AddPressureActivity extends AppCompatActivity {
 
 
 
-        startActivity (new Intent(AddPressureActivity.this,PlannerListActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+        startActivity (new Intent(AddPressureActivity.this,PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
     }//input ข้อมูล จากปุ่ม onclick
 
     private void Createwidget() {
 
-
+        topPressure = (EditText) findViewById (R.id.topPressure);
+        belowPressure = (EditText) findViewById (R.id.belowPressure);
 
         btnMorning = (Button) findViewById (R.id.btnMorning);
         btnAfternoon = (Button) findViewById (R.id.btnAfternoon);
         btnEvening = (Button) findViewById (R.id.btnEvening);
         btnBeforeBed = (Button) findViewById (R.id.btnBeforeBed);
 
-        topPressure = (EditText) findViewById (R.id.topPressure);
-        belowPressure = (EditText) findViewById (R.id.belowPressure);
 
         //สลับสีปุ่ม
 

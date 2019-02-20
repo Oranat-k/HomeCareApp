@@ -32,6 +32,7 @@
         android:orientation="vertical">
 
         <TextView
+        android:fontFamily="@font/sukhumvitset_medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextDark"
@@ -40,6 +41,8 @@
         android:textSize="20dp"/>
 
         <TextView
+        android:fontFamily="@font/sukhumvitset_text"
+        android:textColor="@color/colorTextDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/statusPatient"

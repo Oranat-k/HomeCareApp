@@ -9,8 +9,24 @@
     android:layout_margin="10dp"
     android:background="@drawable/border_none">
 
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/checklist"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleX="1.1"
+            android:scaleY="1.1"
+            android:buttonTint="@color/colorActive"/>
+
+    </LinearLayout>
 
     <LinearLayout
+        android:layout_marginLeft="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -34,6 +50,7 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_medium"
         android:textColor="@color/colorTextDark"
         android:id="@+id/titleMed"
         android:text="Djuokl"
@@ -42,6 +59,7 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/sukhumvitset_text"
         android:id="@+id/subTitleMed"
         android:text="foik"
         android:textSize="16dp"/>
@@ -52,19 +70,21 @@
 
 
 
+
     <LinearLayout
         android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true">
 
-        <CheckBox
-            android:id="@+id/checklist"
+        <ImageButton
+            android:id="@+id/edit"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleX="1.1"
-            android:scaleY="1.1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/dots"
+            android:scaleType="fitXY"
+            android:background="@null"
             android:buttonTint="@color/colorActive"/>
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -25,7 +25,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,16 +38,15 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.ProfileActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AddPatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

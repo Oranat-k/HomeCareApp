@@ -60,12 +60,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-
         getSupportActionBar().hide();
         //not nev bar
 
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView (R.layout.activity_login);
+
+//        NotiUitil.notiAlarm (LoginActivity.this , "");
 
         edtUser = (EditText) findViewById (R.id.edtUser);
         edtPass = (EditText) findViewById (R.id.edtPass);
@@ -235,7 +236,6 @@ public class LoginActivity extends AppCompatActivity {
                             if (obj.getJSONObject (userStr).getJSONObject ("profile").getString ("password").equals (passStr)) {
                                 UserDetail.userName = userStr;
                                 getPatients(userStr);
-                                startActivity (new Intent (LoginActivity.this, HomeActivity.class));
                             } else {
 
                                 edtPass.setError ("Password not correct");
@@ -294,6 +294,8 @@ public class LoginActivity extends AppCompatActivity {
                             UserDetail.patient.add (newPatient);
 
                         }
+
+                        startActivity (new Intent (LoginActivity.this, HomeActivity.class));
                     } catch (JSONException e) {
                         e.printStackTrace ();
                     }

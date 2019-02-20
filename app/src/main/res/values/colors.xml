@@ -9,6 +9,8 @@
     <color name="colorButton">#1b90d8</color>
     <color name="colorBox">#b7b6b6</color>
     <color name="holo_green_dark">#35ce9b</color>
+    <color name="colorBlue">#d0ebfd</color>
+    <color name="colorYellow">#fce38a</color>
 
     <color name="colorTextWrite">#ffffff</color>
     <color name="colorTextDark">#262626</color>

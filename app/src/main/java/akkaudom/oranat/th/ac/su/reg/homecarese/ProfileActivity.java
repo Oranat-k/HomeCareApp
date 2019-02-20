@@ -11,63 +11,82 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
-import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.MedicineAdapter;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.ProfileAdapter;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.MedicineDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddDoctorActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddPatientActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddPressureActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSugarActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSymptomActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddTherapyActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.ProfileDetail;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-//    ArrayList <ProfileDetail> patientlst = new ArrayList<> ();
 
-ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
+    ArrayList <ProfileDetail> medArrl = new ArrayList<> ();
 
     ListView lstHisPatient;
     Button b;
+
+    TextView nameProfile;
+    CircleImageView imgProfile;
 
     FloatingActionMenu materialDesignFAM;
     FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3,floatingActionButton4,floatingActionButton5,floatingActionButton6;
 
     BottomNavigationView mBottomNavigation;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        getSupportActionBar().setTitle("Profile");
         setContentView (R.layout.activity_profile);
 
+//        getSupportActionBar().setTitle("Profile");
+//        getSupportActionBar().hide();//Ocultar ActivityBar anterior
+
+        nameProfile = (TextView)  findViewById (R.id.nameProfile);
+        imgProfile = (CircleImageView)  findViewById (R.id.imgProfile);
+
+        nameProfile.setText (UserDetail.userName);
+
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        FirebaseAuth.getInstance().signOut();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -86,7 +105,7 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
                         startActivity(new Intent(ProfileActivity.this, ChartActivity.class));
                         return true;
                     case R.id.itemPlanner:
-                        startActivity(new Intent(ProfileActivity.this, PlannerListActivity.class));
+                        startActivity(new Intent(ProfileActivity.this, PlannerActivity.class));
                         return true;
                     case R.id.itemNoti:
                         startActivity(new Intent(ProfileActivity.this, NotificationActivity.class));
@@ -194,9 +213,9 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
         }); //call
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance()
-                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients");
+                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"");
 
-        reference1.addValueEventListener(new ValueEventListener () {
+        reference1.child ("patients").addValueEventListener(new ValueEventListener () {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
@@ -220,9 +239,55 @@ ArrayList <ProfileDetail> medArrl = new ArrayList<ProfileDetail> ();
             }
         });
 
+        reference1.child ("profile").addValueEventListener(new ValueEventListener () {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                String img = snapshot.child ("ImageUrl").getValue ().toString ();
+
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                        .child(img.substring (1,img.length ()));
+
+                Glide.with(ProfileActivity.this)
+                        .using(new FirebaseImageLoader ())
+                        .load(storageReference)
+                        .into(imgProfile);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigation_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_settings:
+                Toast.makeText(ProfileActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                Toast.makeText(ProfileActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }//Android Options Menu Icon
+
 
 
     public void onClickaddPatient(View view){

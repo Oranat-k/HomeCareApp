@@ -18,8 +18,11 @@ import android.widget.TabHost;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import java.util.ArrayList;
-
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddDoctorActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddPressureActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSugarActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSymptomActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddTherapyActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.SugarTab;
 
 public class ChartActivity extends AppCompatActivity {
@@ -63,7 +66,7 @@ public class ChartActivity extends AppCompatActivity {
 //                        startActivity(new Intent(ChartActivity.this, ChartActivity.class));
                         return true;
                     case R.id.itemPlanner:
-                        startActivity(new Intent(ChartActivity.this, PlannerListActivity.class));
+                        startActivity(new Intent(ChartActivity.this, PlannerActivity.class));
                         return true;
                     case R.id.itemNoti:
                         startActivity(new Intent(ChartActivity.this, NotificationActivity.class));

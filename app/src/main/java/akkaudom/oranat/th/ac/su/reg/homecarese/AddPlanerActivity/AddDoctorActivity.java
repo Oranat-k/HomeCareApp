@@ -1,4 +1,4 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -19,8 +19,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.PlannerActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 
 public class AddDoctorActivity extends AppCompatActivity {
 
@@ -117,38 +121,42 @@ public class AddDoctorActivity extends AppCompatActivity {
 
     public void dataDoctor(View view) {
 
-        Calendar dateNow = Calendar.getInstance ();
 
-        DateFormat formater = new SimpleDateFormat ("dd-MM-yyyy");
-        String datetime = formater.format (new Date ());
+        SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy hh:mm");
+        String datetime = sdf.format (myCalendar.getTimeInMillis ());
 
         DatabaseReference referenPressure = FirebaseDatabase.getInstance ()
-                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com");
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
-                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
-                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
-                .child ("Hospital").setValue (hospitalName.getText ().toString ());
+                .getReferenceFromUrl ("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
+                        +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Doctors");
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
-                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
-                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
-                .child ("DoctorName").setValue (nameDoc.getText ().toString ());
+        Map<String, String> map = new HashMap<String, String> ();
+        map.put ("Hospital", hospitalName.getText ().toString ());
+        map.put ("DoctorName", nameDoc.getText ().toString ());
+        map.put ("Date", datetime);
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
-                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
-                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
-                .child ("Date").setValue (dateDoc.getText ().toString ());
 
-        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
-                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
-                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
-                .child ("Time").setValue (timeDoc.getText ().toString ());
+        referenPressure.push ().setValue (map);
+//        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+//                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
+//                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+//                .child ("Hospital").setValue (hospitalName.getText ().toString ());
+//
+//        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+//                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
+//                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+//                .child ("DoctorName").setValue (nameDoc.getText ().toString ());
+//
+//        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
+//                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
+//                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)
+//                .child ("Date").setValue (dateDoc.getText ().toString ()+" "+timeDoc.getText ().toString ());
+
 
 //        referenPressure.child ("users").child (UserDetail.userName).child ("patients").child (UserDetail.patient[UserDetail.selectPatient])
 //                .child ("Doctors").child ("Date").setValue (dateDoc.getText ().toString ());
 
 
-        startActivity (new Intent (AddDoctorActivity.this,PlannerListActivity.class));
+        startActivity (new Intent (AddDoctorActivity.this,PlannerActivity.class));
     }
 
 

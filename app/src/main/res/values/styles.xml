@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <string-array name="numbers">
         <item>ความสัมพันธ์กับผู้ดูเเล</item>
         <item>มารดา</item>

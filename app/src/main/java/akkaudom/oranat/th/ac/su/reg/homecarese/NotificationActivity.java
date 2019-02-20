@@ -44,7 +44,7 @@ public class NotificationActivity extends AppCompatActivity {
                         startActivity(new Intent(NotificationActivity.this, ChartActivity.class));
                         return true;
                     case R.id.itemPlanner:
-                        startActivity(new Intent(NotificationActivity.this, PlannerListActivity.class));
+                        startActivity(new Intent(NotificationActivity.this, PlannerActivity.class));
                         return true;
                     case R.id.itemNoti:
 //                        startActivity(new Intent(NotificationActivity.this, NotificationActivity.class));

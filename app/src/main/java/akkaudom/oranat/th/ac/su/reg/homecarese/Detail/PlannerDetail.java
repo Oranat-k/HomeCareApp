@@ -3,29 +3,18 @@ package akkaudom.oranat.th.ac.su.reg.homecarese.Detail;
 public class PlannerDetail {
 
     private String title;
-    private String subtitle;
+    private String [] subtitle;
     private String imagePath;
     private String mode;
     private String value;
     private String status;
+    private String date;
+    private String during;
 
 
-    private String timeMed;
-    private String range;
-    private String amount;
-
-
-    public String getTimeMed() { return timeMed; }
-
-    public void setTimeMed(String timeMed) { this.timeMed = timeMed; }
-
-    public String getRange() { return range; }
-
-    public void setRange(String range) { this.range = range; }
-
-    public String getAmount() { return amount; }
-
-    public void setAmount(String amount) { this.amount = amount; }
+//    private String timeMed;
+//    private String range;
+//    private String amount;
 
 
 
@@ -37,7 +26,7 @@ public class PlannerDetail {
 
     }//default mode
 
-    public PlannerDetail(String title, String subtitle, String imagePath, String mode, String status) {
+    public PlannerDetail(String title, String [] subtitle, String imagePath, String mode, String status) {
         this.title = title;
         this.subtitle = subtitle;
         this.imagePath = imagePath;
@@ -47,13 +36,38 @@ public class PlannerDetail {
     }//Medicine mode
 
 
-    public PlannerDetail(String title, String subtitle, String mode, String status) {
+    public PlannerDetail(String title, String[] subtitle, String mode, String status) {
         this.title = title;
         this.subtitle = subtitle;
         this.mode = mode;
         this.status = status;
 
     }//Note mode
+
+    public PlannerDetail(String title, String[] subtitle, String mode, String status, String date, String during) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.mode = mode;
+        this.status = status;
+        this.date = date;
+        this.during = during;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDuring() {
+        return during;
+    }
+
+    public void setDuring(String during) {
+        this.during = during;
+    }
 
     public String getTitle() {
         return title;
@@ -71,11 +85,11 @@ public class PlannerDetail {
         this.status = status;
     }
 
-    public String getSubtitle() {
+    public String[] getSubtitle() {
         return subtitle;
     }
 
-    public void setSubtitle(String subtitle) {
+    public void setSubtitle(String[] subtitle) {
         this.subtitle = subtitle;
     }
 

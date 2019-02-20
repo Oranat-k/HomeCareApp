@@ -1,10 +1,8 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,9 +18,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.PlannerActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 
 public class AddSymptomActivity extends AppCompatActivity {
 
@@ -150,7 +148,7 @@ public class AddSymptomActivity extends AppCompatActivity {
 
         }
 
-            startActivity (new Intent (AddSymptomActivity.this, PlannerListActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
+            startActivity (new Intent (AddSymptomActivity.this, PlannerActivity.class)); //กดบันทึกเเล้วกลับไปหน้าก่อนหน้า
 
 
     }

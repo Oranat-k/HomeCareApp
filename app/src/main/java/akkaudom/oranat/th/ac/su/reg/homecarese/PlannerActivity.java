@@ -16,40 +16,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
-import java.util.Map;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.PatientAdapter;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.PlannerAdapter;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.ProfileAdapter;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.PlannerDetail;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.ProfileDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddDoctorActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddPressureActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSugarActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSymptomActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddTherapyActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.AfternoonTab;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.BeforeBedTab;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.EveningTab;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.MorningTab;
 
 public class PlannerActivity extends AppCompatActivity {
@@ -248,11 +233,11 @@ public class PlannerActivity extends AppCompatActivity {
 
         TabHost.TabSpec tabSpec3 = tabHost.newTabSpec("tab2")
                 .setIndicator("เย็น")
-                .setContent(new Intent(mcontext, AfternoonTab.class));
+                .setContent(new Intent(mcontext, EveningTab.class));
 
         TabHost.TabSpec tabSpec4 = tabHost.newTabSpec("tab2")
                 .setIndicator("ก่อนนอน")
-                .setContent(new Intent(mcontext, AfternoonTab.class));
+                .setContent(new Intent(mcontext, BeforeBedTab.class));
 
         TabHost.TabSpec tabSpec5 = tabHost.newTabSpec("tab2")
                 .setIndicator("วันนัดหมอ")
@@ -279,7 +264,12 @@ public class PlannerActivity extends AppCompatActivity {
                         getTabData();
                         break;
                     case 2:
-                        //do what you want when tab 2 is selected
+                        checkTab = "evening";
+                        getTabData();
+                        break;
+                    case 3:
+                        checkTab = "beforbed";
+                        getTabData();
                         break;
 
                     default:
@@ -299,6 +289,12 @@ public class PlannerActivity extends AppCompatActivity {
                 break;
             case "afternoon":
                 AfternoonTab.refreshData (mcontext);
+                break;
+            case "evening":
+                EveningTab.refreshData (mcontext);
+                break;
+            case "beforbed":
+                BeforeBedTab.refreshData (mcontext);
                 break;
         }
     }
@@ -320,10 +316,10 @@ public class PlannerActivity extends AppCompatActivity {
                     Day.setText ("วันนี้");
                     break;
                 case 1:
-                    Day.setText ("พรุ่งนั้");
+                    Day.setText ("เมื่อวานนี้");
                     break;
                 case -1:
-                    Day.setText ("เมื่อวานนี้");
+                    Day.setText ("พรุ่งนั้");
                     break;
                 default:
                     Day.setText (selectToday.get (Calendar.DAY_OF_MONTH) + "-" +(selectToday.get (Calendar.MONTH)+1)+"-" +selectToday.get (Calendar.YEAR));

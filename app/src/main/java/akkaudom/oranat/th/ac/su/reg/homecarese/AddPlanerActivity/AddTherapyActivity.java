@@ -1,4 +1,4 @@
-package akkaudom.oranat.th.ac.su.reg.homecarese;
+package akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -18,9 +18,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.PlannerActivity;
+import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 
 public class AddTherapyActivity extends AppCompatActivity {
 
@@ -143,7 +144,7 @@ public class AddTherapyActivity extends AppCompatActivity {
         }
 
 
-        startActivity (new Intent(AddTherapyActivity.this,PlannerListActivity.class));
+        startActivity (new Intent(AddTherapyActivity.this,PlannerActivity.class));
 
     }
 

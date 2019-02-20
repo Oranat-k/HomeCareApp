@@ -124,6 +124,9 @@ public class HomeCareUitil {
                         if (checkData(objData.getJSONObject ("Symptoms"),date,during)){
                             getSymptomData(objData.getJSONObject ("Symptoms").getJSONObject (date).getJSONObject (during));
                         }
+                        if (checkData(objData.getJSONObject ("Therapys"),date,during)){
+                            getTherapyData(objData.getJSONObject ("Therapys").getJSONObject (date).getJSONObject (during));
+                        }
 
 
                         getMedicineData(objData.getJSONObject ("Medicines"));
@@ -184,6 +187,17 @@ public class HomeCareUitil {
 
     }
 
+    public static void getTherapyData(JSONObject obj){
+
+        try {
+            arrPlanner.add (setNewTherapy (obj));
+        } catch (JSONException e) {
+            e.printStackTrace ();
+        }
+        setAdapter(date);
+
+    }
+
     public static void getMedicineData(JSONObject obj){
 
         String duringtime = "";
@@ -233,9 +247,10 @@ public class HomeCareUitil {
 
         return new PlannerDetail (
                 "ค่าความดัน",
-                top +" / "+below,
+                new String[]{top +" / "+below,""+top,""+below},
                 "pressure",
-                status
+                status,date,during
+
         );
 
     }
@@ -243,7 +258,7 @@ public class HomeCareUitil {
     public static PlannerDetail setNewSugar(JSONObject obj) throws JSONException {
         String status = "default";
         int Value = Integer.parseInt (obj.getString ("Value"));
-//        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
 
         if (Value >= 60 && Value < 100){
             status = "very good";
@@ -256,9 +271,9 @@ public class HomeCareUitil {
 
         return new PlannerDetail (
                 "ค่าน้ำตาล",
-                Value +"  ",
-                "pressure",
-                status
+                new String[]{Value +" , "+time,""+Value,time},
+                "sugar",
+                status,date,during
         );
 
     }
@@ -272,8 +287,24 @@ public class HomeCareUitil {
 
         return new PlannerDetail (
                 "อาการ",
-                Value +"  ",
+                new String[]{Value +"  "},
                 "symptom",
+                status
+        );
+
+    }
+
+    public static PlannerDetail setNewTherapy(JSONObject obj) throws JSONException {
+        String status = "therapy";
+        String Value  = (obj.getString ("Value"));
+//        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+
+
+
+        return new PlannerDetail (
+                "การดูเเล",
+                new String[]{Value +"  "},
+                "therapy",
                 status
         );
 
@@ -286,8 +317,8 @@ public class HomeCareUitil {
 
         return new PlannerDetail (
                 key,
-                during+" , "+ time +" , "
-                        +obj.getString ("Amount"),
+                new String[]{during+" , "+ time +" , "
+                        +obj.getString ("Amount")},
                 obj.getString ("ImageUrl"),
                 "medicine",
                 obj.getString ("Status")

@@ -48,7 +48,7 @@
         android:fontFamily="@font/sukhumvitset_medium"
         android:textColor="@color/colorTextDark"
         android:textSize="20dp"
-        android:text="มื้ออารหาร"/>
+        android:text="มื้ออาหาร"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

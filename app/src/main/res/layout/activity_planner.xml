@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorTextWrite"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,6 +36,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:fontFamily="@font/sukhumvitset_medium"
+                android:textColor="#000"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content" />
             <ImageButton
@@ -50,7 +50,7 @@
     </RelativeLayout>
 
     <TabHost
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/tabhost"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -70,6 +70,8 @@
 
                 <TabWidget
                     android:id="@android:id/tabs"
+                    android:fontFamily="@font/sukhumvitset_medium"
+                    android:textColor="@color/colorTextDark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                 </TabWidget>
@@ -80,6 +82,7 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="50dp"
                 android:layout_height="match_parent">
             </FrameLayout>
 

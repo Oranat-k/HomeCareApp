@@ -63,6 +63,10 @@ public class DoctorAdapter extends BaseAdapter {
 
         h.nameHospital.setText(list.get(position).getNameHospital ());
 
+        h.docTime = (TextView)(view.findViewById(R.id.docTime));
+
+        h.docTime.setText(list.get(position).getTimeDoc ());
+
 //        h.statusPatient = (TextView)(view.findViewById(R.id.statusPatient));
 
 //        h.statusPatient.setText("สถานะ : "+list.get(position).getStatusPatient ());
@@ -78,6 +82,7 @@ public class DoctorAdapter extends BaseAdapter {
     {
         TextView nameDoctor;
         TextView nameHospital;
+        TextView docTime;
 
     }
 }

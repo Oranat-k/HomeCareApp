@@ -77,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
         conImage = (ImageView) findViewById (R.id.conImage);
 
 
-
         final Calendar now = Calendar.getInstance();
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
@@ -114,7 +113,11 @@ public class HomeActivity extends AppCompatActivity {
 
                         }
 
-                        NotiUitil.notiAlarm (HomeActivity.this , contentNoti);
+                        if (!contentNoti.equals ("")){
+                            NotiUitil.notiAlarm (HomeActivity.this , contentNoti);
+                        }
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();

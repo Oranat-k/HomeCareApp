@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -14,6 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +29,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Map;
 
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.DoctorAdapter;
@@ -36,13 +50,15 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
 
 public class NotificationActivity extends AppCompatActivity {
 
-//    ArrayList<DoctorDetail> medArrl = new ArrayList<DoctorDetail> ();
-//    ListView doctorList;
+    ArrayList<DoctorDetail> medArrl = new ArrayList<DoctorDetail> ();
+    ListView doctorList;
 
     FloatingActionMenu materialDesignFAM;
     FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3,floatingActionButton4,floatingActionButton5,floatingActionButton6;
 
     BottomNavigationView mBottomNavigation;
+
+    Calendar now = Calendar.getInstance();
 
 
     @Override
@@ -53,42 +69,54 @@ public class NotificationActivity extends AppCompatActivity {
         getSupportActionBar ().setTitle ("Notification");
 
 
-//        doctorList = (ListView) findViewById (R.id.lstHisPatient) ;
-//
-//        doctorList.setOnTouchListener(new View.OnTouchListener () {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                v.getParent().requestDisallowInterceptTouchEvent(true);
-//                return false;
-//            }
-//        });
-//
-//
-//        DatabaseReference reference1 = FirebaseDatabase.getInstance()
-//                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"");
-//
-//        reference1.child ("patients").addValueEventListener(new ValueEventListener () {
-//            @Override
-//            public void onDataChange(DataSnapshot snapshot) {
-//
-//                for(DataSnapshot ds : snapshot.getChildren()) {
-//                    Map<String, String> map = (Map) ds.child ("Doctors").getValue ();
-//
-//                    DoctorDetail newMed = new DoctorDetail (
-//                            map.get ("DoctorName").toString (),
-//                            map.get ("Hospital").toString ());
-//
-//                    medArrl.add (newMed);
-//                }
-//                DoctorAdapter medicineAdapter = new DoctorAdapter (medArrl,NotificationActivity.this);
-//                doctorList.setAdapter(medicineAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getMessage());
-//            }
-//        });
+        doctorList = (ListView) findViewById (R.id.doctorList) ;
+
+
+
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
+                +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Doctors");
+
+        reference1.addValueEventListener(new ValueEventListener () {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String, String> map = (Map) ds.getValue ();
+
+                    String dateStr = map.get ("Date").toString ();
+                    Calendar date = Calendar.getInstance ();
+                    SimpleDateFormat sdf = new SimpleDateFormat ("dd-MM-yyyy hh:mm");
+                    SimpleDateFormat datehh = new SimpleDateFormat ("hh:mm");
+                    try {
+                        date.setTime (sdf.parse (dateStr));// all done
+                    } catch (ParseException e) {
+                        e.printStackTrace ();
+                    }
+
+                    boolean sameDay = now.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR) &&
+                            now.get(Calendar.YEAR) == date.get(Calendar.YEAR);
+
+                    if (sameDay) {
+
+                        DoctorDetail newMed = new DoctorDetail (
+                                "หมอ" +map.get ("DoctorName").toString (),
+                                "โรงพยาบาล : " +map.get ("Hospital").toString (),
+                                ", เวลา : " + date.get (Calendar.HOUR_OF_DAY) + ":" + date.get (Calendar.MINUTE));
+
+                        medArrl.add (newMed);
+                    }
+                }
+                DoctorAdapter medicineAdapter = new DoctorAdapter (medArrl,NotificationActivity.this);
+                doctorList.setAdapter(medicineAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);

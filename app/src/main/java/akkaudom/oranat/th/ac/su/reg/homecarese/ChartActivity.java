@@ -23,7 +23,7 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddPressureActi
 import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSugarActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSymptomActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddTherapyActivity;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.SugarTab;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.PressureTab;
 
 public class ChartActivity extends AppCompatActivity {
     Activity mcontext = ChartActivity.this;
@@ -47,6 +47,11 @@ public class ChartActivity extends AppCompatActivity {
 
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
+
+
+
+
+
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
@@ -147,15 +152,15 @@ public class ChartActivity extends AppCompatActivity {
 
         TabHost.TabSpec tabSpec = tabHost.newTabSpec("tab1")
                 .setIndicator("ค่าความดัน")
-                .setContent(new Intent(mcontext, SugarTab.class));
+                .setContent(new Intent(mcontext, PressureTab.class));
 
         TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2")
                 .setIndicator("ค่าน้ำตาล")
-                .setContent(new Intent(mcontext, SugarTab.class));
-
+                .setContent(new Intent(mcontext, PressureTab.class));
 
         tabHost.addTab(tabSpec);
         tabHost.addTab(tabSpec2);
+        //tab chart
 
     }
 

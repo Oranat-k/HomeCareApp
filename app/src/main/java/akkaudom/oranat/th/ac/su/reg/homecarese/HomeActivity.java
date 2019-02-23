@@ -7,6 +7,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -236,6 +237,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });//FloatingActionMenu
 
+        CardView btn = (CardView) findViewById(R.id.cardview);
+        btn.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                startActivity (new Intent (HomeActivity.this,TestDetailActivity.class));
+            }
+        });
 
         mRecyclerView = findViewById(R.id.recyclerview);
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(HomeActivity.this, 2);
@@ -254,25 +262,6 @@ public class HomeActivity extends AppCompatActivity {
         mFlowerData = new FlowerData("กายภาพ", getString(R.string.description_flower_daisy),
                 R.drawable.pic_four);
         mFlowerList.add(mFlowerData);
-
-//        mFlowerData = new FlowerData("Sunflower", getString(R.string.description_flower_sunflower),
-//                R.drawable.pic_a);
-//        mFlowerList.add(mFlowerData);
-//        mFlowerData = new FlowerData("Daffodil", getString(R.string.description_flower_daffodil),
-//                R.drawable.pic_a);
-//        mFlowerList.add(mFlowerData);
-//        mFlowerData = new FlowerData("Gerbera", getString(R.string.description_flower_gerbera),
-//                R.drawable.pic_a);
-//        mFlowerList.add(mFlowerData);
-//        mFlowerData = new FlowerData("Orchid", getString(R.string.description_flower_orchid),
-//                R.drawable.pic_a);
-//        mFlowerList.add(mFlowerData);
-//        mFlowerData = new FlowerData("Iris", getString(R.string.description_flower_iris),
-//                R.drawable.pic_a);
-//        mFlowerList.add(mFlowerData);
-//        mFlowerData = new FlowerData("Lilac", getString(R.string.description_flower_lilac),
-//                R.drawable.pic_a);
-//        mFlowerList.add(mFlowerData);
 
         MyAdapter myAdapter = new MyAdapter(HomeActivity.this, mFlowerList);
         mRecyclerView.setAdapter(myAdapter);

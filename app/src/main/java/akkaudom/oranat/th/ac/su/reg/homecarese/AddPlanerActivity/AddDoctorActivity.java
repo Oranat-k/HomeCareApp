@@ -136,6 +136,7 @@ public class AddDoctorActivity extends AppCompatActivity {
 
 
         referenPressure.push ().setValue (map);
+
 //        referenPressure.child ("users").child (UserDetail.userName).child ("patients")
 //                .child (UserDetail.patient.get (UserDetail.selectPatient).getId ())
 //                .child ("Doctors").child(nameDoc.getText ().toString ()).child(datetime)

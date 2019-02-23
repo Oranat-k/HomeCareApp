@@ -50,6 +50,7 @@ public class PlannerActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3,floatingActionButton4,floatingActionButton5,floatingActionButton6;
 
     BottomNavigationView mBottomNavigation;
+
     Spinner patientNames;
     ImageButton btnback , btnnext;
     TextView Day;

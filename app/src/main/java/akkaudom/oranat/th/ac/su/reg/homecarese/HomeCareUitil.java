@@ -127,6 +127,9 @@ public class HomeCareUitil {
                         if (checkData(objData.getJSONObject ("Therapys"),date,during)){
                             getTherapyData(objData.getJSONObject ("Therapys").getJSONObject (date).getJSONObject (during));
                         }
+//                        if (checkData(objData.getJSONObject ("Doctors"),date,during)){
+//                            getTherapyData(objData.getJSONObject ("Doctors").getJSONObject (date).getJSONObject (during));
+//                        }
 
 
                         getMedicineData(objData.getJSONObject ("Medicines"));
@@ -187,6 +190,17 @@ public class HomeCareUitil {
 
     }
 
+//    public static void getDoctorData(JSONObject obj){
+//
+//        try {
+//            arrPlanner.add (setNewDoctor (obj));
+//        } catch (JSONException e) {
+//            e.printStackTrace ();
+//        }
+//        setAdapter(date);
+//
+//    }
+
     public static void getTherapyData(JSONObject obj){
 
         try {
@@ -246,7 +260,7 @@ public class HomeCareUitil {
         }
 
         return new PlannerDetail (
-                "ค่าความดัน",
+                "ค่าความดัน :",
                 new String[]{top +" / "+below,""+top,""+below},
                 "pressure",
                 status,date,during
@@ -270,7 +284,7 @@ public class HomeCareUitil {
 
 
         return new PlannerDetail (
-                "ค่าน้ำตาล",
+                "ค่าน้ำตาล :",
                 new String[]{Value +" , "+time,""+Value,time},
                 "sugar",
                 status,date,during
@@ -293,6 +307,22 @@ public class HomeCareUitil {
         );
 
     }
+
+//    public static PlannerDetail setNewDoctor(JSONObject obj) throws JSONException {
+//        String status = "doctor";
+//        String Value  = (obj.getString ("Hospital"));
+////        String time = ((obj.getString ("Time") == "beforefood")? "ก่อนอาหาร" : "หลังอาหาร");
+//
+//
+//
+//        return new PlannerDetail (
+//                "วันนัดหมอ",
+//                new String[]{Value +"  "},
+//                "doctor",
+//                status
+//        );
+//
+//    }
 
     public static PlannerDetail setNewTherapy(JSONObject obj) throws JSONException {
         String status = "therapy";

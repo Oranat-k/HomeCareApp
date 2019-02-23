@@ -171,7 +171,7 @@ public class PlannerAdapter extends BaseAdapter {
                         return true;
                     default:
                         return false;
-                }
+                } //edit delete in sugar and press
             }
 
             @Override

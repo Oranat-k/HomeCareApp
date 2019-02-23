@@ -14,8 +14,8 @@ public class NotiUitil{
 
 
         final Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE,43);
+        calendar.set(Calendar.HOUR_OF_DAY, 10);
+        calendar.set(Calendar.MINUTE,52);
         calendar.set(Calendar.SECOND, 0);
 
         content = contentNoti;

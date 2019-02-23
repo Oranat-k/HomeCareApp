@@ -11,13 +11,16 @@
     <Button
         android:onClick="setDate"
         android:id="@+id/dateSugar"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sukhumvitset_text"
         android:layout_marginTop="20dp"
         android:textSize="18dp"
         android:text="วันที่"
-        android:background="@drawable/border_box"/>
+        android:paddingLeft="130dp"
+        android:paddingRight="125dp"
+        android:drawableLeft="@drawable/calendar"
+        android:background="@drawable/border_calendar"/>
 
     <TextView
         android:layout_width="match_parent"

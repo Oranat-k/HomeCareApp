@@ -14,6 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ListView
+        android:id="@+id/doctorList"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="10.0sp"
+        android:padding="10dp" />
+
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/material_design_android_floating_action_menu"
         android:layout_width="wrap_content"

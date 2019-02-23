@@ -81,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
         imgProfile = (CircleImageView)  findViewById (R.id.imgProfile);
 
         nameProfile.setText (UserDetail.userName);
+        //add username firebase
 
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -212,6 +213,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }); //call
 
+
         DatabaseReference reference1 = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"");
 
@@ -239,6 +241,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+
+
         reference1.child ("profile").addValueEventListener(new ValueEventListener () {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -254,16 +259,18 @@ public class ProfileActivity extends AppCompatActivity {
                         .into(imgProfile);
 
 
-            }
+            }// img profile
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getMessage());
             }
-        });
+        });// img profile on firebase
 
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -274,9 +281,9 @@ public class ProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.action_settings:
-                Toast.makeText(ProfileActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.action_settings:
+//                Toast.makeText(ProfileActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.logout:
                 startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
                 Toast.makeText(ProfileActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();

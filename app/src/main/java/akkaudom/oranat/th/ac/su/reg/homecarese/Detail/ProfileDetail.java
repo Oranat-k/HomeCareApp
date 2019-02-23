@@ -15,9 +15,7 @@ public class ProfileDetail {
         return namePatient;
     }
 
-    public void setNamePatient(String namePatient) {
-        this.namePatient = namePatient;
-    }
+    public void setNamePatient(String namePatient) { this.namePatient = namePatient; }
 
     public String getImagePatient() {
         return imagePatient;

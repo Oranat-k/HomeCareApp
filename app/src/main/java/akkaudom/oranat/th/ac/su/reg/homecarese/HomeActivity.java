@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.android.volley.Request;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,6 +61,9 @@ public class HomeActivity extends AppCompatActivity {
     FlowerData mFlowerData;
     String contentNoti = "";
 
+    TextView conTitle;
+    ImageView conImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,16 +71,19 @@ public class HomeActivity extends AppCompatActivity {
         setContentView (R.layout.activity_home);
 
         //getSupportActionBar().setTitle("Home");
-
         getSupportActionBar().hide();
         //not nev bar
+        conTitle = (TextView) findViewById (R.id.conTitle);
+        conImage = (ImageView) findViewById (R.id.conImage);
+
+
 
         final Calendar now = Calendar.getInstance();
 
         String url = "https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
                 +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Doctors.json";
-        Log.d ("url firebase", "{"+url+"}");
 
+        Log.d ("url firebase", "{"+url+"}");
         final StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
@@ -99,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
 
                             if (sameDay){
                                 JSONObject objDoctor = objData.optJSONObject (key);
-                                contentNoti += objDoctor.getString ("Hospital") + "\n"
+                                contentNoti += objDoctor.getString ("Hospital") + ","
                                         + objDoctor.getString ("DoctorName") + "  "
                                         + objDoctor.getString ("Date") +"\n\n";
                             }
@@ -116,7 +124,6 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
 
-
             }
         },new Response.ErrorListener(){
             @Override
@@ -127,17 +134,9 @@ public class HomeActivity extends AppCompatActivity {
 
         RequestQueue rQueue = Volley.newRequestQueue(HomeActivity.this);
         rQueue.add(request);
+        //Notification
 
 
-        ImageView imageView = (ImageView) findViewById(R.id.picnewone);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                Uri uri = Uri.parse("http://www.google.com");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
@@ -152,7 +151,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.itemHome:
-//                    startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                      //startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                         return true;
                     case R.id.itemChart:
                         startActivity(new Intent(HomeActivity.this, ChartActivity.class));
@@ -240,17 +239,17 @@ public class HomeActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mGridLayoutManager);
 
         mFlowerList = new ArrayList<> ();
-        mFlowerData = new FlowerData("แผลกดทับ", getString(R.string.description_flower_rose),
+        mFlowerData = new FlowerData("ภาวะกลืนลำบาก", getString(R.string.description_flower_rose),
+                R.drawable.pic_two);
+        mFlowerList.add(mFlowerData);
+        mFlowerData = new FlowerData("การติดเชื้อ", getString(R.string.description_flower_carnation),
                 R.drawable.pic_one);
         mFlowerList.add(mFlowerData);
-        mFlowerData = new FlowerData("กายภาพ", getString(R.string.description_flower_carnation),
-                R.drawable.pic_one);
+        mFlowerData = new FlowerData("แผลกดทับ", getString(R.string.description_flower_tulip),
+                R.drawable.pic_tree);
         mFlowerList.add(mFlowerData);
-        mFlowerData = new FlowerData("ภาวะกลืนลำบาก", getString(R.string.description_flower_tulip),
-                R.drawable.pic_one);
-        mFlowerList.add(mFlowerData);
-        mFlowerData = new FlowerData("การติดเชื้อ", getString(R.string.description_flower_daisy),
-                R.drawable.pic_one);
+        mFlowerData = new FlowerData("กายภาพ", getString(R.string.description_flower_daisy),
+                R.drawable.pic_four);
         mFlowerList.add(mFlowerData);
 
 //        mFlowerData = new FlowerData("Sunflower", getString(R.string.description_flower_sunflower),
@@ -279,7 +278,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
-
-
 }
+
+

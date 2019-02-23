@@ -7,11 +7,11 @@
         android:title=""
         app:showAsAction="always">
         <menu>
-            <item
-                android:id="@+id/action_settings"
-                android:icon="@drawable/setting"
-                android:title="ตั้งค่า"
-                app:showAsAction="ifRoom" />
+            <!--<item-->
+                <!--android:id="@+id/action_settings"-->
+                <!--android:icon="@drawable/setting"-->
+                <!--android:title="ตั้งค่า"-->
+                <!--app:showAsAction="ifRoom" />-->
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/exit"

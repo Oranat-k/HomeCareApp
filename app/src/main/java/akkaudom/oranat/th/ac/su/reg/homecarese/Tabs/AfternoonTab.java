@@ -23,6 +23,9 @@ public class AfternoonTab  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.afternoon_tab);
 
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linear);
+        linearLayout.setBackgroundColor(Color.parseColor("#edf7f9"));
+
         afternoonList = (ListView) findViewById (R.id.afternoonList);
 
     }

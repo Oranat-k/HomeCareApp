@@ -230,7 +230,9 @@
         android:textSize="20dp"
         android:paddingLeft="20dp"
         android:text="หมายเลขผู้ป่วย"/>
+
     <EditText
+        android:inputType="number"
         android:id="@+id/numberHn"
         android:layout_width="match_parent"
         android:layout_height="50dp"

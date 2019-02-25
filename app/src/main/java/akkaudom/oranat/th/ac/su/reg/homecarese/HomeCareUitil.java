@@ -260,8 +260,8 @@ public class HomeCareUitil {
         }
 
         return new PlannerDetail (
-                "ค่าความดัน :",
-                new String[]{top +" / "+below,""+top,""+below},
+                "ค่าความดัน ",
+                new String[]{" : "+top +" / "+below,""+top,""+below},
                 "pressure",
                 status,date,during
 
@@ -284,8 +284,8 @@ public class HomeCareUitil {
 
 
         return new PlannerDetail (
-                "ค่าน้ำตาล :",
-                new String[]{Value +" , "+time,""+Value,time},
+                "ค่าน้ำตาล ",
+                new String[]{" : "+Value +" , "+time,""+Value,time},
                 "sugar",
                 status,date,during
         );

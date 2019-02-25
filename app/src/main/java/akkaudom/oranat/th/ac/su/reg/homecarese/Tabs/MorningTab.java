@@ -24,7 +24,7 @@ public class MorningTab extends Activity {
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linear);
         linearLayout.setBackgroundColor(Color.parseColor("#edf7f9"));
-
+        //color tab
 
         morningList  = (ListView) findViewById (R.id.morningList);
 

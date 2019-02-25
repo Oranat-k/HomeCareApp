@@ -122,7 +122,7 @@ public class PlannerActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 //optionally do something here
             }
-        });
+        });//Spinner select patientNames
 
 
 
@@ -274,12 +274,10 @@ public class PlannerActivity extends AppCompatActivity {
                         break;
 
                     default:
-
                         break;
                 }
             }
         });
-
 
     }
 
@@ -298,8 +296,7 @@ public class PlannerActivity extends AppCompatActivity {
                 BeforeBedTab.refreshData (mcontext);
                 break;
         }
-    }
-
+    } //checkTab 4 data
 
 
     public void showDay(int changeDay){
@@ -320,21 +317,17 @@ public class PlannerActivity extends AppCompatActivity {
                     Day.setText ("เมื่อวานนี้");
                     break;
                 case -1:
-                    Day.setText ("พรุ่งนั้");
+                    Day.setText ("พรุ่งนี้");
                     break;
                 default:
                     Day.setText (selectToday.get (Calendar.DAY_OF_MONTH) + "-" +(selectToday.get (Calendar.MONTH)+1)+"-" +selectToday.get (Calendar.YEAR));
                     break;
-            }
-
+            }//date select setText text
 
         }else {
             Day.setText (selectToday.get (Calendar.DAY_OF_MONTH) + "-" +(selectToday.get (Calendar.MONTH)+1)+"-" +selectToday.get (Calendar.YEAR));
 
-        }
-
-
-
+        }//date select setText number
 
     }
 

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_note"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     tools:context=".AddPlanerActivity.AddDoctorActivity"
     android:orientation="vertical">
 
+
+    <ImageView
+        android:src="@drawable/doctor"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -80,6 +91,7 @@
         android:textSize="18dp"
         android:text="เวลา"
         android:background="@drawable/border_box"
+        android:layout_marginBottom="10dp"
         tools:ignore="OnClick" />
 
     </RelativeLayout>
@@ -98,4 +110,7 @@
         android:textSize="20dp"
         android:text="บันทึก"/>
 
+
 </LinearLayout>
+
+</ScrollView>

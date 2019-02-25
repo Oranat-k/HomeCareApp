@@ -27,6 +27,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         mBuilder.setSmallIcon(R.drawable.logo);
         mBuilder.setContentTitle(NotiUitil.content);
         mBuilder.setPriority(Notification.PRIORITY_MAX);
+        //set notification imageApp
 
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -42,7 +43,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         mNotificationManager.notify(0, mBuilder.build());
-
     }
 
 }

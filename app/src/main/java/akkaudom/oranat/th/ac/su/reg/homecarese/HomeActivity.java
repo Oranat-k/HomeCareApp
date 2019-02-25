@@ -110,13 +110,13 @@ public class HomeActivity extends AppCompatActivity {
                                 contentNoti += objDoctor.getString ("Hospital") + ","
                                         + objDoctor.getString ("DoctorName") + "  "
                                         + objDoctor.getString ("Date") +"\n\n";
-                            }
+                            }//set show to Sting
 
                         }
 
                         if (!contentNoti.equals ("")){
                             NotiUitil.notiAlarm (HomeActivity.this , contentNoti);
-                        }
+                        }//notShowData เมื่อไม่มีค่า ว่าง
 
 
 
@@ -266,10 +266,7 @@ public class HomeActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(HomeActivity.this, mFlowerList);
         mRecyclerView.setAdapter(myAdapter);
 
-
     }
-
-
 }
 
 

@@ -105,7 +105,7 @@ public class PressureTab extends Activity {
                     }else if (ds.hasChild ("beforbed")){
                         calTopNBelow(ds.child ("beforbed"));
 
-                    }
+                    }//loop check time
 
                     SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
 
@@ -135,7 +135,7 @@ public class PressureTab extends Activity {
                 lineGraphSeries.setColor(Color.parseColor("#f9b7b7"));
                 graph.addSeries (lineGraphSeries);
                 graph.addSeries(pointsGraphSeries);
-
+                // Design chart line Top
 
                 LineGraphSeries<DataPoint> lineGraphSeries2 = new LineGraphSeries<>(arrBelow.toArray(new DataPoint[arrBelow.size ()]));
                 PointsGraphSeries<DataPoint> pointsGraphSeries2 = new PointsGraphSeries<>(arrBelow.toArray(new DataPoint[arrBelow.size ()]));
@@ -144,6 +144,7 @@ public class PressureTab extends Activity {
                 lineGraphSeries.setColor(Color.parseColor("#f9b7c7"));
                 graph.addSeries (lineGraphSeries2);
                 graph.addSeries(pointsGraphSeries2);
+                // Design chart line Below
 
 
                 // set date label formatter

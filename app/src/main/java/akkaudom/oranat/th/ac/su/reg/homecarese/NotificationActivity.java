@@ -72,8 +72,6 @@ public class NotificationActivity extends AppCompatActivity {
         doctorList = (ListView) findViewById (R.id.doctorList) ;
 
 
-
-
         DatabaseReference reference1 = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
                 +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Doctors");
@@ -110,13 +108,14 @@ public class NotificationActivity extends AppCompatActivity {
                 }
                 DoctorAdapter medicineAdapter = new DoctorAdapter (medArrl,NotificationActivity.this);
                 doctorList.setAdapter(medicineAdapter);
-            }
+            }//medArrl more list
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getMessage());
-            }
-        });
+            }//notification not show in data
+
+        });//database show menu notification
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
@@ -148,6 +147,7 @@ public class NotificationActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         for (int i = 0; i < menuView.getChildCount(); i++) {
             final View iconView = menuView.getChildAt(i).findViewById(android.support.design.R.id.icon);
             final ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();

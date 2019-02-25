@@ -44,14 +44,9 @@ public class ChartActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Chart");
 
 
-
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
-
-
-
-
-
+        // Tab
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
@@ -161,8 +156,5 @@ public class ChartActivity extends AppCompatActivity {
         tabHost.addTab(tabSpec);
         tabHost.addTab(tabSpec2);
         //tab chart
-
     }
-
-
 }

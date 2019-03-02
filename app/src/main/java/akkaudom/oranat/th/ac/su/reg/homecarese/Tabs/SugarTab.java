@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -23,29 +22,26 @@ import com.jjoe64.graphview.series.PointsGraphSeries;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.DoctorAdapter;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Adapter.PatientAdapter;
-import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.DoctorDetail;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
-import akkaudom.oranat.th.ac.su.reg.homecarese.NotificationActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.R;
 
-public class PressureTab extends Activity {
+import static android.graphics.Color.rgb;
 
-    Context mcontext = PressureTab.this;
-    ArrayList<DataPoint> arrTop = new ArrayList<> ();
-    ArrayList<DataPoint> arrBelow = new ArrayList<> ();
+public class SugarTab extends Activity {
+
+    Context mcontext = SugarTab.this;
+    ArrayList<DataPoint> arrValue = new ArrayList<> ();
+
 
     GraphView graph;
 
     Spinner patientNames;
 
-    int top = 0;
-    int below = 0;
+    int value = 0;
     int count = 0;
 
     @Override
@@ -81,13 +77,13 @@ public class PressureTab extends Activity {
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://homecare-90544.firebaseio.com/users/"+UserDetail.userName+"/patients/"
-                        +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Pressures");
+                        +UserDetail.patient.get (UserDetail.selectPatient).getId ()+"/Sugars");
 
         reference1.addValueEventListener(new ValueEventListener () {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                arrTop.clear ();
-                arrBelow.clear ();
+                arrValue.clear ();
+
                 graph.removeAllSeries ();
 
                 for(DataSnapshot ds : snapshot.getChildren()) {
@@ -117,10 +113,9 @@ public class PressureTab extends Activity {
                         date.setHours (0);
                         date.setMinutes (0);
                         date.setSeconds (0);
-                        arrTop.add (new DataPoint (date,top/count));
-                        arrBelow.add (new DataPoint (date,below/count));
-                        top = 0;
-                        below = 0;
+                        arrValue.add (new DataPoint (date,value/count));
+
+                        value = 0;
                         count = 0;
                     } catch (ParseException e) {
                         e.printStackTrace ();
@@ -129,23 +124,18 @@ public class PressureTab extends Activity {
 
                 }
 
-                LineGraphSeries<DataPoint> lineGraphSeries = new LineGraphSeries<>(arrTop.toArray(new DataPoint[arrTop.size ()]));
-                PointsGraphSeries<DataPoint> pointsGraphSeries = new PointsGraphSeries<>(arrTop.toArray(new DataPoint[arrTop.size ()]));
+                LineGraphSeries<DataPoint> lineGraphSeries = new LineGraphSeries<>(arrValue.toArray(new DataPoint[arrValue.size ()]));
+                PointsGraphSeries<DataPoint> pointsGraphSeries = new PointsGraphSeries<>(arrValue.toArray(new DataPoint[arrValue.size ()]));
                 pointsGraphSeries.setShape(PointsGraphSeries.Shape.POINT);
                 pointsGraphSeries.setColor(Color.parseColor("#f9b7b7"));
                 lineGraphSeries.setColor(Color.parseColor("#f9b7b7"));
+                lineGraphSeries.setDrawBackground (true);
+                lineGraphSeries.setBackgroundColor (rgb(255, 254, 108));
                 graph.addSeries (lineGraphSeries);
                 graph.addSeries(pointsGraphSeries);
                 // Design chart line Top
 
-                LineGraphSeries<DataPoint> lineGraphSeries2 = new LineGraphSeries<>(arrBelow.toArray(new DataPoint[arrBelow.size ()]));
-                PointsGraphSeries<DataPoint> pointsGraphSeries2 = new PointsGraphSeries<>(arrBelow.toArray(new DataPoint[arrBelow.size ()]));
-                pointsGraphSeries.setShape(PointsGraphSeries.Shape.POINT);
-                pointsGraphSeries.setColor(Color.parseColor("#f9b7c7"));
-                lineGraphSeries.setColor(Color.parseColor("#f9b7c7"));
-                graph.addSeries (lineGraphSeries2);
-                graph.addSeries(pointsGraphSeries2);
-                // Design chart line Below
+                graph.getGridLabelRenderer().setGridColor(Color.BLUE);
 
 
                 // set date label formatter
@@ -163,11 +153,9 @@ public class PressureTab extends Activity {
 
     }
     public  void calTopNBelow(DataSnapshot ds  ){
-        top += Integer.parseInt (ds.child ("Top").getValue ().toString ());
-        below += Integer.parseInt (ds.child ("Below").getValue ().toString ());
+        value += Integer.parseInt (ds.child ("Value").getValue ().toString ());
         count += 1;
     }
-
 
 
 }

@@ -68,26 +68,48 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity
             android:name=".DetailMedicineActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".AddPlanerActivity.AddPatientActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ChartActivity" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".PlannerActivity" />
-        <activity android:name=".Tabs.MorningTab" />
-        <activity android:name=".Tabs.AfternoonTab" />
-        <activity android:name=".Tabs.EveningTab" />
-        <activity android:name=".Tabs.BeforeBedTab" />
-        <activity android:name=".Tabs.PressureTab" />
-        <activity android:name=".DetailActivity" />
+        <activity android:name=".ChartActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".NotificationActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".PlannerActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tabs.MorningTab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tabs.AfternoonTab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tabs.EveningTab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tabs.BeforeBedTab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tabs.PressureTab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tabs.SugarTab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".DetailActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
         <receiver android:name=".AlarmReceiver" />
 
-        <activity android:name=".TestDetailActivity"></activity>
     </application>
 
 </manifest>

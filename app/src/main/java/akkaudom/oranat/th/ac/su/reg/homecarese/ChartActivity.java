@@ -24,6 +24,7 @@ import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSugarActivit
 import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddSymptomActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.AddPlanerActivity.AddTherapyActivity;
 import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.PressureTab;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Tabs.SugarTab;
 
 public class ChartActivity extends AppCompatActivity {
     Activity mcontext = ChartActivity.this;
@@ -151,10 +152,11 @@ public class ChartActivity extends AppCompatActivity {
 
         TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2")
                 .setIndicator("ค่าน้ำตาล")
-                .setContent(new Intent(mcontext, PressureTab.class));
+                .setContent(new Intent(mcontext, SugarTab.class));
 
         tabHost.addTab(tabSpec);
         tabHost.addTab(tabSpec2);
         //tab chart
+
     }
 }

@@ -1,59 +1,116 @@
 package akkaudom.oranat.th.ac.su.reg.homecarese;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Map;
+
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.HomeDetail;
+import akkaudom.oranat.th.ac.su.reg.homecarese.Detail.UserDetail;
+
 public class DetailActivity extends AppCompatActivity {
 
-    ImageView mFlower;
-    TextView mDescription;
-    Toolbar mToolbar;
+    ImageView pic;
+    TextView topic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+        getSupportActionBar().hide();
         setContentView (R.layout.activity_detail);
 
+        TextView txtEx = (TextView) findViewById(R.id.idEx);
+        txtEx.setText("หัวข้อ " + UserDetail.selectContent);
 
-        mToolbar = findViewById(R.id.toolbar);
-        mFlower = findViewById(R.id.ivImage);
-        mDescription = findViewById(R.id.tvDescription);
+        pic = (ImageView)  findViewById (R.id.pic);
+        topic = (TextView) findViewById (R.id.topic);
+
+        String url = "https://homecare-90544.firebaseio.com/.json"; //หัวใหญ่
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONObject(response).getJSONObject("manual");
+
+                    Picasso.get().load(obj.getJSONObject(UserDetail.selectContent).getString("img")).into(pic);
+
+                    topic.setText(obj.getJSONObject(UserDetail.selectContent).getString("topic"));
 
 
-        getSupportActionBar().hide();
-        //not nev bar
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(""+error);
+            }
+        });
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //กดกลับ ตั้งชื่อหน้านั้น
+        RequestQueue requestQueue = Volley.newRequestQueue(DetailActivity.this);
+        requestQueue.add(request);
 
-        Bundle mBundle = getIntent().getExtras();
-        if (mBundle != null) {
-            mToolbar.setTitle(mBundle.getString("Title"));
-            mFlower.setImageResource(mBundle.getInt("Image"));
-            mDescription.setText(mBundle.getString("Description"));
+
+//        DatabaseReference reference1 = FirebaseDatabase.getInstance()
+//                .getReferenceFromUrl("https://homecare-90544.firebaseio.com/");
+//
+//        Log.d ("mess text", String.valueOf (reference1));
+//
+//        reference1.child ("manual").addValueEventListener(new ValueEventListener () {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//
+//                String img = snapshot.child ("img").getValue ().toString ();
+//                Log.d ("mess img", String.valueOf (img));
+//
+//                Log.d ("snapshot text", String.valueOf (snapshot));
+//
+//
+//                Picasso.get().load(obj.getJSONObject(UserDetail.selectContent).getString("img")).into(ImageBook);
+//
+//
+//
+//            }// img profile
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getMessage());
+//            }
+//        });// img profile on firebase
+
         }
 
+    public void onClickBack(View v){
+        onBackPressed();
     }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//
-//
-//                Intent intent = new Intent(DetailActivity.this, HomeActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
-//                finish();
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    } //กดกลับ ตั้งชื่อหน้านั้น
 }
